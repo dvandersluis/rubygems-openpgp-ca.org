@@ -1,0 +1,47 @@
+%h1 Ruby Gem OpenPGP Cerfificate Authority
+
+%p Future home of experimental OpenPGP Certificate Authority
+
+%p NOTE: This project is experimental in nature.
+
+%p
+  NOTE: This project has no affiliation with either the rubygems
+  project or rubygems.org
+
+%p
+
+  The goal of this project is to provide a basic certificate authority
+  for gems signed via rubygems-openpgp.  It validates that:
+
+  %ul
+    %li The key owner has control of the associated email.
+    %li The key owner does indeed have control of the private key.
+
+  This allows users to put a limited amount of trust in our key, and
+  use that to verify various gems that have:
+
+  %ul
+    %li been signed via rubygems-openpgp.
+    %li had signing keys registered here.
+
+%h2 For users
+
+%p Download the key:
+
+%pre gpg --keyserver pool.sks-keyservers.net --recv-keys 0xDEADBEEF
+
+%p Somehow authenticate the key.
+
+%p Mark the key as trusted on thier local keyring:
+
+%pre gpg --lsign 0xDEADBEEF
+
+%h2 For developers
+
+%p Generate a key
+
+%p Register it with keyservers
+
+%p sign your gem when you build it.
+
+%p Register your key with us.

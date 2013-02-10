@@ -1,0 +1,5 @@
+rvm use ruby-1.9.3-p385@openpgp-ca
+
+if ! command -v bundle ; then
+  gem install bundler
+fi

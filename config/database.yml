@@ -1,0 +1,30 @@
+# development:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: openpgp_ca_development
+#   pool: 5
+#   username: root
+#   password:
+
+development:
+  adapter: sqlite3
+  database: db/development.sqlite3
+  pool: 5
+  timeout: 5000
+
+# test:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: openpgp_ca_test
+#   pool: 5
+#   username: root
+#   password:
+
+# production:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: openpgp_ca_production
+#   pool: 5
+#   username: root
+#   password:
+
