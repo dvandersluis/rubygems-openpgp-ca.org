@@ -1,6 +1,9 @@
 OpenpgpCa::Application.routes.draw do
   get "home/index"
+  get "home/security"
   root :to => "home#index"
+ 
+  get "/security", :to => "home#security"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

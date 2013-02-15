@@ -1,0 +1,106 @@
+%h1 Signing Process
+
+%p
+
+  Various safeguards and checks are put into place to secure the
+  signing process.
+
+%h2 Master Signing Key authenticates the current Signing Key
+
+%p
+
+  A master signing key authenticates the current active signing key.
+  If the signing key is compromised, it will be revoked and a new one
+  will take its place.  The master signing key was generated on a
+  computer that has never been and will never be on a network.  To
+  compromise the master key an attacker would need to access this
+  computer physically at its current undisclosed location.
+
+Master key fingerprint:
+
+%pre
+
+  Blah
+
+%h2
+
+  User key authentication requires control of user's private key and
+  email address
+
+%p
+
+  When you register a private key, an encrypted email is sent with an
+  authentication link.  To be able to activate the key, someone must:
+
+%li
+
+  %ul Have control of your email address.
+
+  %ul Be able to use your private key.
+
+%p
+
+  With reasonable security precautions it is difficult for an attacker
+  to gain access to both of these.
+
+%h2 Signing occurs over an 'air gap'
+
+%p
+
+  Signatures are not issued via the web server where you registered
+  your key.  After you have authenticated your key with the web
+  server, the information is transferred to a signing computer via an
+  'air gap'.  It is placed on a USB drive and migrated to the signing
+  computer.
+
+%p
+
+  If the web server is compromised, an attacker cannot get to the
+  signing computer.
+
+%h2 Signing computer is physically located on-site
+
+%p
+
+  It is not in the cloud.  It is physically controlled by us.
+
+%h2 Keys are validated by a human before signing
+
+%p
+
+  A human performs a sanity check on the key before signing it to
+  ensure that it is actually tied to the email account that a user
+  registered with.
+
+  For example, somone could create a user id of "User X
+  (billg@microsoft.com) registered_email@example.org" to trick
+  automatic validation of the UID.
+
+%h2 Signing key is on an OpenPGP smart card
+
+%p
+
+  Once we're on the signing computer, the signing key is contained on
+  an OpenPGP smart card that is only inserted and activated for the
+  duration of signing.
+
+%p
+
+  If the signing computer is compromised remotely, an attacker won't
+  be able to physically insert the smart card and activate it.
+
+%p
+
+  If the signing computer is compromised locally, an attacker still
+  requires access to the smart card.
+
+%p
+
+  If the smart card lost or stolen, an attacker only has three
+  attempts to enter a passphrase before the card lock itself down.
+  Attempting to unlock the card unsuccessfully three times will cause
+  the card to self destruct.
+
+%p
+ 
+  An atttacker can't mount a brute force attack.
