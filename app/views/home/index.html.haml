@@ -1,12 +1,11 @@
-%h1 Ruby Gem OpenPGP Cerfificate Authority
+%h2 Ruby Gem OpenPGP Cerfificate Authority
 
 %p Future home of experimental OpenPGP Certificate Authority
 
-%p NOTE: This project is experimental in nature.
+%p.warning
 
-%p
-  NOTE: This project has no affiliation with either the rubygems
-  project or rubygems.org
+  NOTE: This project is experimental in nature.  This project has no
+  affiliation with either the rubygems project or rubygems.org
 
 %p
 
@@ -24,7 +23,7 @@
     %li been signed via rubygems-openpgp.
     %li had signing keys registered here.
 
-%h2 For users
+%h3 For users
 
 %p Download the key:
 
@@ -36,7 +35,11 @@
 
 %pre gpg --lsign 0xDEADBEEF
 
-%h2 For developers
+%p Verify the test gem:
+
+%pre gem install openpgp_signed_hola --verify
+
+%h3 For developers
 
 %p Generate a key
 

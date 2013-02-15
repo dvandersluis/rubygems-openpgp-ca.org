@@ -1,11 +1,11 @@
-%h1 Signing Process
+%h2 Signing Process
 
 %p
 
   Various safeguards and checks are put into place to secure the
   signing process.
 
-%h2 Master Signing Key authenticates the current Signing Key
+%h3 Master Signing Key authenticates the current Signing Key
 
 %p
 
@@ -22,7 +22,7 @@ Master key fingerprint:
 
   Blah
 
-%h2
+%h3
 
   User key authentication requires control of user's private key and
   email address
@@ -32,18 +32,18 @@ Master key fingerprint:
   When you register a private key, an encrypted email is sent with an
   authentication link.  To be able to activate the key, someone must:
 
-%li
+%ul
 
-  %ul Have control of your email address.
+  %li Have control of your email address.
 
-  %ul Be able to use your private key.
+  %li Be able to use your private key.
 
 %p
 
   With reasonable security precautions it is difficult for an attacker
   to gain access to both of these.
 
-%h2 Signing occurs over an 'air gap'
+%h3 Signing occurs over an 'air gap'
 
 %p
 
@@ -58,13 +58,13 @@ Master key fingerprint:
   If the web server is compromised, an attacker cannot get to the
   signing computer.
 
-%h2 Signing computer is physically located on-site
+%h3 Signing computer is physically located on-site
 
 %p
 
   It is not in the cloud.  It is physically controlled by us.
 
-%h2 Keys are validated by a human before signing
+%h3 Keys are validated by a human before signing
 
 %p
 
@@ -76,7 +76,7 @@ Master key fingerprint:
   (billg@microsoft.com) registered_email@example.org" to trick
   automatic validation of the UID.
 
-%h2 Signing key is on an OpenPGP smart card
+%h3 Signing key is on an OpenPGP smart card
 
 %p
 
@@ -103,4 +103,4 @@ Master key fingerprint:
 
 %p
  
-  An atttacker can't mount a brute force attack.
+  An attacker can't mount a brute force attack.

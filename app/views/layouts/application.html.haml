@@ -1,0 +1,25 @@
+%html
+  %head
+    %title
+      rubygems-openpgp Certificate Authority
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    %h1 rubygems-openpgp Certificate Authority
+
+    %ul.menu
+      %li
+        %a{:href => "/"}
+          Home
+      %li
+        %a{:href => "/users"}
+          For Users
+      %li
+        %a{:href => "/developers"}
+          For Developers
+      %li
+        %a{:href => "/security"}
+          Security and Signing Procedure
+     
+    = yield
