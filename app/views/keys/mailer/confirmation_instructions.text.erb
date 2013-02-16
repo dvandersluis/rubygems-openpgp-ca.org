@@ -1,0 +1,6 @@
+Hello <%= @email %>!
+
+Please confirm that you control the private key by decrypting the
+following text and following the confirmation link:
+
+<%= encrypted_confirmation(confirmation_url(@resource, :confirmation_token => @resource.confirmation_token)) %>
