@@ -29,13 +29,13 @@
 
 %p Download the key:
 
-%pre gpg --keyserver pool.sks-keyservers.net --recv-keys 0xDEADBEEF
+%pre gpg --keyserver pool.sks-keyservers.net --recv-keys 0x6094099A
 
 %p Somehow authenticate the key.
 
 %p Mark the key as trusted on thier local keyring:
 
-%pre gpg --lsign 0xDEADBEEF
+%pre gpg --lsign 0x6094099A
 
 %p Verify the test gem:
 
