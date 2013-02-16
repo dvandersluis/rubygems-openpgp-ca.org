@@ -2,8 +2,31 @@
 
 %p
 
-  Various safeguards and checks are put into place to secure the
-  signing process.
+  To effectively act as a certificate authority, two conditions must
+  be met.
+
+  %ol
+    %li
+
+      Some verification must be performed that the keys we sign are
+      authentic and belong to the purported owner.
+
+    %li
+
+      The signing keys must be secured so that unauthorized signatures
+      are not issued.
+
+%p
+
+  Authentication is a hard problem.  Our first goal is to provide a
+  medium grade base-level of authentication for users who cannot
+  perform full authentication of signing keys.  Our second goal is to
+  have enough safeguards in place that producing forged signatures is
+  impractical.
+
+%p
+
+  Here's how we do it.
 
 %h3 Master Signing Key authenticates the current Signing Key
 
@@ -30,7 +53,8 @@ Master key fingerprint:
 %p
 
   When you register a private key, an encrypted email is sent with an
-  authentication link.  To be able to activate the key, someone must:
+  confirmation link.  The email must be decrypted to follow the
+  confirmation link.  To be able to activate the key, someone must:
 
 %ul
 
@@ -41,7 +65,7 @@ Master key fingerprint:
 %p
 
   With reasonable security precautions it is difficult for an attacker
-  to gain access to both of these.
+  to gain access to both.
 
 %h3 Signing occurs over an 'air gap'
 
@@ -74,14 +98,22 @@ Master key fingerprint:
 
   For example, somone could create a user id of "User X
   (billg@microsoft.com) registered_email@example.org" to trick
-  automatic validation of the UID.
+  automatic validation of the UID, but a human will immediately notice
+  that something is amiss.
+
+  We reserve the right to reject signing any keys that seem suspicious
+  for whatever reason.
 
 %h3 Signing key is on an OpenPGP smart card
 
 %p
 
   Once we're on the signing computer, the signing key is contained on
-  an OpenPGP smart card that is only inserted and activated for the
+  an
+
+  %a{:href => "http://g10code.com/p-card.html"} OpenPGP smart card
+
+  that is only inserted and activated for the
   duration of signing.
 
 %p
