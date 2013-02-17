@@ -1,0 +1,84 @@
+%h2 Signing Key Security
+
+%p
+
+  It is critical that our signing keys are securely maintained.  If
+  not, an attacker can issue malicious signatures on our behalf,
+  bypassing the actual certifcation.
+
+%h3 Master Signing Key authenticates the current Signing Key
+
+%p
+
+  A master signing key authenticates the current active signing key.
+  If the signing key is compromised, it will be revoked and a new one
+  will take its place.  The master signing key was generated on a
+  computer that has never been and will never be on a network.  To
+  compromise the master key an attacker would need to access this
+  computer physically at its current undisclosed location.
+
+Master key fingerprint:
+
+%pre
+  :preserve
+    pub   4096R/FDBA50FB 2013-02-16 [expires: 2014-02-16]
+          Key fingerprint = BEED FE71 7668 50BF A6DE  5A19 25A6 5396 FDBA 50FB
+    uid                  rubygems-openpgp Certificate Authority MASTER KEY (http://rubygems-openpgp-ca.org)
+    sub   4096R/9A39A769 2013-02-16 [expires: 2014-02-16]
+
+%p TODO: gpg trust signature.
+
+%h3 Signing computer is physically located on-site
+
+%p
+
+  It is not in the cloud.  It is physically controlled by us.
+
+%h3 Signing occurs over an 'air gap'
+
+%p
+
+  Signatures are not issued via the web server where you registered
+  your key.  After you have authenticated your key with the web
+  server we sign on another computer with an 'air gap' in place.  If
+  the web server is compromised, an attacker can't just ssh into the
+  signing server.
+
+%h3 Signing key is on an OpenPGP smart card
+
+%p
+
+  Once we're on the signing computer, the signing key is contained on
+  an
+
+  %a{:href => "http://g10code.com/p-card.html"} OpenPGP smart card
+
+  that is only inserted and activated for the
+  duration of signing.
+
+%p
+
+  If the signing computer is compromised remotely, an attacker won't
+  be able to physically insert the smart card and activate it.
+
+%p
+
+  If the signing computer is compromised locally, an attacker still
+  requires access to the smart card.
+
+%p
+
+  If the smart card lost or stolen, an attacker only has three
+  attempts to enter a passphrase before the card lock itself down.
+  Attempting to unlock the card unsuccessfully three times will cause
+  the card to self destruct.  A brute force attack is not possible.
+
+%h3 Signing key has a rotating expiration date.
+
+%p
+
+  The signing key is set to expire every sixty days.  At the end of
+  that sixty days, assuming the key has not been compromised, it is
+  renewed for another 60 days.  This forces users to practice good
+  keyring hygiene and refresh their keyring, retrieving any
+  revocations issued by the signing key, or to the signing key itself.

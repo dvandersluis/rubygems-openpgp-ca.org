@@ -2,7 +2,10 @@ class HomeController < ApplicationController
   def index
   end
 
-  def security
+  def key_security
   end
-  
+
+  def authentication
+  end
+    
 end

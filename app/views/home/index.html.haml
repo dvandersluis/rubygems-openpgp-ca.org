@@ -9,19 +9,24 @@
 
 %p
 
-  The goal of this project is to provide a basic certificate authority
-  for gems signed via rubygems-openpgp.  It validates that:
+  The goal of this project is to provide:
 
   %ul
-    %li The key owner has control of the associated email.
-    %li The key owner does indeed have control of the private key.
+    %li
 
-  This allows users to put a limited amount of trust in our key, and
-  use that to verify various gems that have:
+      A entity for users to authenticate and trust (or not) instead of
+      having to authenticate hundreds of individual developers.
 
-  %ul
-    %li been signed via rubygems-openpgp.
-    %li had signing keys registered here.
+    %li
+
+      Basic authentication of developers and their signing keys to
+      provide some assurances that gems are signed by an authorized
+      key.
+
+    %li
+
+      A secure signing process that prevents a malicious user from
+      issuing bogus signatures on our behalf.
 
 %h3 Getting Started...
 
@@ -33,7 +38,7 @@
 
 %p Somehow authenticate the key.
 
-%p Mark the key as trusted on thier local keyring:
+%p Mark the key as trusted on their local keyring:
 
 %pre gpg --lsign 0x6094099A
 

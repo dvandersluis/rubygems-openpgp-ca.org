@@ -1,0 +1,163 @@
+%h2 Authentication
+
+%p
+
+  To verify that a gem you've downloaded is authentic and hasn't been
+  tampered with, you need to:
+
+%ul
+
+  %li Verify that the gem itself is intact by checking a checksum.
+
+  %li
+
+    Verify that the checksum is authentic by checking the digital
+    signature.
+
+  %li
+
+    Verify that the signature is valid by authenticating the key that
+    issued the signature.
+
+%h3 But authentication is hard...
+
+%p
+
+  How do you validate that a key is valid?  At first it seems simple.
+  Well this is the same key that's on the author's website, so it has
+  to be good.  But then you realize that if someone hacked the
+  developer's laptop they could also just change the key on the
+  website.
+
+%p 
+
+  And then you think of another problem.  And before you know it
+  you've realized the only surefire way to authenticate the key is to
+  meet the developer in person and verify it face to face.  (And now
+  that you're paranoid, you start to wonder if that really is the
+  developer, or a clone or robot designed by agents of Eastasia to
+  deceive you.)
+
+%p
+
+  In the software world you may have different authentication
+  requirements if:
+
+%ul
+
+  %li You're working through a tutorial at home.
+
+  %li You run an e-commerce site that processes credit cards.
+
+  %li You're storing sensitive patient medical records.
+
+  %li You run a nuclear reactor.
+
+%h3 Enter the rubygems-openpgp Certificate Authority
+
+%p
+
+  We provide some verification of signing keys.  It's not by any means
+  perfect, but provides a reasonable starting point to trust signing
+  keys.
+
+%p
+
+  We:
+
+%ul
+
+  %li
+
+    Verify that the person registering the key has control of their
+    email address by sending a confirmation email.  This is pretty
+    standard.
+
+  %li
+
+    We verify that the developer controls the signing key by
+    encrypting the confirmation link.
+
+  %li
+
+    We verify that the developer has a rubygems.org account tied to
+    the same email account.  If possible, we verify that the
+    developer's posted gems include the same email contact info.
+
+  %li
+
+    A human verifies the sanity of all of the above elements for
+    anything suspicious. (For example, a signing key that has user ids for
+    haxxor@example.org and billg@microsoft.com, that is registered
+    under the haxxor@example.org account.)
+
+  %li
+
+    Once your key has been authenticated, the authentication is
+    locked.  If your email is compromised down the road, the malicious
+    user won't be able to upload a replacement public key.
+    (Eventually there will be a revocation policy for lost or
+    compromised keys, but it will not be automatic.)
+
+%p
+
+  By connecting the signing key to the rubygems.org account via email,
+  we provide some basic assurances that the signing key is the correct
+  one.
+
+%h3 But someone could still fake all that!
+
+%p
+
+  Yes, someone could perform a zero-day exploit.  They could:
+
+%ul
+
+  %li Compromise a developer's email.
+
+  %li Perform a password reset on rubygems.
+
+  %li Create their own private key.
+
+  %li Register their key here.
+
+  %li Upload malicious signed gem.
+
+%p
+
+  Exploit scenarios that are prevented:
+
+%ul
+
+  %li 
+
+    Registering a forged key without access to developer's email
+    account.
+
+  %li 
+
+    Swapping out an existing good signing key for a forged one and
+    getting it signed by the Certificate Authority.
+
+  %li
+
+    A back-end exploit to rubygems.org could upload a compromised gem
+    with an unauthenticated signing key, but the client would notice
+    that the key is untrusted and reject the install.
+
+%p
+
+And as time goes on, it becomes less and less likely that a maintained
+gem has been compromised and signed by a malicious user.  If someone
+does pull off a zero-day exploit, and a developer goes on to do six
+releases over the course of a year, at some point someone will
+probably notice that something is suspicious.
+
+%h3 In conclusion...
+
+%p
+
+  Once again, the authentication scheme isn't perfect.  But it isn't
+  worthless either.  For most gem users we should provide enough
+  authentication for your purposes.  And it's better than simply
+  performing no authentication.

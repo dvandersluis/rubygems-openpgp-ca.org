@@ -11,17 +11,14 @@
 
       %ul.menu
         %li
-          %a{:href => "/"}
+          %a{:href => root_url}
             Home
         %li
-          %a{:href => "/users"}
-            For Users
+          %a{:href => authentication_url}
+            Authentication
         %li
-          %a{:href => "/developers"}
-            For Developers
-        %li
-          %a{:href => "/security"}
-            Security and Signing Procedure
+          %a{:href => key_security_url}
+            Key Security
 
         %li
           - if current_user
