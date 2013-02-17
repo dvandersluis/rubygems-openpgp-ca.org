@@ -1,4 +1,4 @@
-%h2 Signing Key Security
+%h1 Signing Key Security
 
 %p
 
@@ -6,7 +6,7 @@
   not, an attacker can issue malicious signatures on our behalf,
   bypassing the actual certifcation.
 
-%h3 Master Signing Key authenticates the current Signing Key
+%h2 Master Signing Key authenticates the current Signing Key
 
 %p
 
@@ -28,13 +28,13 @@ Master key fingerprint:
 
 %p TODO: gpg trust signature.
 
-%h3 Signing computer is physically located on-site
+%h2 Signing computer is physically located on-site
 
 %p
 
   It is not in the cloud.  It is physically controlled by us.
 
-%h3 Signing occurs over an 'air gap'
+%h2 Signing occurs over an 'air gap'
 
 %p
 
@@ -44,7 +44,7 @@ Master key fingerprint:
   the web server is compromised, an attacker can't just ssh into the
   signing server.
 
-%h3 Signing key is on an OpenPGP smart card
+%h2 Signing key is on an OpenPGP smart card
 
 %p
 
@@ -73,7 +73,7 @@ Master key fingerprint:
   Attempting to unlock the card unsuccessfully three times will cause
   the card to self destruct.  A brute force attack is not possible.
 
-%h3 Signing key has a rotating expiration date.
+%h2 Signing key has a rotating expiration date.
 
 %p
 
