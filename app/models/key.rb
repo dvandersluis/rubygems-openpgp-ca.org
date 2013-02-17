@@ -1,8 +1,5 @@
 class Key < ActiveRecord::Base
 
-  class GPGError < StandardError
-  end
-  
   devise :confirmable
 
   belongs_to :user

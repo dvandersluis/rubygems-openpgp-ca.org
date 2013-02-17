@@ -1,26 +1,6 @@
 require 'open3'
 
 module ApplicationHelper
-  def openpgp_encrypt openpgp_key, message
-    gpg_encrypt_command = "gpg --armor --encrypt -r #{openpgp_key}"
-    gpg_encrypt_command << " --trust-model always"
-    gpg_encrypt_command << " --keyserver pool.sks-keyservers.net"
-    gpg_encrypt_command << " --keyserver-options auto-key-retrieve"
-
-    sin, sout, serr = Open3.popen3(gpg_encrypt_command)
-    sin.write(message)
-    sin.close
-
-    output = sout.read
-    err = serr.read
-
-    if !err.blank?
-      raise Key::GPGError, err
-    end
-
-    output
-  end
-  
   def encrypted_confirmation key, confirmation_link
 
     message = <<WELCOME
@@ -35,6 +15,38 @@ Thanks!
 WELCOME
 
     openpgp_encrypt @resource.openpgp_key, message
+  end
+  
+private
+
+  def run_command command, message=nil
+    sin, sout, serr = Open3.popen3(command)
+    sin.write(message) if message
+    sin.close
+
+    output = sout.read
+    err = serr.read
+
+    if $? != 0
+      raise RuntimeError, err
+    end
+
+    output
+  end
+  
+  def openpgp_encrypt openpgp_key, message
+
+    gpg_getkey_command = "gpg"
+    gpg_getkey_command << " --keyserver pool.sks-keyservers.net"
+    gpg_getkey_command << " --keyserver-options auto-key-retrieve"
+    gpg_getkey_command << " --recv-keys #{openpgp_key}"
+    run_command(gpg_getkey_command)
+
+    gpg_encrypt_command = "gpg --armor --encrypt -r #{openpgp_key}"
+    gpg_encrypt_command << " --trust-model always"
+    encrypted_text = run_command(gpg_encrypt_command, message)
+
+    encrypted_text
   end
   
 
