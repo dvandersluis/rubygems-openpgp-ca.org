@@ -4,7 +4,7 @@ Devise.setup do |config|
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
-  config.mailer_sender = "kgo@grant-olson.net"
+  config.mailer_sender = "noreply@rubygems-openpgp-ca.org"
 
   # Configure the class responsible to send e-mails.
   config.mailer = "MyMailer"
