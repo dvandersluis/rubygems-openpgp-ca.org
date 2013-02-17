@@ -1,6 +1,5 @@
 OpenpgpCa::Application.routes.draw do
   devise_for :users
-  devise_for :keys
 
   get "home/index"
   get "home/security"
