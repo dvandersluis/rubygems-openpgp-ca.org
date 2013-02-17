@@ -64,4 +64,16 @@ OpenpgpCa::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+
+  config.action_mailer.delivery_method = :smtp
+
+  ActionMailer::Base.smtp_settings = {
+    :address => ENV['MAIL_SERVER'],
+    :port => ENV['MAIL_PORT'],
+    :user_name => ENV['MAIL_USER'],
+    :password => ENV['MAIL_PASSWORD'],
+    :authentication => :login
+  }
+
+  config.action_mailer.raise_delivery_errors = true
 end
