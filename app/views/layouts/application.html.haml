@@ -25,7 +25,7 @@
             %a{:href => "/user/status"} Application Status
             = link_to "Sign Out", destroy_user_session_path, :method => :delete
           - else
-            %a{:href => "/users/sign_up"} Apply Now!
+            %a{:href => "javascript:alert('Not Accepting Applications.  How did you even find us?');"} Apply Now!
  
 
     %p.notice= notice
