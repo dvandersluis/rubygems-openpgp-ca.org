@@ -1,6 +1,6 @@
 Hello <%= @email %>!
 
-Please confirm that you control the private key by decrypting the
-following text and following the confirmation link:
+Please confirm that you control the private key for <%= @resource.openpgp_key %>
+by decrypting the following text and following the confirmation link:
 
-<%= encrypted_confirmation(confirmation_url(@resource, :confirmation_token => @resource.confirmation_token)) %>
+<%= encrypted_confirmation(@resource, confirmation_url(@resource, :confirmation_token => @resource.confirmation_token)) %>
