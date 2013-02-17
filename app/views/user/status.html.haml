@@ -1,0 +1,24 @@
+%h2 Application Status
+
+%p
+  %b Email:
+  = @user.email
+
+%p
+  %b Rubygems profile:
+  = @user.rubygems_profile_page
+
+%p
+  %b OpenPGP key:
+  = @user.openpgp_key
+
+%hr
+
+%p
+  %b Status:
+  = @user.status_code
+  
+- if !@status_note.blank?
+  %p
+  %b Note:
+  = @user.status_note

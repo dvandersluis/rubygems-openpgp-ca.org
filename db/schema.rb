@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130217134931) do
+ActiveRecord::Schema.define(:version => 20130217151019) do
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(:version => 20130217134931) do
     t.string   "unconfirmed_email"
     t.string   "openpgp_key",                            :null => false
     t.string   "rubygems_profile_page",                  :null => false
+    t.integer  "status",                 :default => 0
+    t.string   "status_note"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

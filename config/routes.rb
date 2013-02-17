@@ -6,6 +6,7 @@ OpenpgpCa::Application.routes.draw do
   root :to => "home#index"
  
   get "/security", :to => "home#security"
+  get "user/status", :to => "user#status"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

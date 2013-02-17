@@ -11,4 +11,11 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :openpgp_key, :rubygems_profile_page
   # attr_accessible :title, :body
+
+  STATUS_CODES = { 0 => "PENDING", 1 => "ACCEPTED", -1 => "REJECTED"}
+
+  def status_code
+    STATUS_CODES[status] || "???"
+  end
+  
 end
