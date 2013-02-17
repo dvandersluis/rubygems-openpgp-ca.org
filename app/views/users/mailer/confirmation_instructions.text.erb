@@ -1,6 +1,17 @@
-Welcome <%= @email %>!
+Hello <%= @email %>,
 
-To complete your application you need to decrypt the following message
-and follow the included confirmation link:
+To complete the submission of your application you need to decrypt the
+following message and follow the included confirmation link:
 
 <%= encrypted_confirmation(@resource, confirmation_url(@resource, :confirmation_token => @resource.confirmation_token)) %>
+
+After successfully doing so you should expect your application to be
+approved or rejected within 72 hours.
+
+You can check your status here:
+
+<%= user_status_url %>
+
+Thanks,
+
+rubygems-openpgp Certificate Authority

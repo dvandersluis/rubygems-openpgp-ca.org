@@ -25,9 +25,10 @@
 
         %li
           - if current_user
+            %a{:href => "/user/status"} Application Status
             = link_to "Sign Out", destroy_user_session_path, :method => :delete
           - else
-            %a{:href => "users/sign_in"} Sign In
+            %a{:href => "/users/sign_up"} Apply Now!
  
 
     %p.notice= notice
