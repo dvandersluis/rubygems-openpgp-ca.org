@@ -1,0 +1,6 @@
+Welcome <%= @email %>!
+
+To complete your application you need to decrypt the following message
+and follow the included confirmation link:
+
+<%= encrypted_confirmation(@resource, confirmation_url(@resource, :confirmation_token => @resource.confirmation_token)) %>

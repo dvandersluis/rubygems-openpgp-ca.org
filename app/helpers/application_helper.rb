@@ -20,15 +20,15 @@ WELCOME
 private
 
   def run_command command, message=nil
-    sin, sout, serr = Open3.popen3(command)
+    sin, sout, serr, wait_thr  = Open3.popen3(command)
     sin.write(message) if message
     sin.close
 
     output = sout.read
     err = serr.read
 
-    if $? != 0
-      raise RuntimeError, err
+    if wait_thr.value != 0
+      raise RuntimeError, "#{wait_thr.value}\n\n#{err}"
     end
 
     output

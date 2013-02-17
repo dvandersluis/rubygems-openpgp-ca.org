@@ -1,13 +1,31 @@
-<h2>Sign up!</h2>
+<h2>Apply for certification</h2>
 
+<p>The goal of this project is to certify the keys of active gem
+  developers.  As such, the following requirements must be met:</p>
+
+<ul>
+  <li>You must have a valid email address.</li>
+  <li>You must have a publically accessible OpenPGP key for your
+  email address.</li>
+  <li>You must have a rubygems profile with:
+    <ul>
+      <li>At least one non-trivial non-boilerplate gem.  (No hola
+    gem.)</li>
+      <li>The gemspec should connect the gem to your email
+      address.</li>
+    </ul>
+  </li>
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <div><%= f.label :username %><br />
-  <%= f.text_field :username, :autofocus => true %></div>
-
   <div><%= f.label :email %><br />
   <%= f.email_field :email, :autofocus => true %></div>
+
+  <div><%= f.label :rubygems_profile_page %><br />
+  <%= f.text_field :rubygems_profile_page, :autofocus => true %></div>
+
+  <div><%= f.label :openpgp_key %><br />
+  <%= f.text_field :openpgp_key, :autofocus => true %></div>
 
   <div><%= f.label :password %><br />
   <%= f.password_field :password %></div>
@@ -15,7 +33,7 @@
   <div><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></div>
 
-  <div><%= f.submit "Sign up" %></div>
+  <div><%= f.submit "Apply" %></div>
 <% end %>
 
 <%= render "devise/shared/links" %>
