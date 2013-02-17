@@ -21,6 +21,10 @@
             Key Security
 
         %li
+          %a{:href => contact_url}
+            Contact
+
+        %li
           - if current_user
             %a{:href => "/user/status"} Application Status
             = link_to "Sign Out", destroy_user_session_path, :method => :delete

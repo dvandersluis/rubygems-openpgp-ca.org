@@ -8,4 +8,8 @@ class HomeController < ApplicationController
   def authentication
   end
     
+
+  def contact
+  end
+  
 end

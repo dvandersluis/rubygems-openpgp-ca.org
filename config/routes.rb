@@ -1,12 +1,11 @@
 OpenpgpCa::Application.routes.draw do
   devise_for :users
 
-  get "home/index"
-  get "home/key_security"
   root :to => "home#index"
  
   get "/key_security", :to => "home#key_security"
   get "/authentication", :to => "home#authentication"
+  get "/contact", :to => "home#contact"
   get "user/status", :to => "user#status"
 
   # The priority is based upon order of creation:
