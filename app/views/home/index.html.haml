@@ -91,9 +91,19 @@
 
   %li
 
-    Mark the key as trusted on their local keyring:
+    Sign the key on your local keyring:
 
     %pre gpg --lsign 0x6094090A
+
+  %li
+
+    Mark the key as trusted on your local keyring:
+
+    %pre gpg --edit-key 0x6094090A trust quit
+
+    Select
+    %code 4 = I trust fully
+    and hit ENTER.
 
   %li
 
