@@ -38,32 +38,115 @@
 
 %h2 Getting Started...
 
-%h3 For users
+%h3 For gem users
 
-%p Download the key:
+%ol
 
-%pre gpg --keyserver pool.sks-keyservers.net --recv-keys 0x6094099A
+  %li
 
-%p Somehow authenticate the key.
+    Install
 
-%p Mark the key as trusted on their local keyring:
+    %a{:href => "https://github.com/grant-olson/rubygems-openpgp"} rubygems-openpgp
 
-%pre gpg --lsign 0x6094099A
+    %pre
 
-%p Verify the test gem:
+      gem install rubygems-openpgp
 
-%pre gem install openpgp_signed_hola --verify
+  %li
 
-%p More info here...
+    Attempt to verify the test gem:
 
-%h3 For developers
+    %pre gem install openpgp_signed_hola --verify
 
-%p Generate a key
+    Note that the verify operation will succeed (will it?), but the
+    signature will be untrusted:
 
-%p Register it with keyservers
+    %pre
+      :preserve
+        gpg: WARNING: This key is not certified with a trusted signature!
+        gpg:          There is no indication that the signature belongs to the owner.
 
-%p sign your gem when you build it.
+  %li
 
-%p Register your key with us.
+    Download the signing key:
 
-%p More info here...
+    %pre gpg --keyserver pool.sks-keyservers.net --recv-keys 0x6094099A
+
+  %li
+
+    Authenticate the key by comparing the fingerprint against a known
+    good copy.  (Github.  My personal website.)
+
+    %pre gpg --fingerprint --list-key 0x6094099A
+
+  %li
+
+    Generate your signing key.
+
+    %pre gpg --gen-key
+
+  %li
+
+    Mark the key as trusted on their local keyring:
+
+    %pre gpg --lsign 0x6094099A
+
+  %li
+
+    Verify the test gem:
+
+    %pre gem install openpgp_signed_hola --verify
+
+    Note that the gem is now trusted.
+
+%h3 For gem developers
+
+%ol
+
+  %li
+
+    Generate a signing key.
+
+    %pre gpg --gen-key
+
+  %li
+
+    Register it with keyservers.  (After creating an offline backup and
+    revocation certificate.)
+
+    %pre gpg --keyserver pool.sks-keyservers.net --send-keys 0xDEADBEEF
+
+  %li
+
+    Install 
+
+    %a{:href => "http://github.com/grant-olson/rubygems-openpgp"} rubygems-openpgp
+
+    %pre gem install rubygems-openpgp
+
+  %li
+
+    Sign your gem when you build it.
+
+    %pre gem build foo.gemspec --sign
+
+  %li
+
+    Apply to register your key with us.
+
+  %li 
+    
+    If you didn't do so, create an offline backup and revocation
+    certificate of your signing key.
+
+  %li 
+    
+    If you still didn't do so, create an offline backup and revocation
+    certificate of your signing key.
+
+    %pre
+
+      :preserve
+        cd /media/usb_stick
+        gpg --export-secret-key 0xDEADBEEF > key_backup.gpg
+        gpg --gen-revoke 0xDEADBEEF > key_revoke.gpg
