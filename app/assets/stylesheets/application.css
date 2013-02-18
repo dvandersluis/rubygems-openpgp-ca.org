@@ -19,8 +19,7 @@ body {
 }
 
 .warning, .notice, .alert {
-    border:2pt black;
-    background-color:#FF8080;
+    background-color:#FFB0B0;
     margin-left:10%;
     margin-right:10%;
 }
@@ -29,7 +28,7 @@ pre {
   margin-left:5;
   margin-right: 5%;
   background-color:#CCCCCC;
-  font-weight:bold;
+  padding:0.25em;
 }
 
 .menu {
