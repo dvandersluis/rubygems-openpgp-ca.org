@@ -3,7 +3,13 @@ class AdminController < ApplicationController
   before_filter :admin_user
 
   def pending_applications
+    @pending_users = User.find_all_by_status(User::STATUS_PENDING)
   end
+
+  def edit_status
+    @user = User.find(params[:user])
+  end
+  
 
 private
 

@@ -1,2 +1,16 @@
 %h1 Pending Applications
 
+%table
+  %tr
+    %th Email
+    %th Profile Page
+    %th OpenPGP Key
+    %th 
+
+  - @pending_users.each do |user|
+    %tr
+      %td= user.email
+      %td= user.rubygems_profile_page
+      %td= user.openpgp_key
+      %td
+        = link_to "edit", admin_edit_status_path(user.id)

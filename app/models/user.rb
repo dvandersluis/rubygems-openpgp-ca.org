@@ -13,6 +13,9 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   STATUS_CODES = { 0 => "PENDING", 1 => "ACCEPTED", -1 => "REJECTED"}
+  STATUS_PENDING = 0
+  STATUS_ACCEPTED = 1
+  STATUS_REJECTED = -1
 
   def status_code
     STATUS_CODES[status] || "???"
