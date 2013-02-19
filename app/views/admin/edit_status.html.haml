@@ -1,1 +1,28 @@
 %h1 Edit Status for #{@user.email}
+
+%h3 User Info
+
+%p
+  %b Project Page:
+  = @user.rubygems_profile_page
+
+%p
+  %b OpenPGP Key:
+  = @user.openpgp_key
+
+%h3 Local Key info
+
+%pre
+  = `gpg --fingerprint --list-key #{@user.openpgp_key}`
+
+%pre
+  = `gpg --fingerprint --list-sigs #{@user.openpgp_key}`
+
+%h3 Status
+
+= form_for @user, :as => :post, :url => admin_update_status_path(@user) do |f|
+  = f.select :status, [["PENDING", User::STATUS_PENDING],["REJECTED",User::STATUS_REJECTED], ["ACCEPTED",User::STATUS_ACCEPTED]]
+  = f.text_field :status_note
+  = f.submit
+
+xx

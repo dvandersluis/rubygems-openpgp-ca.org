@@ -5,6 +5,7 @@
     %th Email
     %th Profile Page
     %th OpenPGP Key
+    %th Notes
     %th 
 
   - @pending_users.each do |user|
@@ -12,5 +13,6 @@
       %td= user.email
       %td= user.rubygems_profile_page
       %td= user.openpgp_key
+      %td= user.status_note
       %td
         = link_to "edit", admin_edit_status_path(user.id)

@@ -10,6 +10,15 @@ class AdminController < ApplicationController
     @user = User.find(params[:user])
   end
   
+  def update_status
+    @user = User.find(params[:user])
+    @user.status = params[:post][:status].to_i
+    @user.status_note = params[:post][:status_note]
+    @user.save!
+
+    redirect_to admin_pending_applications_path
+  end
+  
 
 private
 

@@ -11,6 +11,8 @@ OpenpgpCa::Application.routes.draw do
   get "admin/pending_applications", :to => "admin#pending_applications"
   get "admin/edit_status/:user", :to => "admin#edit_status", :as => :admin_edit_status
 
+  put "admin/update_status/:user", :to => "admin#update_status", :as => :admin_update_status
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
