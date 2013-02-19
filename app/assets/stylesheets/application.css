@@ -18,12 +18,6 @@ body {
      margin-right:5%
 }
 
-.warning, .notice, .alert {
-    background-color:#FFB0B0;
-    margin-left:10%;
-    margin-right:10%;
-}
-
 pre {
   margin-left:5;
   margin-right: 5%;
@@ -60,3 +54,15 @@ pre {
 h1, h2, h3 {
   background:#85A3FF;
 }
+
+.warning, .notice, .alert {
+    background-color:#FFB0B0;
+    margin-left:10%;
+    margin-right:10%;
+}
+
+div#error_explanation h2, div#error_explanation ul li {
+   background-color:#FFB0B0;
+ 
+}
+
