@@ -33,10 +33,10 @@ advantage of certifcations.</p>
   <%= f.email_field :email, :autofocus => true %></div>
 
   <div><%= f.label :rubygems_profile_page %><br />
-  <%= f.text_field :rubygems_profile_page, :autofocus => true %></div>
+  <%= f.text_field :rubygems_profile_page, :value => "https://rubygems.org/profiles/"  %></div>
 
   <div><%= f.label :openpgp_key %> (Short format: 0x00C0FFEE)<br />
-  <%= f.text_field :openpgp_key, :autofocus => true %></div>
+  <%= f.text_field :openpgp_key %></div>
 
   <div><%= f.label :password %><br />
   <%= f.password_field :password %></div>
