@@ -14,40 +14,7 @@ confirmation link below:
 Thanks!
 WELCOME
 
-    openpgp_encrypt @resource.openpgp_key, message
+    @resource.openpgp_encrypt message
   end
   
-private
-
-  def run_command command, message=nil
-    sin, sout, serr, wait_thr  = Open3.popen3(command)
-    sin.write(message) if message
-    sin.close
-
-    output = sout.read
-    err = serr.read
-
-    if wait_thr.value != 0
-      raise RuntimeError, "#{wait_thr.value}\n\n#{err}"
-    end
-
-    output
-  end
-  
-  def openpgp_encrypt openpgp_key, message
-
-    gpg_getkey_command = "gpg"
-    gpg_getkey_command << " --keyserver pool.sks-keyservers.net"
-    gpg_getkey_command << " --keyserver-options auto-key-retrieve"
-    gpg_getkey_command << " --recv-keys #{openpgp_key}"
-    run_command(gpg_getkey_command)
-
-    gpg_encrypt_command = "gpg --armor --encrypt -r #{openpgp_key}"
-    gpg_encrypt_command << " --trust-model always"
-    encrypted_text = run_command(gpg_encrypt_command, message)
-
-    encrypted_text
-  end
-  
-
 end
