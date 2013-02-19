@@ -41,7 +41,15 @@ class User < ActiveRecord::Base
   def validate_published_openpgp_key
     openpgp_get_key
   rescue GPGError => ex
-    errors.add(:gpg, ex.message)
+    error = if ex.message.include?("no valid OpenPGP data found")
+              "Couldn't find key #{self.openpgp_key} on the keyservers. " +
+                " Did you publish it? " +
+                "(gpg --keyserver pool.sks-keyservers.net --send-key #{self.openpgp_key})"
+            else
+              ex.message
+            end
+    
+    errors.add(:gpg, error)
   end
 
   class GPGError < StandardError
@@ -58,7 +66,7 @@ private
     err = serr.read
 
     if wait_thr.value != 0
-      raise GPGError, "#{wait_thr.value}\n\n#{err}"
+      raise GPGError, "#{err}"
     end
 
     output
