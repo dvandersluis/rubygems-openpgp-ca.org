@@ -8,6 +8,8 @@ OpenpgpCa::Application.routes.draw do
   get "/contact", :to => "home#contact"
   get "user/status", :to => "user#status"
 
+  get "admin/pending_applications", :to => "admin#pending_applications"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

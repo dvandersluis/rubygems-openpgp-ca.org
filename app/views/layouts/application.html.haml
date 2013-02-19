@@ -26,7 +26,10 @@
 
         %li
           - if current_user
-            %a{:href => "/user/status"} Application Status
+            - if current_user.admin?
+              %a{:href => "/admin/pending_applications"} Pending Applications
+            - else
+              %a{:href => "/user/status"} Application Status
             = link_to "Sign Out", destroy_user_session_path, :method => :delete
           - else
             %a{:href => "javascript:alert('Not Accepting Applications.  How did you even find us?');"} Apply Now!
