@@ -35,8 +35,17 @@ OpenpgpCa::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  # Mailer url for devise
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.default_url_options = { :host => 'rubygems-openpgp-ca.org' }
+
+  ActionMailer::Base.smtp_settings = {
+    :address => ENV['MAIL_SERVER'],
+    :port => ENV['MAIL_PORT'],
+    :user_name => ENV['MAIL_USER'],
+    :password => ENV['MAIL_PASSWORD'],
+    :authentication => :login
+  }
+
+  config.action_mailer.raise_delivery_errors = true
 end
