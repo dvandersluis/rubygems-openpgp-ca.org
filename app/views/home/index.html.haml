@@ -1,7 +1,5 @@
 %h1 Welcome
 
-%p This is the future home of experimental rubygems-openpgp Certificate Authority.
-
 %p.warning
 
   NOTE: This project is experimental in nature.  Any representations
@@ -13,7 +11,16 @@
 
   The goal of this project is to provide:
 
-  %ul
+  %ol
+    %li
+
+      A mechanism for gem users and developers to sign and verify gems
+      that is simple and immediately usable via a
+
+      %a{:href=>"https://github.com/grant-olson/rubygems-openpgp"} rubygems plugin
+
+      \.
+
     %li
 
       A single entity for gem users to authenticate and trust (or not)
@@ -36,11 +43,16 @@
       that prevents a malicious user from
       issuing bogus signatures on our behalf.
 
-%h2 Getting Started...
+%p.warning 
+
+  Step one is the most important part.  If we can get developers and
+  users to sign and verify gems, there are a multitude of ways to
+  authenticate the signatures that can be modeled on top of the core
+  system independently.
+
+%h2 Daily Usage
 
 %h3 For gem users
-
-%h4 Daily usage
 
 %p 
 
@@ -52,9 +64,27 @@
 
   gem install openpgp_signed_hola --verify
 
-%h4 Installing the client software and configuring the CA signing key
+%p
 
-%p One-time setup involves the following steps:
+  If the gem can be verified, it will be installed.  If not, you will
+  get an error message.
+
+%h3 For gem developers
+
+%p
+
+  After installation and configuration, you simply 
+  %code --sign
+  your gems before pushing to rubygems.org.
+
+%pre 
+
+  gem build foo.gemspec --sign
+  gem push foo-0.0.0.gem
+
+%h2 Installation and configuration
+
+%h3 For gem users - Install the client software and configure the CA signing key
 
 %ol
 
@@ -129,7 +159,7 @@
 
     Note that the gem is now trusted.
 
-%h3 For gem developers
+%h3 For gem developers - Generate, use, and submit a signing key.
 
 %ol
 
