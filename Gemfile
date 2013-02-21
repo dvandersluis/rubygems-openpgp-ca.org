@@ -9,6 +9,7 @@ gem 'pg'
 gem 'haml'
 gem 'devise'
 gem 'thin'
+gem 'bloggy'
 
 # Gems used only for assets and not required
 # in production environments by default.
