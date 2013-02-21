@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2013-02-21T07:11:21-05:00</updated>
+ <updated>2013-02-21T17:14:21-05:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -12,13 +12,147 @@
 
  
  <entry>
-   <title>welcome</title>
-   <link href="YOUR_URL/welcome.html"/>
+   <title>The Complete Guide to Verifying Gems with rubygems-openpgp</title>
+   <link href="YOUR_URL/the-complete-guide-to-verifying-gems-with-rubygems-openpgp.html"/>
    <updated>2013-02-21T00:00:00-05:00</updated>
-   <id>BLOG_URL/welcome</id>
-   <content type="html">&lt;h1&gt;Welcome&lt;/h1&gt;
+   <id>BLOG_URL/the-complete-guide-to-verifying-gems-with-rubygems-openpgp</id>
+   <content type="html">&lt;h1&gt;The Complete Guide to Verifying Gems with rubygems-openpgp&lt;/h1&gt;
 
-&lt;p&gt;Blog is installed.&lt;/p&gt;
+&lt;p&gt;rubygems-openpgp allows you to verify a gem by checking the digital
+signature.  This helps to ensure that the gem you are using is
+actually the gem published by the author and that it hasn't been
+replaced with malicious code.  Lets go over the basics from a gem
+user's point of view.&lt;/p&gt;
+
+&lt;h2&gt;Setup&lt;/h2&gt;
+
+&lt;h3&gt;Install the rubygems plugin&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;gem install rubygems-openpgp
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Install gpg&lt;/h3&gt;
+
+&lt;p&gt;gpg is blah&lt;/p&gt;
+
+&lt;h2&gt;Install and verify the test gem&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;gem install openpgp_signed_hola --verify
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will probably fail because you don't have the user's public key
+yet.  This is required to verify the signature.  Try again with an
+option to retrieve the public key automatically.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gem install openpgp_signed_hola --verify --get-key
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we will retrieve the key so the signature can be verified.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;OUTPUT
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Why don't we just retrieve the key by default? The first time you need
+a public key you will need to download it and store it on a &lt;em&gt;keyring&lt;/em&gt;
+that keeps all the public keys you've downloaded. The next time you
+need that key you already have access to it. When the next version of
+&lt;code&gt;openpgp_signed_hola&lt;/code&gt; is released you'll already have it.&lt;/p&gt;
+
+&lt;p&gt;Now imagine a malicious user has hacked my rubygems.org account.  And
+he's signed a malicious replacement gem with his key and uploaded it.
+When you go to install and verify the package, you'll get a warning
+that you don't have the new key.&lt;/p&gt;
+
+&lt;p&gt;Maybe there's a legitimate reason that the key has changed and you'll
+go ahead and load it with &lt;code&gt;--get-key&lt;/code&gt;. But the manual step gives you a
+chance to think about things and examine the new key.&lt;/p&gt;
+
+&lt;p&gt;The next thing you'll want to notice is that we have verified the
+signature, but it's listed as UNVERFIFIED:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;OUTPUT
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is because even though you've downloaded the key, you have no
+idea if it is authentic.  Anyone can make a key with any email and
+upload it.  In fact there are several keys out there now that are
+&lt;a href=&quot;http://pool.sks-keyservers.net:11371/pks/lookup?op=vindex&amp;amp;search=president%40whitehouse.gov&amp;amp;fingerprint=on&quot;&gt;attributed to president@whitehouse.gov&lt;/a&gt;
+.&lt;/p&gt;
+
+&lt;h2&gt;Authenticating the key&lt;/h2&gt;
+
+&lt;p&gt;Because someone can easily create a forged key, you need to
+authenticate the key. For the purposes of this discussion, lets be
+hand-wavy about that and assume that you've somehow authenticated the
+key.&lt;/p&gt;
+
+&lt;h2&gt;Signing the key&lt;/h2&gt;
+
+&lt;p&gt;Now that you've authenticated the key you want to issue a signature
+saying that you know this is the correct key.  But before you do that,
+you'll need to generate a gpg key if you haven't already.&lt;/p&gt;
+
+&lt;h3&gt;Generating your signing key&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;gpg --gen-key
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For the most part you can follow the defaults.  I'll write in more
+detail about generating keys in another post, but for now lets just
+keep moving.&lt;/p&gt;
+
+&lt;h3&gt;Signing the test key&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;BLAH
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Verifying again&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;gem install openpgp_signed_hola --install --verify
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you'll see that the signature is verified and trusted.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;OUTPUT
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Cleaning up&lt;/h3&gt;
+
+&lt;p&gt;Since this was just a test and you didn't really verify, lets clean up
+the keyring.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;delete command
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Using the certificate authority&lt;/h2&gt;
+
+&lt;p&gt;Authenticating keys can get to be a bit of a pain.  You need to
+verify the key for the developers of every gem you need to use.  In a
+complex project that can number in the hundreds.&lt;/p&gt;
+
+&lt;p&gt;A certificate authority steps in as a trusted third-party, issuing
+its own signatures against developer keys that it trusts.  Now you, as
+the user, only need to decide to authenticate and trust the
+certificate authority instead of 100's of individual developers.&lt;/p&gt;
+
+&lt;p&gt;This obviously isn't as safe as performing the verifications yourself,
+but provides a reasonable middle ground that saves you time.&lt;/p&gt;
+
+&lt;p&gt;If you want to use a certificate authority, you need to tell gpg that
+you think the key is authentic, and that you trust the signatures it's
+issued.&lt;/p&gt;
+
+&lt;h3&gt;Getting the CA key&lt;/h3&gt;
+
+&lt;h3&gt;Signing the CA key&lt;/h3&gt;
+
+&lt;h3&gt;Assigning trust to the CA key&lt;/h3&gt;
+
+&lt;h3&gt;Verifying the test gem&lt;/h3&gt;
+
+&lt;h3&gt;Summary&lt;/h3&gt;
+
+&lt;p&gt;Blah blah blah.&lt;/p&gt;
 </content>
  </entry>
  

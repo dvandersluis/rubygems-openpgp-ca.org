@@ -1,0 +1,198 @@
+<html>
+  <head>
+    <title>
+      
+    </title>
+    <link href="/assets/application.css?body=1" media="all" rel="stylesheet" type="text/css" />
+    <script src="/assets/jquery.js?body=1" type="text/javascript"></script>
+    <script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
+    <script src="/assets/home.js?body=1" type="text/javascript"></script>
+    <script src="/assets/application.js?body=1" type="text/javascript"></script>
+    <meta content="authenticity_token" name="csrf-param" />
+    <meta content="USxg1KdEuBsICAhWZXAKxWE7jzckUM6mcN12xGbNe5k=" name="csrf-token" />
+  </head>
+  <body>
+    <div class='header'>
+      <div class='project_title'>rubygems-openpgp Certificate Authority</div>
+      <ul class='menu'>
+        <li>
+          <a href='/'>
+            Home
+          </a>
+        </li>
+        <li>
+          <a href='/authentication'>
+            Authentication
+          </a>
+        </li>
+        <li>
+          <a href='/key_security'>
+            Key Security
+          </a>
+        </li>
+        <li>
+          <a href='/blog'>
+            Blog
+          </a>
+        </li>
+        <li>
+          <a href='/contact'>
+            Contact
+          </a>
+        </li>
+        <li>
+          <a href='/users/sign_up'>Apply Now!</a>
+        </li>
+      </ul>
+    </div>
+
+  <div id="post">
+<h1>The Complete Guide to Verifying Gems with rubygems-openpgp</h1>
+
+<p>rubygems-openpgp allows you to verify a gem by checking the digital
+signature.  This helps to ensure that the gem you are using is
+actually the gem published by the author and that it hasn't been
+replaced with malicious code.  Lets go over the basics from a gem
+user's point of view.</p>
+
+<h2>Setup</h2>
+
+<h3>Install the rubygems plugin</h3>
+
+<pre><code>gem install rubygems-openpgp
+</code></pre>
+
+<h3>Install gpg</h3>
+
+<p>gpg is blah</p>
+
+<h2>Install and verify the test gem</h2>
+
+<pre><code>gem install openpgp_signed_hola --verify
+</code></pre>
+
+<p>This will probably fail because you don't have the user's public key
+yet.  This is required to verify the signature.  Try again with an
+option to retrieve the public key automatically.</p>
+
+<pre><code>gem install openpgp_signed_hola --verify --get-key
+</code></pre>
+
+<p>Now we will retrieve the key so the signature can be verified.</p>
+
+<pre><code>OUTPUT
+</code></pre>
+
+<p>Why don't we just retrieve the key by default? The first time you need
+a public key you will need to download it and store it on a <em>keyring</em>
+that keeps all the public keys you've downloaded. The next time you
+need that key you already have access to it. When the next version of
+<code>openpgp_signed_hola</code> is released you'll already have it.</p>
+
+<p>Now imagine a malicious user has hacked my rubygems.org account.  And
+he's signed a malicious replacement gem with his key and uploaded it.
+When you go to install and verify the package, you'll get a warning
+that you don't have the new key.</p>
+
+<p>Maybe there's a legitimate reason that the key has changed and you'll
+go ahead and load it with <code>--get-key</code>. But the manual step gives you a
+chance to think about things and examine the new key.</p>
+
+<p>The next thing you'll want to notice is that we have verified the
+signature, but it's listed as UNVERFIFIED:</p>
+
+<pre><code>OUTPUT
+</code></pre>
+
+<p>This is because even though you've downloaded the key, you have no
+idea if it is authentic.  Anyone can make a key with any email and
+upload it.  In fact there are several keys out there now that are
+<a href="http://pool.sks-keyservers.net:11371/pks/lookup?op=vindex&amp;search=president%40whitehouse.gov&amp;fingerprint=on">attributed to president@whitehouse.gov</a>
+.</p>
+
+<h2>Authenticating the key</h2>
+
+<p>Because someone can easily create a forged key, you need to
+authenticate the key. For the purposes of this discussion, lets be
+hand-wavy about that and assume that you've somehow authenticated the
+key.</p>
+
+<h2>Signing the key</h2>
+
+<p>Now that you've authenticated the key you want to issue a signature
+saying that you know this is the correct key.  But before you do that,
+you'll need to generate a gpg key if you haven't already.</p>
+
+<h3>Generating your signing key</h3>
+
+<pre><code>gpg --gen-key
+</code></pre>
+
+<p>For the most part you can follow the defaults.  I'll write in more
+detail about generating keys in another post, but for now lets just
+keep moving.</p>
+
+<h3>Signing the test key</h3>
+
+<pre><code>BLAH
+</code></pre>
+
+<h3>Verifying again</h3>
+
+<pre><code>gem install openpgp_signed_hola --install --verify
+</code></pre>
+
+<p>Now you'll see that the signature is verified and trusted.</p>
+
+<pre><code>OUTPUT
+</code></pre>
+
+<h3>Cleaning up</h3>
+
+<p>Since this was just a test and you didn't really verify, lets clean up
+the keyring.</p>
+
+<pre><code>delete command
+</code></pre>
+
+<h2>Using the certificate authority</h2>
+
+<p>Authenticating keys can get to be a bit of a pain.  You need to
+verify the key for the developers of every gem you need to use.  In a
+complex project that can number in the hundreds.</p>
+
+<p>A certificate authority steps in as a trusted third-party, issuing
+its own signatures against developer keys that it trusts.  Now you, as
+the user, only need to decide to authenticate and trust the
+certificate authority instead of 100's of individual developers.</p>
+
+<p>This obviously isn't as safe as performing the verifications yourself,
+but provides a reasonable middle ground that saves you time.</p>
+
+<p>If you want to use a certificate authority, you need to tell gpg that
+you think the key is authentic, and that you trust the signatures it's
+issued.</p>
+
+<h3>Getting the CA key</h3>
+
+<h3>Signing the CA key</h3>
+
+<h3>Assigning trust to the CA key</h3>
+
+<h3>Verifying the test gem</h3>
+
+<h3>Summary</h3>
+
+<p>Blah blah blah.</p>
+
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+  </ul>
+</div>
+
+  </body>
+</html>
