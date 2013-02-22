@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
  
- <title>BLOG_NAME</title>
- <link href="YOUR_URL/atom.xml" rel="self"/>
- <link href="YOUR_URL"/>
- <updated>2013-02-22T12:02:57-05:00</updated>
- <id>BLOG_URL</id>
+ <title>rubygems-openpgp Certificate Authority</title>
+ <link href="http://rubygems-openpgp-ca.org/blog/atom.xml" rel="self"/>
+ <link href="http://rubygems-openpgp-ca.org/"/>
+ <updated>2013-02-22T12:43:36-05:00</updated>
+ <id>http://rubygems-openpgp-ca.org/blog</id>
  <author>
-   <name>BLOG_NAME</name>
+   <name>rubygems-openpgp Certificate Authority</name>
  </author>
 
  
  <entry>
    <title>How Many People Need to Verify Software to Make Signing Useful?</title>
-   <link href="YOUR_URL/how-many-people-need-to-verify-software-to-make-signing-useful.html"/>
+   <link href="http://rubygems-openpgp-ca.org/blog/how-many-people-need-to-verify-software-to-make-signing-useful.html"/>
    <updated>2013-02-22T00:00:00-05:00</updated>
-   <id>BLOG_URL/how-many-people-need-to-verify-software-to-make-signing-useful</id>
+   <id>http://rubygems-openpgp-ca.org/blog/how-many-people-need-to-verify-software-to-make-signing-useful</id>
    <content type="html">&lt;h1&gt;How Many People Need to Verify Software to Make Signing Useful?&lt;/h1&gt;
 
 &lt;h2&gt;Lets do a quick straw poll.&lt;/h2&gt;
