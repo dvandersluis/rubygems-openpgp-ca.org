@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2013-02-21T17:14:21-05:00</updated>
+ <updated>2013-02-21T20:00:17-05:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -21,8 +21,9 @@
 &lt;p&gt;rubygems-openpgp allows you to verify a gem by checking the digital
 signature.  This helps to ensure that the gem you are using is
 actually the gem published by the author and that it hasn't been
-replaced with malicious code.  Lets go over the basics from a gem
-user's point of view.&lt;/p&gt;
+replaced with malicious code.&lt;/p&gt;
+
+&lt;p&gt;Gem users can verify their gems with a few simple steps.&lt;/p&gt;
 
 &lt;h2&gt;Setup&lt;/h2&gt;
 
@@ -31,66 +32,65 @@ user's point of view.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;gem install rubygems-openpgp
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3&gt;Install gpg&lt;/h3&gt;
+&lt;h3&gt;Install gpg if you need too&lt;/h3&gt;
 
-&lt;p&gt;gpg is blah&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.gpg4win.org&quot;&gt;Windows&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.gpgtools.org/&quot;&gt;OSX&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Linux - installed&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Not sure if you need to? Run:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gpg --version
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2&gt;Install and verify the test gem&lt;/h2&gt;
+
+&lt;p&gt;There is a signed version of the hola gem on rubygems.org.  Try to
+install it.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;gem install openpgp_signed_hola --verify
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;This will probably fail because you don't have the user's public key
-yet.  This is required to verify the signature.  Try again with an
-option to retrieve the public key automatically.&lt;/p&gt;
+&lt;p&gt;This will probably fail because you don't have the user's public
+signing key yet. This is required to verify the signature. Try again
+with an extra option to retrieve the public key automatically.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;gem install openpgp_signed_hola --verify --get-key
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Now we will retrieve the key so the signature can be verified.&lt;/p&gt;
+&lt;p&gt;Now we will retrieve the key and the signature can be verified.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;OUTPUT
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Why don't we just retrieve the key by default? The first time you need
-a public key you will need to download it and store it on a &lt;em&gt;keyring&lt;/em&gt;
-that keeps all the public keys you've downloaded. The next time you
-need that key you already have access to it. When the next version of
-&lt;code&gt;openpgp_signed_hola&lt;/code&gt; is released you'll already have it.&lt;/p&gt;
-
-&lt;p&gt;Now imagine a malicious user has hacked my rubygems.org account.  And
-he's signed a malicious replacement gem with his key and uploaded it.
-When you go to install and verify the package, you'll get a warning
-that you don't have the new key.&lt;/p&gt;
-
-&lt;p&gt;Maybe there's a legitimate reason that the key has changed and you'll
-go ahead and load it with &lt;code&gt;--get-key&lt;/code&gt;. But the manual step gives you a
-chance to think about things and examine the new key.&lt;/p&gt;
-
-&lt;p&gt;The next thing you'll want to notice is that we have verified the
-signature, but it's listed as UNVERFIFIED:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;OUTPUT
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Note that we were able to verify the signature, but it's listed as
+unverified.&lt;/p&gt;
 
 &lt;p&gt;This is because even though you've downloaded the key, you have no
-idea if it is authentic.  Anyone can make a key with any email and
-upload it.  In fact there are several keys out there now that are
+idea if it is authentic. Anyone can make a key with any email and
+upload it. (In fact there are several forged keys out there now that
+are
 &lt;a href=&quot;http://pool.sks-keyservers.net:11371/pks/lookup?op=vindex&amp;amp;search=president%40whitehouse.gov&amp;amp;fingerprint=on&quot;&gt;attributed to president@whitehouse.gov&lt;/a&gt;
-.&lt;/p&gt;
+.)&lt;/p&gt;
 
 &lt;h2&gt;Authenticating the key&lt;/h2&gt;
 
 &lt;p&gt;Because someone can easily create a forged key, you need to
-authenticate the key. For the purposes of this discussion, lets be
-hand-wavy about that and assume that you've somehow authenticated the
-key.&lt;/p&gt;
+authenticate the key. We'll cover authentication in another post in
+the future. For the purposes of this discussion, lets be hand-wavy
+about that and assume that you've somehow authenticated the key.&lt;/p&gt;
 
 &lt;h2&gt;Signing the key&lt;/h2&gt;
 
-&lt;p&gt;Now that you've authenticated the key you want to issue a signature
-saying that you know this is the correct key.  But before you do that,
-you'll need to generate a gpg key if you haven't already.&lt;/p&gt;
+&lt;p&gt;Now that you've authenticated the key you want to sign the key. This
+is done by issuing a cryptographic signature saying that you believe
+this is the correct key.&lt;/p&gt;
+
+&lt;p&gt;But before you do that, you'll need to generate a gpg key if you
+haven't already.&lt;/p&gt;
 
 &lt;h3&gt;Generating your signing key&lt;/h3&gt;
 
@@ -99,29 +99,29 @@ you'll need to generate a gpg key if you haven't already.&lt;/p&gt;
 
 &lt;p&gt;For the most part you can follow the defaults.  I'll write in more
 detail about generating keys in another post, but for now lets just
-keep moving.&lt;/p&gt;
+keep moving and generate a key quickly.&lt;/p&gt;
 
-&lt;h3&gt;Signing the test key&lt;/h3&gt;
+&lt;h3&gt;Signing the test package author's key&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code&gt;BLAH
+&lt;pre&gt;&lt;code&gt;gpg --lsign 0xE3B5806F
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3&gt;Verifying again&lt;/h3&gt;
+&lt;h3&gt;Verifying against the authenticated key&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;gem install openpgp_signed_hola --install --verify
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Now you'll see that the signature is verified and trusted.&lt;/p&gt;
+&lt;p&gt;Now you'll see that the signature is verified &lt;strong&gt;and&lt;/strong&gt; trusted.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;OUTPUT
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3&gt;Cleaning up&lt;/h3&gt;
 
-&lt;p&gt;Since this was just a test and you didn't really verify, lets clean up
-the keyring.&lt;/p&gt;
+&lt;p&gt;Since this was just a test and you didn't really autenticate the key,
+lets clean up the keyring by deleting your signature.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;delete command
+&lt;pre&gt;&lt;code&gt;gpg --del-sig 0xE3B5806F
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2&gt;Using the certificate authority&lt;/h2&gt;
@@ -143,6 +143,10 @@ you think the key is authentic, and that you trust the signatures it's
 issued.&lt;/p&gt;
 
 &lt;h3&gt;Getting the CA key&lt;/h3&gt;
+
+&lt;h3&gt;Authenticating the key&lt;/h3&gt;
+
+&lt;p&gt;A little less hand wavy here.&lt;/p&gt;
 
 &lt;h3&gt;Signing the CA key&lt;/h3&gt;
 
