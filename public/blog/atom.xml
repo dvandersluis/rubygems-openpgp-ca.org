@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2013-02-21T20:00:17-05:00</updated>
+ <updated>2013-02-22T12:02:57-05:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -12,151 +12,113 @@
 
  
  <entry>
-   <title>The Complete Guide to Verifying Gems with rubygems-openpgp</title>
-   <link href="YOUR_URL/the-complete-guide-to-verifying-gems-with-rubygems-openpgp.html"/>
-   <updated>2013-02-21T00:00:00-05:00</updated>
-   <id>BLOG_URL/the-complete-guide-to-verifying-gems-with-rubygems-openpgp</id>
-   <content type="html">&lt;h1&gt;The Complete Guide to Verifying Gems with rubygems-openpgp&lt;/h1&gt;
+   <title>How Many People Need to Verify Software to Make Signing Useful?</title>
+   <link href="YOUR_URL/how-many-people-need-to-verify-software-to-make-signing-useful.html"/>
+   <updated>2013-02-22T00:00:00-05:00</updated>
+   <id>BLOG_URL/how-many-people-need-to-verify-software-to-make-signing-useful</id>
+   <content type="html">&lt;h1&gt;How Many People Need to Verify Software to Make Signing Useful?&lt;/h1&gt;
 
-&lt;p&gt;rubygems-openpgp allows you to verify a gem by checking the digital
-signature.  This helps to ensure that the gem you are using is
-actually the gem published by the author and that it hasn't been
-replaced with malicious code.&lt;/p&gt;
+&lt;h2&gt;Lets do a quick straw poll.&lt;/h2&gt;
 
-&lt;p&gt;Gem users can verify their gems with a few simple steps.&lt;/p&gt;
+&lt;p&gt;Raise your hand if you're concerned with being able to verify
+software.  I imagine everyone has their hands up now.  After all,
+this site is dedicated to software verification.&lt;/p&gt;
 
-&lt;h2&gt;Setup&lt;/h2&gt;
+&lt;p&gt;Keep your hand up if you've ever downloaded a linux distribution from
+the web.  I imagine a few hands dropped, but we're all software
+developers here, and most of us have probably played with linux.&lt;/p&gt;
 
-&lt;h3&gt;Install the rubygems plugin&lt;/h3&gt;
+&lt;p&gt;Now keep your hand up if you actually checked the checksums on the ISO
+image you downloaded to verify the image.  What? Did a few hands just
+drop there?&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;gem install rubygems-openpgp
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;For those of you with your hands still up, did you actually check the
+OpenPGP signature of the checksum file you downloaded?  Nope?  Drop
+your hands.  I imagine we just about lost everyone there.&lt;/p&gt;
 
-&lt;h3&gt;Install gpg if you need too&lt;/h3&gt;
+&lt;p&gt;And now we're left with the few and the proud.  The ones that followed
+the full process.  And I've got one question for you heroes among men.
+How many of you performed any meaningful authentication on the signing
+keys?  If you just grabbed the key from the keyservers without any
+thought put your hand down.&lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.gpg4win.org&quot;&gt;Windows&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.gpgtools.org/&quot;&gt;OSX&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Linux - installed&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;Does anyone still have their hand up?  Maybe one or two people if
+we're lucky.&lt;/p&gt;
 
+&lt;h2&gt;Those checksums and signatures must be useless...&lt;/h2&gt;
 
-&lt;p&gt;Not sure if you need to? Run:&lt;/p&gt;
+&lt;p&gt;I don't believe so.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;gpg --version
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Less and less people followed along at each step in the above
+verification process.  I imagine if we were able to get real numbers
+and draw a chart, we'd basically see exponential decay.  Most people
+won't perform any verification.  Some people will perform some
+verification.  And a small few will go through a full verification of
+the software.&lt;/p&gt;
 
-&lt;h2&gt;Install and verify the test gem&lt;/h2&gt;
+&lt;p&gt;For a distribution as popular as Ubuntu, that is probably enough.
+&lt;a href=&quot;http://en.wikipedia.org/wiki/Linus%27s_Law&quot;&gt;Linus' Law&lt;/a&gt; states that
+&quot;given enough eyeballs, all bugs are shallow.&quot;  The same holds true
+for a software compromise, assuming that proper validation tools are
+in place.  Most people just don't care at all.  Some are moderately
+security conscious.  A few are highly conscious.&lt;/p&gt;
 
-&lt;p&gt;There is a signed version of the hola gem on rubygems.org.  Try to
-install it.&lt;/p&gt;
+&lt;h2&gt;But the proud brave few can't verify at all without tools&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code&gt;gem install openpgp_signed_hola --verify
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Even if you, as a security conscious user, wants to verify your
+software packages, it's up to the developer and/or distributor to
+provide the tools for you to do so.  That user needs a signature and a
+way to verify the signing key.&lt;/p&gt;
 
-&lt;p&gt;This will probably fail because you don't have the user's public
-signing key yet. This is required to verify the signature. Try again
-with an extra option to retrieve the public key automatically.&lt;/p&gt;
+&lt;p&gt;rubygems-openpgp aims to provide new tools that the users who choose to
+can use now.  The existing solution has been around since July 2005
+and has seen basically no adoption for a variety of reasons that I
+won't get into here.  (And in fairness, I suggest you try signing and
+verifying a gem both with the existing tools and rubygems-openpgp and
+decide for yourself what is better.)&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;gem install openpgp_signed_hola --verify --get-key
-&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;But not everyone everywhere can use rubygems-openpgp today&lt;/h2&gt;
 
-&lt;p&gt;Now we will retrieve the key and the signature can be verified.&lt;/p&gt;
+&lt;p&gt;By far the biggest complaint about rubygems-openpgp is that it
+currently uses gpg as the back end.  This is additional software that
+(for example) a Windows user would need to install to take advantage
+of software verification.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;OUTPUT
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Keep in mind that a user in this context is a software developer, it's
+not the stereotypical grandma who can't even use a smart phone.  And
+that signing and verifying is completely optional.  Nothing breaks if
+you choose not to use it.&lt;/p&gt;
 
-&lt;p&gt;Note that we were able to verify the signature, but it's listed as
-unverified.&lt;/p&gt;
+&lt;p&gt;But I'll save that argument for another time.&lt;/p&gt;
 
-&lt;p&gt;This is because even though you've downloaded the key, you have no
-idea if it is authentic. Anyone can make a key with any email and
-upload it. (In fact there are several forged keys out there now that
-are
-&lt;a href=&quot;http://pool.sks-keyservers.net:11371/pks/lookup?op=vindex&amp;amp;search=president%40whitehouse.gov&amp;amp;fingerprint=on&quot;&gt;attributed to president@whitehouse.gov&lt;/a&gt;
-.)&lt;/p&gt;
+&lt;h2&gt;Back to the original question&lt;/h2&gt;
 
-&lt;h2&gt;Authenticating the key&lt;/h2&gt;
+&lt;p&gt;How many people need to verify software to make signing useful?&lt;/p&gt;
 
-&lt;p&gt;Because someone can easily create a forged key, you need to
-authenticate the key. We'll cover authentication in another post in
-the future. For the purposes of this discussion, lets be hand-wavy
-about that and assume that you've somehow authenticated the key.&lt;/p&gt;
+&lt;p&gt;I don't believe we need to have 100% of people verifying software to
+make signing useful.  I also believe that having a number greater than
+what we have now, which is effectively 0%, is useful.  I don't buy the
+argument that because some people can't or won't verify software, we
+shouldn't let anyone verify software.&lt;/p&gt;
 
-&lt;h2&gt;Signing the key&lt;/h2&gt;
+&lt;p&gt;I also believe that once some people start using software, any
+software, it will find itself being improved.  As time goes on, these
+improvements make it easier to use by less interested people.  I
+believe once 1% of gem users sign and verify software, it won't be
+long before the tools are good enough for 2%, and then 4%, and so on
+and so on.&lt;/p&gt;
 
-&lt;p&gt;Now that you've authenticated the key you want to sign the key. This
-is done by issuing a cryptographic signature saying that you believe
-this is the correct key.&lt;/p&gt;
+&lt;h2&gt;So start signing your gems&lt;/h2&gt;
 
-&lt;p&gt;But before you do that, you'll need to generate a gpg key if you
-haven't already.&lt;/p&gt;
+&lt;p&gt;This is the first step in the journey of a thousand miles.  The tools
+are there.  But developers need to sign their gems before users can
+verify them.&lt;/p&gt;
 
-&lt;h3&gt;Generating your signing key&lt;/h3&gt;
+&lt;p&gt;And I'm not just talking rubygems-openpgp here.  Give the integrated
+signing a try too. In fact, rubygems-openpgp isn't incompatible with
+the existing solution.  You can sign with both solutions if you want.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;gpg --gen-key
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;For the most part you can follow the defaults.  I'll write in more
-detail about generating keys in another post, but for now lets just
-keep moving and generate a key quickly.&lt;/p&gt;
-
-&lt;h3&gt;Signing the test package author's key&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;gpg --lsign 0xE3B5806F
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3&gt;Verifying against the authenticated key&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;gem install openpgp_signed_hola --install --verify
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now you'll see that the signature is verified &lt;strong&gt;and&lt;/strong&gt; trusted.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;OUTPUT
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3&gt;Cleaning up&lt;/h3&gt;
-
-&lt;p&gt;Since this was just a test and you didn't really autenticate the key,
-lets clean up the keyring by deleting your signature.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;gpg --del-sig 0xE3B5806F
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2&gt;Using the certificate authority&lt;/h2&gt;
-
-&lt;p&gt;Authenticating keys can get to be a bit of a pain.  You need to
-verify the key for the developers of every gem you need to use.  In a
-complex project that can number in the hundreds.&lt;/p&gt;
-
-&lt;p&gt;A certificate authority steps in as a trusted third-party, issuing
-its own signatures against developer keys that it trusts.  Now you, as
-the user, only need to decide to authenticate and trust the
-certificate authority instead of 100's of individual developers.&lt;/p&gt;
-
-&lt;p&gt;This obviously isn't as safe as performing the verifications yourself,
-but provides a reasonable middle ground that saves you time.&lt;/p&gt;
-
-&lt;p&gt;If you want to use a certificate authority, you need to tell gpg that
-you think the key is authentic, and that you trust the signatures it's
-issued.&lt;/p&gt;
-
-&lt;h3&gt;Getting the CA key&lt;/h3&gt;
-
-&lt;h3&gt;Authenticating the key&lt;/h3&gt;
-
-&lt;p&gt;A little less hand wavy here.&lt;/p&gt;
-
-&lt;h3&gt;Signing the CA key&lt;/h3&gt;
-
-&lt;h3&gt;Assigning trust to the CA key&lt;/h3&gt;
-
-&lt;h3&gt;Verifying the test gem&lt;/h3&gt;
-
-&lt;h3&gt;Summary&lt;/h3&gt;
-
-&lt;p&gt;Blah blah blah.&lt;/p&gt;
+&lt;p&gt;Please just give it a try...&lt;/p&gt;
 </content>
  </entry>
  
