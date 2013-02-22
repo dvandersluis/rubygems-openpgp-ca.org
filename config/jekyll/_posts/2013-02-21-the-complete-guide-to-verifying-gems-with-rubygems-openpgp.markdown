@@ -20,7 +20,7 @@ Gem users can verify their gems with a few simple steps.
 
     gem install rubygems-openpgp
 
-### Install gpg if you need too
+### Install gpg if not installed.
 
 * [Windows](http://www.gpg4win.org)
 * [OSX](https://www.gpgtools.org/)
@@ -37,18 +37,50 @@ install it.
 
     gem install openpgp_signed_hola --verify
 
-This will probably fail because you don't have the user's public
-signing key yet. This is required to verify the signature. Try again
-with an extra option to retrieve the public key automatically.
+This will probably fail with the following error:
+
+<pre><code>
+Verifying data.tar.gz...
+<div style='color:red;'>gpg: Signature made Sat 28 May 2011 05:37:26 PM EDT using RSA key ID A18A54D6
+gpg: Can't check signature: public key not found</div>
+ERROR:  gpg: Signature made Sat 28 May 2011 05:37:26 PM EDT using RSA key ID A18A54D6
+gpg: Can't check signature: public key not found
+</code></pre>
+
+This is because you don't have the user's public signing key yet. This
+is required to verify the signature. Try again with an extra option to
+retrieve the public key automatically.
 
     gem install openpgp_signed_hola --verify --get-key
 
 Now we will retrieve the key and the signature can be verified.
 
-    OUTPUT
-
+    Verifying data.tar.gz...
+    gpg: Signature made Sat 28 May 2011 05:37:26 PM EDT using RSA key ID A18A54D6
+    gpg: Good signature from "Grant T. Olson (Personal email) <kgo@grant-olson.net>"
+    gpg:                 aka "Grant T Olson <grant@webkite.com>"
+    gpg:                 aka "Grant T. Olson (pikimal) <grant@pikimal.com>"
+    gpg: WARNING: This key is not certified with a trusted signature!
+    gpg:          There is no indication that the signature belongs to the owner.
+    Primary key fingerprint: A530 C31C D762 0D26 E2BA  C384 B6F6 FFD0 E3B5 806F
+         Subkey fingerprint: F64D B95B 20F8 BA9B 68B3  4346 FE45 E55D A18A 54D6
+    
+    
+    Verifying metadata.gz...
+    gpg: Signature made Sat 28 May 2011 05:37:30 PM EDT using RSA key ID A18A54D6
+    gpg: Good signature from "Grant T. Olson (Personal email) <kgo@grant-olson.net>"
+    gpg:                 aka "Grant T Olson <grant@webkite.com>"
+    gpg:                 aka "Grant T. Olson (pikimal) <grant@pikimal.com>"
+    gpg: WARNING: This key is not certified with a trusted signature!
+    gpg:          There is no indication that the signature belongs to the owner.
+    Primary key fingerprint: A530 C31C D762 0D26 E2BA  C384 B6F6 FFD0 E3B5 806F
+         Subkey fingerprint: F64D B95B 20F8 BA9B 68B3  4346 FE45 E55D A18A 54D6
+    
 Note that we were able to verify the signature, but it's listed as
-unverified.
+unverified:
+
+    gpg: WARNING: This key is not certified with a trusted signature!
+    gpg:          There is no indication that the signature belongs to the owner.
 
 This is because even though you've downloaded the key, you have no
 idea if it is authentic. Anyone can make a key with any email and
@@ -91,7 +123,14 @@ keep moving and generate a key quickly.
 
 Now you'll see that the signature is verified **and** trusted.
 
-    OUTPUT
+    ...
+    Verifying metadata.gz...
+    gpg: Signature made Sat 28 May 2011 05:37:30 PM EDT using RSA key ID A18A54D6
+    gpg: Good signature from "Grant T. Olson (Personal email) <kgo@grant-olson.net>"
+    gpg:                 aka "Grant T Olson <grant@webkite.com>"
+    gpg:                 aka "Grant T. Olson (pikimal) <grant@pikimal.com>"
+
+The warning is gone.
 
 ### Cleaning up
 
