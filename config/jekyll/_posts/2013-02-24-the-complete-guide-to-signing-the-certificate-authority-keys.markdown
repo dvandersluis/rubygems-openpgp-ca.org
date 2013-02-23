@@ -77,7 +77,7 @@ keep moving and generate a key quickly using the defaults.
 
 ### Verifying the fingerprint
 
-    gpg --fingerprint --list-key 0xFBDA50FB
+    gpg --fingerprint --list-key 0xFDBA50FB
 
 This will show you the fingerprint of the key installed locally.
 
@@ -107,7 +107,7 @@ your own personal standards.
 
 ### Issuing the trust signature
 
-    gpg --edit-key 0xFBDA50FB
+    gpg --edit-key 0xFDBA50FB
 
 This will fire up an interactive session.  The settings can get a
 little confusing so lets walk through them.

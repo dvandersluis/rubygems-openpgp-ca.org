@@ -4,7 +4,7 @@
  <title>rubygems-openpgp Certificate Authority</title>
  <link href="http://rubygems-openpgp-ca.org/blog/atom.xml" rel="self"/>
  <link href="http://rubygems-openpgp-ca.org/"/>
- <updated>2013-02-23T14:43:14-05:00</updated>
+ <updated>2013-02-23T15:37:02-05:00</updated>
  <id>http://rubygems-openpgp-ca.org/blog</id>
  <author>
    <name>rubygems-openpgp Certificate Authority</name>
@@ -88,7 +88,7 @@ keep moving and generate a key quickly using the defaults.&lt;/p&gt;
 
 &lt;h3&gt;Verifying the fingerprint&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code&gt;gpg --fingerprint --list-key 0xFBDA50FB
+&lt;pre&gt;&lt;code&gt;gpg --fingerprint --list-key 0xFDBA50FB
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This will show you the fingerprint of the key installed locally.&lt;/p&gt;
@@ -120,7 +120,7 @@ your own personal standards.&lt;/p&gt;
 
 &lt;h3&gt;Issuing the trust signature&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code&gt;gpg --edit-key 0xFBDA50FB
+&lt;pre&gt;&lt;code&gt;gpg --edit-key 0xFDBA50FB
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This will fire up an interactive session.  The settings can get a
