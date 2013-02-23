@@ -1,11 +1,11 @@
 ---
 layout: post
 published: true
-title: The Complete Guide Signing the Certificate Authority Keys
+title: The Complete Guide to Signing the Certificate Authority Keys
 ---
 
-The Complete Guide Signing the Certificate Authority Keys
-=========================================================
+The Complete Guide to Signing the Certificate Authority Keys
+============================================================
 
 In a perfect world you would meet the developer of every gem you use
 in person, verify their OpenPGP key, and sign off on it.  But this

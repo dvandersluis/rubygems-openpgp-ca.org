@@ -4,7 +4,7 @@
  <title>rubygems-openpgp Certificate Authority</title>
  <link href="http://rubygems-openpgp-ca.org/blog/atom.xml" rel="self"/>
  <link href="http://rubygems-openpgp-ca.org/"/>
- <updated>2013-02-23T17:12:12-05:00</updated>
+ <updated>2013-02-23T17:32:10-05:00</updated>
  <id>http://rubygems-openpgp-ca.org/blog</id>
  <author>
    <name>rubygems-openpgp Certificate Authority</name>
@@ -12,11 +12,11 @@
 
  
  <entry>
-   <title>The Complete Guide Signing the Certificate Authority Keys</title>
+   <title>The Complete Guide to Signing the Certificate Authority Keys</title>
    <link href="http://rubygems-openpgp-ca.org/blog/the-complete-guide-to-signing-the-certificate-authority-keys.html"/>
    <updated>2013-02-24T00:00:00-05:00</updated>
    <id>http://rubygems-openpgp-ca.org/blog/the-complete-guide-to-signing-the-certificate-authority-keys</id>
-   <content type="html">&lt;h1&gt;The Complete Guide Signing the Certificate Authority Keys&lt;/h1&gt;
+   <content type="html">&lt;h1&gt;The Complete Guide to Signing the Certificate Authority Keys&lt;/h1&gt;
 
 &lt;p&gt;In a perfect world you would meet the developer of every gem you use
 in person, verify their OpenPGP key, and sign off on it.  But this
@@ -422,8 +422,7 @@ its own signatures against developer keys that it trusts.  Now you, as
 the user, only need to decide to authenticate and trust the
 certificate authority instead of 100's of individual developers.&lt;/p&gt;
 
-&lt;p&gt;In &lt;a href=&quot;./the-complete-guide-to-signing-the-certificate-authority-keys.html&quot;&gt;The Complete Guide to Verifying Gems with
-rubygems-openpgp&lt;/a&gt;,
+&lt;p&gt;In &lt;a href=&quot;./the-complete-guide-to-signing-the-certificate-authority-keys.html&quot;&gt;The Complete Guide to Signing the Certificate Authority Keys&lt;/a&gt;,
 we describe how to configure your system to trust the
 rubygems-openpgp-ca keys, hopefully making the authentication process
 easier.&lt;/p&gt;

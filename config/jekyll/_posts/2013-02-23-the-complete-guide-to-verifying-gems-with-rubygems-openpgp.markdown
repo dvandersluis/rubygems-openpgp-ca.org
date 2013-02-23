@@ -152,8 +152,7 @@ its own signatures against developer keys that it trusts.  Now you, as
 the user, only need to decide to authenticate and trust the
 certificate authority instead of 100's of individual developers.
 
-In [The Complete Guide to Verifying Gems with
-rubygems-openpgp](./the-complete-guide-to-signing-the-certificate-authority-keys.html),
+In [The Complete Guide to Signing the Certificate Authority Keys](./the-complete-guide-to-signing-the-certificate-authority-keys.html),
 we describe how to configure your system to trust the
 rubygems-openpgp-ca keys, hopefully making the authentication process
 easier.
