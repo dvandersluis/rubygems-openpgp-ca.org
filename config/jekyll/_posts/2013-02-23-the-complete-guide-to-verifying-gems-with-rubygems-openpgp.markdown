@@ -53,7 +53,7 @@ retrieve the public key automatically.
 Now we will retrieve the key and the signature can be verified.
 
 <pre><code><span style='color:GoldenRod;'>Signature for data.tar.gz from user Grant T. Olson (Personal email)
-    &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F isGOODSIG, VALIDSIG and TRUST_UNDEFINED
+    &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_UNDEFINED
 Signature for metadata.gz from user Grant T. Olson (Personal email)
     &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_UNDEFINED</span>
 Successfully installed openpgp_signed_hola-0.0.0
@@ -80,7 +80,7 @@ install trusted gems.
 Will fail because the key isn't trusted.
 
 <pre><code><span style='color:GoldenRod;'>Signature for data.tar.gz from user Grant T. Olson (Personal email)
-    &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F isGOODSIG, VALIDSIG and TRUST_UNDEFINED</span>
+    &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_UNDEFINED</span>
 <span style='color:red'>Trust Undefined and you've specified --trust.  Won't install.</span>
 ERROR:  Trust Undefined and you've specified --trust.  Won't install.
 </code></pre>

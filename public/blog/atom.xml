@@ -4,7 +4,7 @@
  <title>rubygems-openpgp Certificate Authority</title>
  <link href="http://rubygems-openpgp-ca.org/blog/atom.xml" rel="self"/>
  <link href="http://rubygems-openpgp-ca.org/"/>
- <updated>2013-02-23T09:44:17-05:00</updated>
+ <updated>2013-02-23T11:37:54-05:00</updated>
  <id>http://rubygems-openpgp-ca.org/blog</id>
  <author>
    <name>rubygems-openpgp Certificate Authority</name>
@@ -72,7 +72,7 @@ retrieve the public key automatically.&lt;/p&gt;
 &lt;p&gt;Now we will retrieve the key and the signature can be verified.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;&lt;span style='color:GoldenRod;'&gt;Signature for data.tar.gz from user Grant T. Olson (Personal email)
-    &amp;lt;kgo@grant-olson.net&amp;gt; key 0x0E3B5806F isGOODSIG, VALIDSIG and TRUST_UNDEFINED
+    &amp;lt;kgo@grant-olson.net&amp;gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_UNDEFINED
 Signature for metadata.gz from user Grant T. Olson (Personal email)
     &amp;lt;kgo@grant-olson.net&amp;gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_UNDEFINED&lt;/span&gt;
 Successfully installed openpgp_signed_hola-0.0.0
@@ -103,7 +103,7 @@ install trusted gems.&lt;/p&gt;
 &lt;p&gt;Will fail because the key isn't trusted.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;&lt;span style='color:GoldenRod;'&gt;Signature for data.tar.gz from user Grant T. Olson (Personal email)
-    &amp;lt;kgo@grant-olson.net&amp;gt; key 0x0E3B5806F isGOODSIG, VALIDSIG and TRUST_UNDEFINED&lt;/span&gt;
+    &amp;lt;kgo@grant-olson.net&amp;gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_UNDEFINED&lt;/span&gt;
 &lt;span style='color:red'&gt;Trust Undefined and you've specified --trust.  Won't install.&lt;/span&gt;
 ERROR:  Trust Undefined and you've specified --trust.  Won't install.
 &lt;/code&gt;&lt;/pre&gt;
@@ -196,7 +196,7 @@ flag and gems will only be installed if you trust the signing key.&lt;/p&gt;
 &lt;p&gt;And the install fail if the key isn't trusted.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;&lt;span style='color:GoldenRod;'&gt;Signature for data.tar.gz from user Grant T. Olson (Personal email)
-    &amp;lt;kgo@grant-olson.net&amp;gt; key 0x0E3B5806F isGOODSIG, VALIDSIG and TRUST_UNDEFINED&lt;/span&gt;
+    &amp;lt;kgo@grant-olson.net&amp;gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_UNDEFINED&lt;/span&gt;
 &lt;span style='color:red'&gt;Trust Undefined and you've specified --trust.  Won't install.&lt;/span&gt;
 ERROR:  Trust Undefined and you've specified --trust.  Won't install.
 &lt;/code&gt;&lt;/pre&gt;
