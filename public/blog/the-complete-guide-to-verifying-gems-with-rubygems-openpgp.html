@@ -162,9 +162,17 @@ about that and assume that you've somehow authenticated the key.</p>
 
 <h2>Signing the key</h2>
 
+<p>All OpenPGP 'settings' are stored as digital signatures.  If you trust
+a key is authentic, you sign a little document saying so.  If you want
+to expire an old key, you sign a little document saying so.  If
+settings were just stored in a file, then someone who has compromised
+your computer could just change the <code>trusted_keys.txt</code> file.  A
+signature requires control of the private key which is usually
+encrypted.</p>
+
 <p>Now that you've authenticated the key you want to sign the key. This
-is done by issuing a cryptographic signature saying that you believe
-this is the correct key.</p>
+issues a little signed document saying you believe this is indeed the
+correct key for the given user.</p>
 
 <p>But before you do that, you'll need to generate a gpg key if you
 haven't already.</p>
@@ -176,7 +184,7 @@ haven't already.</p>
 
 <p>For the most part you can follow the defaults.  I'll write in more
 detail about generating keys in another post, but for now lets just
-keep moving and generate a key quickly.</p>
+keep moving and generate a key quickly using the defaults.</p>
 
 <h3>Signing the test package author's key</h3>
 
@@ -215,15 +223,19 @@ its own signatures against developer keys that it trusts.  Now you, as
 the user, only need to decide to authenticate and trust the
 certificate authority instead of 100's of individual developers.</p>
 
-<p>In another post, we'll describe how to configure your system to trust
-the rubygems-openpgp-ca keys, hopefully making the authentication
-process easier.</p>
+<p>In <a href="./the-complete-guide-to-signing-the-certificate-authority-keys.html">The Complete Guide to Verifying Gems with
+rubygems-openpgp</a>,
+we describe how to configure your system to trust the
+rubygems-openpgp-ca keys, hopefully making the authentication process
+easier.</p>
 
 </div>
 
 <div id="related">
   <h2>Related Posts</h2>
   <ul class="posts">
+    
+      <li><span>24 Feb 2013</span> &raquo; <a href="/blog/the-complete-guide-to-signing-the-certificate-authority-keys.html">The Complete Guide Signing the Certificate Authority Keys</a></li>
     
       <li><span>23 Feb 2013</span> &raquo; <a href="/blog/rubygems-openpgp-0.4-released.html">rubygems-openpgp 0.4 Released</a></li>
     

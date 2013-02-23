@@ -96,90 +96,16 @@
 
 %h3 For gem users - Install the client software and configure the CA signing key
 
-%ol
+%p
+  %a{:href=>'./blog/the-complete-guide-to-verifying-gems-with-rubygems-openpgp.html'}
+    The Complete Guide to Verifying Gems
+  covers installation of the client software and verifying a single developer's test gem.
 
-  %li
-
-    Install
-
-    %a{:href => "https://github.com/grant-olson/rubygems-openpgp"} rubygems-openpgp
-
-    %pre
-
-      gem install rubygems-openpgp
-
-  %li
-
-    Attempt to verify the test gem:
-
-    %pre gem install openpgp_signed_hola --verify --get-key
-
-    Note that the verify operation will succeed, but the
-    signature will be untrusted:
-
-    %pre
-      :preserve
-        Signature for data.tar.gz from user Grant T. Olson (Personal email)
-            &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_UNDEFINED
-
-
-    Missing gpg?  Install it.  [
-    %a{:href=>"http://www.gpg4win.org/"}Windows
-    ] [ 
-    %a{:href=>"https://www.gpgtools.org/"}OSX
-    ]
-
-  %li
-
-    Download the signing key:
-
-    %pre gpg --keyserver pool.sks-keyservers.net --recv-keys 0x6094090A
-
-  %li
-
-    Authenticate the key by comparing the fingerprint against a known
-    good copy.  (
-
-    %a{:href=>"https://github.com/grant-olson/rubygems-openpgp-ca.org"}Github
-
-    )
-
-    %pre gpg --fingerprint --list-key 0x6094090A
-
-  %li
-
-    Generate your signing key.
-
-    %pre gpg --gen-key
-
-  %li
-
-    Sign the key on your local keyring:
-
-    %pre gpg --lsign 0x6094090A
-
-  %li
-
-    Mark the key as trusted on your local keyring:
-
-    %pre gpg --edit-key 0x6094090A trust quit
-
-    Select
-    %code 4 = I trust fully
-    and hit ENTER.
-
-  %li
-
-    Verify the test gem:
-
-    %pre gem install openpgp_signed_hola --verify
-
-    Note that the gem is now trusted.
-
-    %pre
-      :preserve
-        Signature for data.tar.gz from user Grant T. Olson (Personal email)
-            &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_FULLY
+%p
+  %a{:href=>'./blog/the-complete-guide-to-signing-the-certificate-authority-keys.html'}
+    The Complete Guide Signing the Certificate Authority Keys
+  shows you how to install the Certificate Authority keys so that you don't need to 
+  verify developer's keys individually.
 
 %h3 For gem developers - Generate, use, and submit a signing key.
 

@@ -4,12 +4,257 @@
  <title>rubygems-openpgp Certificate Authority</title>
  <link href="http://rubygems-openpgp-ca.org/blog/atom.xml" rel="self"/>
  <link href="http://rubygems-openpgp-ca.org/"/>
- <updated>2013-02-23T11:37:54-05:00</updated>
+ <updated>2013-02-23T14:43:14-05:00</updated>
  <id>http://rubygems-openpgp-ca.org/blog</id>
  <author>
    <name>rubygems-openpgp Certificate Authority</name>
  </author>
 
+ 
+ <entry>
+   <title>The Complete Guide Signing the Certificate Authority Keys</title>
+   <link href="http://rubygems-openpgp-ca.org/blog/the-complete-guide-to-signing-the-certificate-authority-keys.html"/>
+   <updated>2013-02-24T00:00:00-05:00</updated>
+   <id>http://rubygems-openpgp-ca.org/blog/the-complete-guide-to-signing-the-certificate-authority-keys</id>
+   <content type="html">&lt;h1&gt;The Complete Guide Signing the Certificate Authority Keys&lt;/h1&gt;
+
+&lt;p&gt;In a perfect world you would meet the developer of every gem you use
+in person, verify their OpenPGP key, and sign off on it.  But this
+approach doesn't scale very well.  Even if you skip the in person part
+of the verification and trust each developer's github page, you can
+still end up with hundreds of keys that need to be verified.&lt;/p&gt;
+
+&lt;p&gt;A Certificate Authority can help with that.  The basic idea is that
+the Certificate Authority does its own verification on keys and
+publishes that information.  Then you simply trust (or not) the single
+Certificate Authority.  Now you only have one verification to perform.&lt;/p&gt;
+
+&lt;h2&gt;Our Signing Key Configuration&lt;/h2&gt;
+
+&lt;p&gt;All OpenPGP 'settings' are stored as digital signatures issued by
+signing keys.  If you trust a key is authentic, you sign a little
+document saying so.  If you want to expire an old key, you sign a
+little document saying so.  If settings were just stored in a file,
+then someone who has compromised your computer could just change the
+&lt;code&gt;trusted_keys.txt&lt;/code&gt; file.  A signature requires control of the private
+key which is usually encrypted.&lt;/p&gt;
+
+&lt;p&gt;We have two different types of keys.  The &lt;strong&gt;master key&lt;/strong&gt; and the &lt;strong&gt;signing
+key(s)&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;The master key is secured on a computer in an undisclosed location
+that has never been on the Internet.  It is only fired up when we need
+to issue a certification for a new signing key, which may happen once
+or twice a year.  This certification is then transported via USB key
+to another computer and distributed to the keyserver network.  This
+makes it very difficult to compromise the master key.&lt;/p&gt;
+
+&lt;p&gt;The &lt;strong&gt;signing keys&lt;/strong&gt; are used to perform the day-to-day signing of
+developer's keys.  They are contained on OpenPGP smartcards which
+provide a few layers of security.  A PIN code must be entered every
+time a signature is issued.  The card will only allow three pin
+attempts before locking.  An attacker would need to physically possess
+the card and know the PIN to issue a forged signature.&lt;/p&gt;
+
+&lt;p&gt;As you can see, the signing keys are still very secure.  But in the
+event one is compromised the &lt;strong&gt;master key&lt;/strong&gt; can revoke its
+certification and issue a new certification on a new signing key.  It
+just adds another layer of security to the process.&lt;/p&gt;
+
+&lt;h2&gt;Telling gnupg That You Trust Our Keys&lt;/h2&gt;
+
+&lt;p&gt;You'll want to issue a trust signature on the master key.  This says
+that you trust signatures issued by any key that has been signed by
+the master key itself.  In short, this means that you will ultimately
+trust the &lt;strong&gt;signing keys&lt;/strong&gt; and everything will work the way you want
+it to.&lt;/p&gt;
+
+&lt;p&gt;But before you do that, you'll need to generate a gpg key if you
+haven't already.&lt;/p&gt;
+
+&lt;h3&gt;Generating your signing key&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;gpg --gen-key
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For the most part you can follow the defaults.  I'll write in more
+detail about generating keys in another post, but for now lets just
+keep moving and generate a key quickly using the defaults.&lt;/p&gt;
+
+&lt;h3&gt;Retrieving the Master Key&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;gpg --keyserver pool.sks-keyservers.net --recv-keys 0xFDBA50FB
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Verifying the fingerprint&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;gpg --fingerprint --list-key 0xFBDA50FB
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will show you the fingerprint of the key installed locally.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;pub   4096R/FDBA50FB 2013-02-16 [expires: 2014-02-16]
+      Key fingerprint = BEED FE71 7668 50BF A6DE  5A19 25A6 5396 FDBA 50FB
+uid                  rubygems-openpgp Certificate Authority MASTER KEY
+                                  (http://rubygems-openpgp-ca.org)
+sub   4096R/9A39A769 2013-02-16 [expires: 2014-02-16]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You'll want to compare this with a copy of the fingerprint retrieved
+from a trusted source.  In an ideal world, you would do this in
+person.  But this can be impractical.&lt;/p&gt;
+
+&lt;p&gt;For now, lets assume that the &lt;a href=&quot;https://github.com/grant-olson/rubygems-openpgp-ca.org&quot;&gt;copy listed at
+github&lt;/a&gt; is
+safe.  Now a malicious user would have to compromise both this site
+and a github account to replace both key ids and fingerprints.&lt;/p&gt;
+
+&lt;p&gt;Another option would be to verify that the key you have is signed by
+the same key I use for &lt;a href=&quot;http://www.ruby-forum.com/topic/4411248#new&quot;&gt;release announcements on
+ruby-talk&lt;/a&gt;.  That adds
+another layer that a malicious user would need to compromise.  They'd
+need to hack my email, and my personal OpenPGP key.&lt;/p&gt;
+
+&lt;p&gt;At some point you'll have decided that that key is authentic based on
+your own personal standards.&lt;/p&gt;
+
+&lt;h3&gt;Issuing the trust signature&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;gpg --edit-key 0xFBDA50FB
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will fire up an interactive session.  The settings can get a
+little confusing so lets walk through them.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;grant@johnicicleboy:~$ gpg --edit-key 0xFDBA50FB
+gpg (GnuPG) 1.4.11; Copyright (C) 2010 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+
+pub  4096R/FDBA50FB  created: 2013-02-16  expires: 2014-02-16  usage: SC  
+                     trust: unknown       validity: unknown
+sub  4096R/9A39A769  created: 2013-02-16  expires: 2014-02-16  usage: E   
+[ unknown] (1). rubygems-openpgp Certificate Authority MASTER KEY
+                                 (http://rubygems-openpgp-ca.org)
+
+gpg&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;First you'll want to tell gpg that you're issuing a local trust
+signature.&lt;/p&gt;
+
+&lt;p&gt;The &lt;strong&gt;local&lt;/strong&gt; part means that this signature will only
+work on your local machine.  You will not advertise to the world that
+you signed this key.&lt;/p&gt;
+
+&lt;p&gt;The &lt;strong&gt;trust&lt;/strong&gt; part means that you're issuing a trust signature as
+discussed above.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gpg&amp;gt; tlsign
+
+pub  4096R/FDBA50FB  created: 2013-02-16  expires: 2014-02-16  usage: SC  
+                     trust: unknown       validity: unknown
+ Primary key fingerprint: BEED FE71 7668 50BF A6DE  5A19 25A6 5396 FDBA 50FB
+
+     rubygems-openpgp Certificate Authority MASTER KEY
+                  (http://rubygems-openpgp-ca.org)
+
+This key is due to expire on 2014-02-16.
+Please decide how far you trust this user to correctly verify other users' keys
+(by looking at passports, checking fingerprints from different sources, etc.)
+
+  1 = I trust marginally
+  2 = I trust fully
+
+Your selection?
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Next it will ask how much you trust the key.  This has to do with the
+way the OpenPGP Web-of-Trust works, which I'll hopefully discuss in a
+later post.  For now, say you trust it fully:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Your selection? 2
+
+Please enter the depth of this trust signature.
+A depth greater than 1 allows the key you are signing to make
+trust signatures on your behalf.
+
+Your selection?
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;By setting a depth of 1, the signing keys are trusted, but developer
+keys are not.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Your selection? 1
+
+Please enter a domain to restrict this signature, or enter for none.
+
+Your selection? 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Just hit enter here.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Are you sure that you want to sign this key with your
+key &quot;Test User &amp;lt;test@example.org&amp;gt;&quot; (25D38721)
+
+The signature will be marked as non-exportable.
+
+Really sign? (y/N)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Select yes&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Really sign? (y/N) y
+
+You need a passphrase to unlock the secret key for
+user: &quot;Test User &amp;lt;test@example.org&amp;gt;&quot;
+2048-bit RSA key, ID 25D38721, created 2013-02-09
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You'll be prompted for a password.  Enter it.  At this point gnupg
+still won't save the signature until you quit and save.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gpg&amp;gt; quit
+Save changes? (y/N) y
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Download the current signing key&lt;/h3&gt;
+
+&lt;p&gt;Download the current signing key:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gpg --keyserver pool.sks-keyservers.net --recv-keys 0x6094090A
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Test with the test gem&lt;/h3&gt;
+
+&lt;p&gt;If you've already installed the test gem and certified the signing
+key, delete the key.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gpg --delete-key 0xE3B5806F
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Run the install with &lt;code&gt;--verify&lt;/code&gt;, &lt;code&gt;--trust&lt;/code&gt;, and &lt;code&gt;--get-key&lt;/code&gt; args.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gem install openpgp_signed_hola --verify --trust --get-key
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If everything is setup correctly, you should trust the package based
+on the Certificate Authority signature on the key:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&lt;span style='color:green;'&gt;Signature for data.tar.gz from user Grant T. Olson (Personal email)
+    &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_FULLY
+Signature for metadata.gz from user Grant T. Olson (Personal email)
+    &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_FULLY&lt;/span&gt;
+Successfully installed openpgp_signed_hola-0.0.0
+1 gem installed&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;h2&gt;Now you're set!&lt;/h2&gt;
+
+&lt;p&gt;Congratulations!&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>The Complete Guide to Verifying Gems with rubygems-openpgp</title>
@@ -118,9 +363,17 @@ about that and assume that you've somehow authenticated the key.&lt;/p&gt;
 
 &lt;h2&gt;Signing the key&lt;/h2&gt;
 
+&lt;p&gt;All OpenPGP 'settings' are stored as digital signatures.  If you trust
+a key is authentic, you sign a little document saying so.  If you want
+to expire an old key, you sign a little document saying so.  If
+settings were just stored in a file, then someone who has compromised
+your computer could just change the &lt;code&gt;trusted_keys.txt&lt;/code&gt; file.  A
+signature requires control of the private key which is usually
+encrypted.&lt;/p&gt;
+
 &lt;p&gt;Now that you've authenticated the key you want to sign the key. This
-is done by issuing a cryptographic signature saying that you believe
-this is the correct key.&lt;/p&gt;
+issues a little signed document saying you believe this is indeed the
+correct key for the given user.&lt;/p&gt;
 
 &lt;p&gt;But before you do that, you'll need to generate a gpg key if you
 haven't already.&lt;/p&gt;
@@ -132,7 +385,7 @@ haven't already.&lt;/p&gt;
 
 &lt;p&gt;For the most part you can follow the defaults.  I'll write in more
 detail about generating keys in another post, but for now lets just
-keep moving and generate a key quickly.&lt;/p&gt;
+keep moving and generate a key quickly using the defaults.&lt;/p&gt;
 
 &lt;h3&gt;Signing the test package author's key&lt;/h3&gt;
 
@@ -171,9 +424,11 @@ its own signatures against developer keys that it trusts.  Now you, as
 the user, only need to decide to authenticate and trust the
 certificate authority instead of 100's of individual developers.&lt;/p&gt;
 
-&lt;p&gt;In another post, we'll describe how to configure your system to trust
-the rubygems-openpgp-ca keys, hopefully making the authentication
-process easier.&lt;/p&gt;
+&lt;p&gt;In &lt;a href=&quot;./the-complete-guide-to-signing-the-certificate-authority-keys.html&quot;&gt;The Complete Guide to Verifying Gems with
+rubygems-openpgp&lt;/a&gt;,
+we describe how to configure your system to trust the
+rubygems-openpgp-ca keys, hopefully making the authentication process
+easier.&lt;/p&gt;
 </content>
  </entry>
  

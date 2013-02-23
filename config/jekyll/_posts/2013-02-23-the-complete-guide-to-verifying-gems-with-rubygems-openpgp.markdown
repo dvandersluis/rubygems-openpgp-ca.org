@@ -95,9 +95,17 @@ about that and assume that you've somehow authenticated the key.
 
 ## Signing the key
 
+All OpenPGP 'settings' are stored as digital signatures.  If you trust
+a key is authentic, you sign a little document saying so.  If you want
+to expire an old key, you sign a little document saying so.  If
+settings were just stored in a file, then someone who has compromised
+your computer could just change the `trusted_keys.txt` file.  A
+signature requires control of the private key which is usually
+encrypted.
+
 Now that you've authenticated the key you want to sign the key. This
-is done by issuing a cryptographic signature saying that you believe
-this is the correct key.
+issues a little signed document saying you believe this is indeed the
+correct key for the given user.
 
 But before you do that, you'll need to generate a gpg key if you
 haven't already.
@@ -108,7 +116,7 @@ haven't already.
 
 For the most part you can follow the defaults.  I'll write in more
 detail about generating keys in another post, but for now lets just
-keep moving and generate a key quickly.
+keep moving and generate a key quickly using the defaults.
 
 ### Signing the test package author's key
 
@@ -144,6 +152,8 @@ its own signatures against developer keys that it trusts.  Now you, as
 the user, only need to decide to authenticate and trust the
 certificate authority instead of 100's of individual developers.
 
-In another post, we'll describe how to configure your system to trust
-the rubygems-openpgp-ca keys, hopefully making the authentication
-process easier.
+In [The Complete Guide to Verifying Gems with
+rubygems-openpgp](./the-complete-guide-to-signing-the-certificate-authority-keys.html),
+we describe how to configure your system to trust the
+rubygems-openpgp-ca keys, hopefully making the authentication process
+easier.

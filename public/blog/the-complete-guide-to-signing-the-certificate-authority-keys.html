@@ -1,0 +1,333 @@
+<html>
+  <head>
+    <title>
+      
+    </title>
+    <link href="/blog/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/assets/application.css?body=1" media="all" rel="stylesheet" type="text/css" />
+    <script src="/assets/application.js?body=1" type="text/javascript"></script>
+    <meta content="authenticity_token" name="csrf-param" />
+    <meta content="USxg1KdEuBsICAhWZXAKxWE7jzckUM6mcN12xGbNe5k=" name="csrf-token" />
+  </head>
+  <body>
+  <script type="text/javascript">
+  
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-38732430-1']);
+    _gaq.push(['_setDomainName', 'rubygems-openpgp-ca.org']);
+    _gaq.push(['_setAllowLinker', true]);
+    _gaq.push(['_trackPageview']);
+  
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  
+  </script>
+<div class='header'>
+      <div class='project_title'>rubygems-openpgp Certificate Authority</div>
+      <ul class='menu'>
+        <li>
+          <a href='/'>
+            Home
+          </a>
+        </li>
+        <li>
+          <a href='/authentication'>
+            Authentication
+          </a>
+        </li>
+        <li>
+          <a href='/key_security'>
+            Key Security
+          </a>
+        </li>
+        <li>
+          <a href='/blog'>
+            Blog
+          </a>
+        </li>
+        <li>
+          <a href='/contact'>
+            Contact
+          </a>
+        </li>
+        <li>
+          <a href='/users/sign_up'>Apply Now!</a>
+        </li>
+      </ul>
+    </div>
+
+  <div id="post">
+<h1>The Complete Guide Signing the Certificate Authority Keys</h1>
+
+<p>In a perfect world you would meet the developer of every gem you use
+in person, verify their OpenPGP key, and sign off on it.  But this
+approach doesn't scale very well.  Even if you skip the in person part
+of the verification and trust each developer's github page, you can
+still end up with hundreds of keys that need to be verified.</p>
+
+<p>A Certificate Authority can help with that.  The basic idea is that
+the Certificate Authority does its own verification on keys and
+publishes that information.  Then you simply trust (or not) the single
+Certificate Authority.  Now you only have one verification to perform.</p>
+
+<h2>Our Signing Key Configuration</h2>
+
+<p>All OpenPGP 'settings' are stored as digital signatures issued by
+signing keys.  If you trust a key is authentic, you sign a little
+document saying so.  If you want to expire an old key, you sign a
+little document saying so.  If settings were just stored in a file,
+then someone who has compromised your computer could just change the
+<code>trusted_keys.txt</code> file.  A signature requires control of the private
+key which is usually encrypted.</p>
+
+<p>We have two different types of keys.  The <strong>master key</strong> and the <strong>signing
+key(s)</strong>.</p>
+
+<p>The master key is secured on a computer in an undisclosed location
+that has never been on the Internet.  It is only fired up when we need
+to issue a certification for a new signing key, which may happen once
+or twice a year.  This certification is then transported via USB key
+to another computer and distributed to the keyserver network.  This
+makes it very difficult to compromise the master key.</p>
+
+<p>The <strong>signing keys</strong> are used to perform the day-to-day signing of
+developer's keys.  They are contained on OpenPGP smartcards which
+provide a few layers of security.  A PIN code must be entered every
+time a signature is issued.  The card will only allow three pin
+attempts before locking.  An attacker would need to physically possess
+the card and know the PIN to issue a forged signature.</p>
+
+<p>As you can see, the signing keys are still very secure.  But in the
+event one is compromised the <strong>master key</strong> can revoke its
+certification and issue a new certification on a new signing key.  It
+just adds another layer of security to the process.</p>
+
+<h2>Telling gnupg That You Trust Our Keys</h2>
+
+<p>You'll want to issue a trust signature on the master key.  This says
+that you trust signatures issued by any key that has been signed by
+the master key itself.  In short, this means that you will ultimately
+trust the <strong>signing keys</strong> and everything will work the way you want
+it to.</p>
+
+<p>But before you do that, you'll need to generate a gpg key if you
+haven't already.</p>
+
+<h3>Generating your signing key</h3>
+
+<pre><code>gpg --gen-key
+</code></pre>
+
+<p>For the most part you can follow the defaults.  I'll write in more
+detail about generating keys in another post, but for now lets just
+keep moving and generate a key quickly using the defaults.</p>
+
+<h3>Retrieving the Master Key</h3>
+
+<pre><code>gpg --keyserver pool.sks-keyservers.net --recv-keys 0xFDBA50FB
+</code></pre>
+
+<h3>Verifying the fingerprint</h3>
+
+<pre><code>gpg --fingerprint --list-key 0xFBDA50FB
+</code></pre>
+
+<p>This will show you the fingerprint of the key installed locally.</p>
+
+<pre><code>pub   4096R/FDBA50FB 2013-02-16 [expires: 2014-02-16]
+      Key fingerprint = BEED FE71 7668 50BF A6DE  5A19 25A6 5396 FDBA 50FB
+uid                  rubygems-openpgp Certificate Authority MASTER KEY
+                                  (http://rubygems-openpgp-ca.org)
+sub   4096R/9A39A769 2013-02-16 [expires: 2014-02-16]
+</code></pre>
+
+<p>You'll want to compare this with a copy of the fingerprint retrieved
+from a trusted source.  In an ideal world, you would do this in
+person.  But this can be impractical.</p>
+
+<p>For now, lets assume that the <a href="https://github.com/grant-olson/rubygems-openpgp-ca.org">copy listed at
+github</a> is
+safe.  Now a malicious user would have to compromise both this site
+and a github account to replace both key ids and fingerprints.</p>
+
+<p>Another option would be to verify that the key you have is signed by
+the same key I use for <a href="http://www.ruby-forum.com/topic/4411248#new">release announcements on
+ruby-talk</a>.  That adds
+another layer that a malicious user would need to compromise.  They'd
+need to hack my email, and my personal OpenPGP key.</p>
+
+<p>At some point you'll have decided that that key is authentic based on
+your own personal standards.</p>
+
+<h3>Issuing the trust signature</h3>
+
+<pre><code>gpg --edit-key 0xFBDA50FB
+</code></pre>
+
+<p>This will fire up an interactive session.  The settings can get a
+little confusing so lets walk through them.</p>
+
+<pre><code>grant@johnicicleboy:~$ gpg --edit-key 0xFDBA50FB
+gpg (GnuPG) 1.4.11; Copyright (C) 2010 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+
+pub  4096R/FDBA50FB  created: 2013-02-16  expires: 2014-02-16  usage: SC  
+                     trust: unknown       validity: unknown
+sub  4096R/9A39A769  created: 2013-02-16  expires: 2014-02-16  usage: E   
+[ unknown] (1). rubygems-openpgp Certificate Authority MASTER KEY
+                                 (http://rubygems-openpgp-ca.org)
+
+gpg&gt;
+</code></pre>
+
+<p>First you'll want to tell gpg that you're issuing a local trust
+signature.</p>
+
+<p>The <strong>local</strong> part means that this signature will only
+work on your local machine.  You will not advertise to the world that
+you signed this key.</p>
+
+<p>The <strong>trust</strong> part means that you're issuing a trust signature as
+discussed above.</p>
+
+<pre><code>gpg&gt; tlsign
+
+pub  4096R/FDBA50FB  created: 2013-02-16  expires: 2014-02-16  usage: SC  
+                     trust: unknown       validity: unknown
+ Primary key fingerprint: BEED FE71 7668 50BF A6DE  5A19 25A6 5396 FDBA 50FB
+
+     rubygems-openpgp Certificate Authority MASTER KEY
+                  (http://rubygems-openpgp-ca.org)
+
+This key is due to expire on 2014-02-16.
+Please decide how far you trust this user to correctly verify other users' keys
+(by looking at passports, checking fingerprints from different sources, etc.)
+
+  1 = I trust marginally
+  2 = I trust fully
+
+Your selection?
+</code></pre>
+
+<p>Next it will ask how much you trust the key.  This has to do with the
+way the OpenPGP Web-of-Trust works, which I'll hopefully discuss in a
+later post.  For now, say you trust it fully:</p>
+
+<pre><code>Your selection? 2
+
+Please enter the depth of this trust signature.
+A depth greater than 1 allows the key you are signing to make
+trust signatures on your behalf.
+
+Your selection?
+</code></pre>
+
+<p>By setting a depth of 1, the signing keys are trusted, but developer
+keys are not.</p>
+
+<pre><code>Your selection? 1
+
+Please enter a domain to restrict this signature, or enter for none.
+
+Your selection? 
+</code></pre>
+
+<p>Just hit enter here.</p>
+
+<pre><code>Are you sure that you want to sign this key with your
+key "Test User &lt;test@example.org&gt;" (25D38721)
+
+The signature will be marked as non-exportable.
+
+Really sign? (y/N)
+</code></pre>
+
+<p>Select yes</p>
+
+<pre><code>Really sign? (y/N) y
+
+You need a passphrase to unlock the secret key for
+user: "Test User &lt;test@example.org&gt;"
+2048-bit RSA key, ID 25D38721, created 2013-02-09
+</code></pre>
+
+<p>You'll be prompted for a password.  Enter it.  At this point gnupg
+still won't save the signature until you quit and save.</p>
+
+<pre><code>gpg&gt; quit
+Save changes? (y/N) y
+</code></pre>
+
+<h3>Download the current signing key</h3>
+
+<p>Download the current signing key:</p>
+
+<pre><code>gpg --keyserver pool.sks-keyservers.net --recv-keys 0x6094090A
+</code></pre>
+
+<h3>Test with the test gem</h3>
+
+<p>If you've already installed the test gem and certified the signing
+key, delete the key.</p>
+
+<pre><code>gpg --delete-key 0xE3B5806F
+</code></pre>
+
+<p>Run the install with <code>--verify</code>, <code>--trust</code>, and <code>--get-key</code> args.</p>
+
+<pre><code>gem install openpgp_signed_hola --verify --trust --get-key
+</code></pre>
+
+<p>If everything is setup correctly, you should trust the package based
+on the Certificate Authority signature on the key:</p>
+
+<pre><code><span style='color:green;'>Signature for data.tar.gz from user Grant T. Olson (Personal email)
+    <kgo@grant-olson.net> key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_FULLY
+Signature for metadata.gz from user Grant T. Olson (Personal email)
+    <kgo@grant-olson.net> key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_FULLY</span>
+Successfully installed openpgp_signed_hola-0.0.0
+1 gem installed</code></pre>
+
+
+<h2>Now you're set!</h2>
+
+<p>Congratulations!</p>
+
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>23 Feb 2013</span> &raquo; <a href="/blog/the-complete-guide-to-verifying-gems-with-rubygems-openpgp.html">The Complete Guide to Verifying Gems with rubygems-openpgp</a></li>
+    
+      <li><span>23 Feb 2013</span> &raquo; <a href="/blog/rubygems-openpgp-0.4-released.html">rubygems-openpgp 0.4 Released</a></li>
+    
+      <li><span>22 Feb 2013</span> &raquo; <a href="/blog/how-many-people-need-to-verify-software-to-make-signing-useful.html">How Many People Need to Verify Software to Make Signing Useful?</a></li>
+    
+  </ul>
+</div>
+
+   <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'rubygems-openpgp-ca'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+
+  </body>
+</html>
