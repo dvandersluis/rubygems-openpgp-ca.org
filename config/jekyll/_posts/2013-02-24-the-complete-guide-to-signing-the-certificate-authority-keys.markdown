@@ -166,10 +166,10 @@ later post.  For now, say you trust it fully:
     
     Your selection?
 
-By setting a depth of 1, the signing keys are trusted, but developer
+By setting a depth of 2, the signing keys are trusted, but developer
 keys are not.
 
-    Your selection? 1
+    Your selection? 2
     
     Please enter a domain to restrict this signature, or enter for none.
     

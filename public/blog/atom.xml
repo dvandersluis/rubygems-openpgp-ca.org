@@ -4,7 +4,7 @@
  <title>rubygems-openpgp Certificate Authority</title>
  <link href="http://rubygems-openpgp-ca.org/blog/atom.xml" rel="self"/>
  <link href="http://rubygems-openpgp-ca.org/"/>
- <updated>2013-02-23T15:37:02-05:00</updated>
+ <updated>2013-02-23T15:45:55-05:00</updated>
  <id>http://rubygems-openpgp-ca.org/blog</id>
  <author>
    <name>rubygems-openpgp Certificate Authority</name>
@@ -183,10 +183,10 @@ trust signatures on your behalf.
 Your selection?
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;By setting a depth of 1, the signing keys are trusted, but developer
+&lt;p&gt;By setting a depth of 2, the signing keys are trusted, but developer
 keys are not.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;Your selection? 1
+&lt;pre&gt;&lt;code&gt;Your selection? 2
 
 Please enter a domain to restrict this signature, or enter for none.
 
