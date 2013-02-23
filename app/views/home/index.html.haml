@@ -73,7 +73,11 @@
 %p
 
   If the gem can be verified, it will be installed.  If not, you will
-  get an error message.
+  get an error message.  Learn more at
+ 
+  %a{:href=>'./blog/the-complete-guide-to-verifying-gems-with-rubygems-openpgp.html'}The Complete Guide to Verifying Gems
+
+  = "."
 
 %h3 For gem developers
 
@@ -115,8 +119,8 @@
 
     %pre
       :preserve
-        gpg: WARNING: This key is not certified with a trusted signature!
-        gpg:          There is no indication that the signature belongs to the owner.
+        Signature for data.tar.gz from user Grant T. Olson (Personal email)
+            &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F isGOODSIG, VALIDSIG and TRUST_UNDEFINED
 
 
     Missing gpg?  Install it.  [
@@ -171,6 +175,11 @@
     %pre gem install openpgp_signed_hola --verify
 
     Note that the gem is now trusted.
+
+    %pre
+      :preserve
+        Signature for data.tar.gz from user Grant T. Olson (Personal email)
+            &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_FULLY
 
 %h3 For gem developers - Generate, use, and submit a signing key.
 
