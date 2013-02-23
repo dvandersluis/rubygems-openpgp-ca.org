@@ -1,6 +1,6 @@
 ---
 layout: post
-published: false
+published: true
 title: The Complete Guide to Verifying Gems with rubygems-openpgp
 ---
 

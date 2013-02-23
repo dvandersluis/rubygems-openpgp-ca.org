@@ -4,12 +4,236 @@
  <title>rubygems-openpgp Certificate Authority</title>
  <link href="http://rubygems-openpgp-ca.org/blog/atom.xml" rel="self"/>
  <link href="http://rubygems-openpgp-ca.org/"/>
- <updated>2013-02-22T15:01:18-05:00</updated>
+ <updated>2013-02-23T09:44:17-05:00</updated>
  <id>http://rubygems-openpgp-ca.org/blog</id>
  <author>
    <name>rubygems-openpgp Certificate Authority</name>
  </author>
 
+ 
+ <entry>
+   <title>The Complete Guide to Verifying Gems with rubygems-openpgp</title>
+   <link href="http://rubygems-openpgp-ca.org/blog/the-complete-guide-to-verifying-gems-with-rubygems-openpgp.html"/>
+   <updated>2013-02-23T00:00:00-05:00</updated>
+   <id>http://rubygems-openpgp-ca.org/blog/the-complete-guide-to-verifying-gems-with-rubygems-openpgp</id>
+   <content type="html">&lt;h1&gt;The Complete Guide to Verifying Gems with rubygems-openpgp&lt;/h1&gt;
+
+&lt;p&gt;rubygems-openpgp allows you to verify a gem by checking the digital
+signature.  This helps to ensure that the gem you are using is
+actually the gem published by the author and that it hasn't been
+replaced with malicious code.&lt;/p&gt;
+
+&lt;p&gt;Gem users can verify their gems with a few simple steps.&lt;/p&gt;
+
+&lt;h2&gt;Setup&lt;/h2&gt;
+
+&lt;h3&gt;Install the rubygems plugin&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;gem install rubygems-openpgp
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Install gpg if not installed.&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.gpg4win.org&quot;&gt;Windows&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.gpgtools.org/&quot;&gt;OSX&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Linux - installed&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Not sure if you need to? Run:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gpg --version
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Install and verify the test gem&lt;/h2&gt;
+
+&lt;p&gt;There is a signed version of the hola gem on rubygems.org.  Try to
+install it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gem install openpgp_signed_hola --verify
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will probably fail with the following error:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&lt;span style='color:red;'&gt;You don't have the public key.  Use --get-key to automagically retrieve from keyservers
+Fail!&lt;/span&gt;
+ERROR:  Fail!
+&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;p&gt;This is because you don't have the user's public signing key yet. This
+is required to verify the signature. Try again with an extra option to
+retrieve the public key automatically.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gem install openpgp_signed_hola --verify --get-key
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we will retrieve the key and the signature can be verified.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&lt;span style='color:GoldenRod;'&gt;Signature for data.tar.gz from user Grant T. Olson (Personal email)
+    &amp;lt;kgo@grant-olson.net&amp;gt; key 0x0E3B5806F isGOODSIG, VALIDSIG and TRUST_UNDEFINED
+Signature for metadata.gz from user Grant T. Olson (Personal email)
+    &amp;lt;kgo@grant-olson.net&amp;gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_UNDEFINED&lt;/span&gt;
+Successfully installed openpgp_signed_hola-0.0.0
+1 gem installed
+Installing ri documentation for openpgp_signed_hola-0.0.0...
+Installing RDoc documentation for openpgp_signed_hola-0.0.0...
+&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Note that we were able to verify the signature, but it's listed as
+&lt;strong&gt;TRUST_UNDEFINED&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;This is because even though you've downloaded the key, you have no
+idea if it is authentic. Anyone can make a key with any email and
+upload it. (In fact there are several forged keys out there now that
+are
+&lt;a href=&quot;http://pool.sks-keyservers.net:11371/pks/lookup?op=vindex&amp;amp;search=president%40whitehouse.gov&amp;amp;fingerprint=on&quot;&gt;attributed to president@whitehouse.gov&lt;/a&gt;
+.)  Hence the lack of trust.&lt;/p&gt;
+
+&lt;p&gt;rubygems-openpgp has a &lt;code&gt;--trust&lt;/code&gt; flag that will make sure you only
+install trusted gems.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gem install openpgp_signed_hola --verify --trust
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Will fail because the key isn't trusted.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&lt;span style='color:GoldenRod;'&gt;Signature for data.tar.gz from user Grant T. Olson (Personal email)
+    &amp;lt;kgo@grant-olson.net&amp;gt; key 0x0E3B5806F isGOODSIG, VALIDSIG and TRUST_UNDEFINED&lt;/span&gt;
+&lt;span style='color:red'&gt;Trust Undefined and you've specified --trust.  Won't install.&lt;/span&gt;
+ERROR:  Trust Undefined and you've specified --trust.  Won't install.
+&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;h2&gt;Authenticating the key&lt;/h2&gt;
+
+&lt;p&gt;Because someone can easily create a forged key, you need to
+authenticate the key. We'll cover authentication in another post in
+the future. For the purposes of this discussion, lets be hand-wavy
+about that and assume that you've somehow authenticated the key.&lt;/p&gt;
+
+&lt;h2&gt;Signing the key&lt;/h2&gt;
+
+&lt;p&gt;Now that you've authenticated the key you want to sign the key. This
+is done by issuing a cryptographic signature saying that you believe
+this is the correct key.&lt;/p&gt;
+
+&lt;p&gt;But before you do that, you'll need to generate a gpg key if you
+haven't already.&lt;/p&gt;
+
+&lt;h3&gt;Generating your signing key&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;gpg --gen-key
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For the most part you can follow the defaults.  I'll write in more
+detail about generating keys in another post, but for now lets just
+keep moving and generate a key quickly.&lt;/p&gt;
+
+&lt;h3&gt;Signing the test package author's key&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;gpg --lsign 0xE3B5806F
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Verifying against the authenticated key&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;gem install openpgp_signed_hola --verify --trust
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you'll see that the signature is verified &lt;strong&gt;and&lt;/strong&gt; trusted.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&lt;span style='color:green;'&gt;Signature for data.tar.gz from user Grant T. Olson (Personal email)
+    &amp;lt;kgo@grant-olson.net&amp;gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_FULLY
+Signature for metadata.gz from user Grant T. Olson (Personal email)
+    &amp;lt;kgo@grant-olson.net&amp;gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_FULLY&lt;/span&gt;
+Successfully installed openpgp_signed_hola-0.0.0
+1 gem installed
+Installing ri documentation for openpgp_signed_hola-0.0.0...
+Installing RDoc documentation for openpgp_signed_hola-0.0.0...
+&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;p&gt;The warning is gone and the gem installs.&lt;/p&gt;
+
+&lt;h2&gt;Congratulations, you've just authenticated your first gem!&lt;/h2&gt;
+
+&lt;p&gt;That's all there is to it.  And it's all well and good for a single
+gem.  But the process doesn't scale very well.  You need to verify the
+key for the developers of every gem you need to use.  In a complex
+project that can number in the hundreds.&lt;/p&gt;
+
+&lt;p&gt;A certificate authority steps in as a trusted third-party, issuing
+its own signatures against developer keys that it trusts.  Now you, as
+the user, only need to decide to authenticate and trust the
+certificate authority instead of 100's of individual developers.&lt;/p&gt;
+
+&lt;p&gt;In another post, we'll describe how to configure your system to trust
+the rubygems-openpgp-ca keys, hopefully making the authentication
+process easier.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>rubygems-openpgp 0.4 Released</title>
+   <link href="http://rubygems-openpgp-ca.org/blog/rubygems-openpgp-0.4-released.html"/>
+   <updated>2013-02-23T00:00:00-05:00</updated>
+   <id>http://rubygems-openpgp-ca.org/blog/rubygems-openpgp-0.4-released</id>
+   <content type="html">&lt;h1&gt;rubygems-openpgp 0.4 Released&lt;/h1&gt;
+
+&lt;h2&gt;Now with Trust!&lt;/h2&gt;
+
+&lt;p&gt;Previous versions could only verify signatures.  They didn't take your
+gnupg trust settings into account.  You can now provide the &lt;code&gt;--trust&lt;/code&gt;
+flag and gems will only be installed if you trust the signing key.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gem install openpgp_signed_hola --verify --trust
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And the install fail if the key isn't trusted.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&lt;span style='color:GoldenRod;'&gt;Signature for data.tar.gz from user Grant T. Olson (Personal email)
+    &amp;lt;kgo@grant-olson.net&amp;gt; key 0x0E3B5806F isGOODSIG, VALIDSIG and TRUST_UNDEFINED&lt;/span&gt;
+&lt;span style='color:red'&gt;Trust Undefined and you've specified --trust.  Won't install.&lt;/span&gt;
+ERROR:  Trust Undefined and you've specified --trust.  Won't install.
+&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;p&gt;Learn more at &lt;a href=&quot;./the-complete-guide-to-verifying-gems-with-rubygems-openpgp.html&quot;&gt;The Complete Guide to Verifying Gems with
+rubygems-openpgp&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Release Signature&lt;/h2&gt;
+
+&lt;p&gt;Previous users of rubygems-openpgp should be able to verify this
+release with rubygems-openpgp.  New users may want to manually check
+the initial install.&lt;/p&gt;
+
+&lt;p&gt;Save the release signature locally and then:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gem fetch rubygems-openpgp
+gpg --verify saved_sig.asc rubygems-openpgp-0.4.0.gem
+gem install rubygems-openpgp-0.4.0.gem
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The release signature for 0.4.0 is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;-----BEGIN PGP SIGNATURE-----
+Version: GnuPG/MacGPG2 v2.0.17 (Darwin)
+
+iQEcBAABCgAGBQJRKNPSAAoJEP5F5V2hilTWMS4IAIfrL21CuSrZCof8UcrFPZds
+LvCEhBKbfE4aB4Jgf8QBc6PXrm916TU8+IcfhWVzHc98ENRui+xUVtJ1LOF7tx31
+eUcck9VqGZQ7RkI9GpX5Dcbj+0SzL3ghVgVv+UMttwwAahqT8VXvPlS6ttHjroqD
+87flVoUED/MNFeT8AfGvDp4IOJ+lQl8Y7x6JUJJv+OCOSnG6e/xtQZcMaTf9LKWW
+z6FO9iplsjbLdwCndKjbPT6bygYRmw8/mF/t3DSJb7wf4HbFjLri24TkwNVZ5o9T
+hiUjubQJuZrjVTqpaPW7ZF0iL/0xgERCz7gN6SsvIM5MIm3Hok1oZ2oVMS8fzZQ=
+=RUfl
+-----END PGP SIGNATURE-----
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+ </entry>
  
  <entry>
    <title>How Many People Need to Verify Software to Make Signing Useful?</title>

@@ -1,6 +1,6 @@
 ---
 layout: post
-published: false
+published: true
 title: rubygems-openpgp 0.4 Released
 ---
 
@@ -42,4 +42,14 @@ Save the release signature locally and then:
 
 The release signature for 0.4.0 is:
 
-    XXXX
+    -----BEGIN PGP SIGNATURE-----
+    Version: GnuPG/MacGPG2 v2.0.17 (Darwin)
+    
+    iQEcBAABCgAGBQJRKNPSAAoJEP5F5V2hilTWMS4IAIfrL21CuSrZCof8UcrFPZds
+    LvCEhBKbfE4aB4Jgf8QBc6PXrm916TU8+IcfhWVzHc98ENRui+xUVtJ1LOF7tx31
+    eUcck9VqGZQ7RkI9GpX5Dcbj+0SzL3ghVgVv+UMttwwAahqT8VXvPlS6ttHjroqD
+    87flVoUED/MNFeT8AfGvDp4IOJ+lQl8Y7x6JUJJv+OCOSnG6e/xtQZcMaTf9LKWW
+    z6FO9iplsjbLdwCndKjbPT6bygYRmw8/mF/t3DSJb7wf4HbFjLri24TkwNVZ5o9T
+    hiUjubQJuZrjVTqpaPW7ZF0iL/0xgERCz7gN6SsvIM5MIm3Hok1oZ2oVMS8fzZQ=
+    =RUfl
+    -----END PGP SIGNATURE-----
