@@ -227,10 +227,10 @@ trust signatures on your behalf.
 Your selection?
 </code></pre>
 
-<p>By setting a depth of 1, the signing keys are trusted, but developer
-keys are not.</p>
+<p>By setting a depth of 2, the signing keys' signatures are trusted, but
+developer keys are not.</p>
 
-<pre><code>Your selection? 1
+<pre><code>Your selection? 2
 
 Please enter a domain to restrict this signature, or enter for none.
 
@@ -263,72 +263,9 @@ still won't save the signature until you quit and save.</p>
 Save changes? (y/N) y
 </code></pre>
 
-<h3>Download the current signing key and mark it as trusted</h3>
-
-<p>Download the current signing key:</p>
+<h3>Download the current signing key</h3>
 
 <pre><code>gpg --keyserver pool.sks-keyservers.net --recv-keys 0x6094090A
-</code></pre>
-
-<p>Say that you trust it:</p>
-
-<pre><code>grant@johnicicleboy:~$ gpg --keyserver pool.sks-keyservers.net --edit-key 6094090A
-gpg (GnuPG) 1.4.11; Copyright (C) 2010 Free Software Foundation, Inc.
-This is free software: you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law.
-
-pub  2048R/6094090A  created: 2013-02-16  expires: 2013-04-17  usage: SC  
-                     trust: unknown       validity: full
-sub  2048R/129FFDE2  created: 2013-02-16  expires: 2013-04-17  usage: E   
-sub  2048R/5BAEF314  created: 2013-02-16  expires: 2013-04-17  usage: A   
-[  full  ] (1). rubygems-openpgp Certificate Authority Signing Key
-                                 (http://rubygems-openpgp-ca.org)
-
-gpg&gt;
-</code></pre>
-
-<p>Enter trust.</p>
-
-<pre><code>gpg&gt; trust
-pub  2048R/6094090A  created: 2013-02-16  expires: 2013-04-17  usage: SC  
-                     trust: unknown       validity: full
-sub  2048R/129FFDE2  created: 2013-02-16  expires: 2013-04-17  usage: E   
-sub  2048R/5BAEF314  created: 2013-02-16  expires: 2013-04-17  usage: A   
-[  full  ] (1). rubygems-openpgp Certificate Authority Signing Key 
-                                 (http://rubygems-openpgp-ca.org)
-
-Please decide how far you trust this user to correctly verify other users' keys
-(by looking at passports, checking fingerprints from different sources, etc.)
-
-  1 = I don't know or won't say
-  2 = I do NOT trust
-  3 = I trust marginally
-  4 = I trust fully
-  5 = I trust ultimately
-  m = back to the main menu
-
-Your decision?
-</code></pre>
-
-<p>Select 4.</p>
-
-<pre><code>Your decision? 4
-
-pub  2048R/6094090A  created: 2013-02-16  expires: 2013-04-17  usage: SC  
-                     trust: full          validity: full
-sub  2048R/129FFDE2  created: 2013-02-16  expires: 2013-04-17  usage: E   
-sub  2048R/5BAEF314  created: 2013-02-16  expires: 2013-04-17  usage: A   
-[  full  ] (1). rubygems-openpgp Certificate Authority Signing Key
-                                 (http://rubygems-openpgp-ca.org)
-Please note that the shown key validity is not necessarily correct
-unless you restart the program.
-
-gpg&gt;
-</code></pre>
-
-<p>Quit to save.</p>
-
-<pre><code>gpg&gt; quit
 </code></pre>
 
 <h3>Test with the test gem</h3>
