@@ -109,52 +109,10 @@
 
 %h3 For gem developers - Generate, use, and submit a signing key.
 
-%ol
+%p
+  Learn more at
 
-  %li
+  %a{:href=>'./blog/the-complete-guide-to-signing-your-gems.html'}
+    The Complete Guide to Signing Your Gem
 
-    Generate a signing key.
-
-    %pre gpg --gen-key
-
-  %li
-
-    Register it with keyservers.  (After creating an offline backup and
-    revocation certificate.)
-
-    %pre gpg --keyserver pool.sks-keyservers.net --send-keys 0xDEADBEEF
-
-  %li
-
-    Install 
-
-    %a{:href => "http://github.com/grant-olson/rubygems-openpgp"} rubygems-openpgp
-
-    %pre gem install rubygems-openpgp
-
-  %li
-
-    Sign your gem when you build it.
-
-    %pre gem build foo.gemspec --sign
-
-  %li
-
-    Apply to register your key with us.
-
-  %li 
-    
-    If you didn't do so, create an offline backup and revocation
-    certificate of your signing key.
-
-  %li 
-    
-    If you still didn't do so, create an offline backup and revocation
-    certificate of your signing key.
-
-    %pre
-
-      :preserve
-        cd /media/usb_stick
-        gpg --export-secret-key 0xDEADBEEF > key_backup.gpg
-        gpg --gen-revoke 0xDEADBEEF > key_revoke.gpg
+  \.

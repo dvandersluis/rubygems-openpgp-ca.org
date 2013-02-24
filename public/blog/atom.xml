@@ -4,12 +4,140 @@
  <title>rubygems-openpgp Certificate Authority</title>
  <link href="http://rubygems-openpgp-ca.org/blog/atom.xml" rel="self"/>
  <link href="http://rubygems-openpgp-ca.org/"/>
- <updated>2013-02-23T17:32:10-05:00</updated>
+ <updated>2013-02-24T06:48:01-05:00</updated>
  <id>http://rubygems-openpgp-ca.org/blog</id>
  <author>
    <name>rubygems-openpgp Certificate Authority</name>
  </author>
 
+ 
+ <entry>
+   <title>The Complete Guide to Signing Your Gems</title>
+   <link href="http://rubygems-openpgp-ca.org/blog/the-complete-guide-to-signing-your-gems.html"/>
+   <updated>2013-02-25T00:00:00-05:00</updated>
+   <id>http://rubygems-openpgp-ca.org/blog/the-complete-guide-to-signing-your-gems</id>
+   <content type="html">&lt;h1&gt;The Complete Guide to Signing Your Gems&lt;/h1&gt;
+
+&lt;p&gt;By signing your gems you allow other users to verify the gem was
+actually written and build by you.&lt;/p&gt;
+
+&lt;h2&gt;OpenPGP Key Setup&lt;/h2&gt;
+
+&lt;p&gt;You'll need to generate a signing key and publish it to the keyservers
+so that users can retrieve the key.&lt;/p&gt;
+
+&lt;h3&gt;Generating the key&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;gpg --gen-key
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;All the defaults are fine.  You will want to use a real email address
+so users can tie the key to your account.&lt;/p&gt;
+
+&lt;h3&gt;Publishing the key&lt;/h3&gt;
+
+&lt;p&gt;This allows users worldwide to retrieve your public key.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gpg --keyserver pool.sks-keyservers.net --send-key 0xDEADBEEF
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Backups&lt;/h3&gt;
+
+&lt;p&gt;Since you have actually published your key, it is highly advisable
+that you back it up onto some safe offline media.  There is no way to
+re-generate the key if you lose the copy on your machine.&lt;/p&gt;
+
+&lt;p&gt;In addition, you'll want to generate a revocation certificate.  This
+allows you to send a revocation to the keyserver network in the event
+your key is compromised.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd /media/usb_stick
+gpg --export-secret-key 0xDEADBEEF &amp;gt; key_backup.gpg
+gpg --gen-revoke 0xDEADBEEF &amp;gt; key_revoke.gpg
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Please note that the revocation certificate is unencrypted, and anyone
+who can gain access to it can revoke your key worldwide.&lt;/p&gt;
+
+&lt;h3&gt;The More You Know...&lt;/h3&gt;
+
+&lt;p&gt;Since you will be using your key publicly, it is highly advisable that
+you read up more on gnupg and OpenPGP.  But that's out of scope for
+this article.&lt;/p&gt;
+
+&lt;h2&gt;Signing Your Gem&lt;/h2&gt;
+
+&lt;p&gt;Install rubygems-openpgp if you haven't yet.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gem install rubygems-openpgp
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Sign your gem before publishing.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gem build foo.gemspec --sign
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Check the signature.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gem verify foo-0.0.0.gem
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Publish the gem.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gem push foo-0.0.0.gem
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And that's it!&lt;/p&gt;
+
+&lt;p&gt;At this point anyone can download your gem, retrieve your public key,
+and verify the contents.  However, they don't have an easy way to
+authenticate your key.  You may want to register it with this site.&lt;/p&gt;
+
+&lt;h2&gt;Registering Your Public Key with rubygems-openpgp-ca.org&lt;/h2&gt;
+
+&lt;p&gt;Fill out &lt;a href=&quot;http://localhost:3000/users/sign_up&quot;&gt;the application&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;You will receive an email with some encrypted text:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;-----BEGIN PGP MESSAGE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
+
+hQEMAxRYvMtqj3z2AQf+I1+9b6RAysFonkr+A0ETE6paWAw6enZw8Z0uj24DBIjr
+iRQf3s/HFKntOPs5ziLHWZS+5B7KuxvIiJQzvLDroLteBKYo0XwZTe3DTYAQz54b
+aqe8Yk58dPvmAGJSqFhICXV2kv3QJftLTzXka5OxjhA93EJtK8Z+Orl1ZHgml/70
+QAVqBEt83jLQhTfFJOYASoctAIJmTZzfUexGLReghOMBEF/hU85/9mMuMwHMrHou
+ctpQ6IfxTEtVy+rUnOiJ6rK4Ky5th2NA7KoLnlDtB15xkkr7vWwTD2NuMX3KQZ87
+GbvhqE272xCdJTGUAH9O1QcCMta6RSCKur19DkpBptI/AVKGxBdghd76yS8ImC7J
+E5kQJdGMXbV1NWTE8azfKnvf1/0PbW9VjjB0CIc62hyYEwkh/WLp2LPnQPjQ1FiY
+=qAbC
+-----END PGP MESSAGE-----
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you're not using an &lt;a href=&quot;http://enigmail.net/home/index.php&quot;&gt;encryption enabled email
+client&lt;/a&gt; you'll need to copy the
+encrypted text into a file and decrypt manually:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gpg saved_text.asc
+cat saved_text
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Follow the unencrypted link to complete the process.&lt;/p&gt;
+
+&lt;p&gt;We'll review the application and hopefully sign off on your key.&lt;/p&gt;
+
+&lt;h2&gt;Backup your public key&lt;/h2&gt;
+
+&lt;p&gt;And after that...&lt;/p&gt;
+
+&lt;h2&gt;Backup your public key&lt;/h2&gt;
+
+&lt;p&gt;You did create a backup, right?&lt;/p&gt;
+
+&lt;h2&gt;And you're done&lt;/h2&gt;
+
+&lt;p&gt;That wasn't too bad, was it?&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>The Complete Guide to Signing the Certificate Authority Keys</title>

@@ -1,0 +1,216 @@
+<html>
+  <head>
+    <title>
+      
+    </title>
+    <link href="/blog/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/assets/application.css?body=1" media="all" rel="stylesheet" type="text/css" />
+    <script src="/assets/application.js?body=1" type="text/javascript"></script>
+    <meta content="authenticity_token" name="csrf-param" />
+    <meta content="USxg1KdEuBsICAhWZXAKxWE7jzckUM6mcN12xGbNe5k=" name="csrf-token" />
+  </head>
+  <body>
+  <script type="text/javascript">
+  
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-38732430-1']);
+    _gaq.push(['_setDomainName', 'rubygems-openpgp-ca.org']);
+    _gaq.push(['_setAllowLinker', true]);
+    _gaq.push(['_trackPageview']);
+  
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  
+  </script>
+<div class='header'>
+      <div class='project_title'>rubygems-openpgp Certificate Authority</div>
+      <ul class='menu'>
+        <li>
+          <a href='/'>
+            Home
+          </a>
+        </li>
+        <li>
+          <a href='/authentication'>
+            Authentication
+          </a>
+        </li>
+        <li>
+          <a href='/key_security'>
+            Key Security
+          </a>
+        </li>
+        <li>
+          <a href='/blog'>
+            Blog
+          </a>
+        </li>
+        <li>
+          <a href='/contact'>
+            Contact
+          </a>
+        </li>
+        <li>
+          <a href='/users/sign_up'>Apply Now!</a>
+        </li>
+      </ul>
+    </div>
+
+  <div id="post">
+<h1>The Complete Guide to Signing Your Gems</h1>
+
+<p>By signing your gems you allow other users to verify the gem was
+actually written and build by you.</p>
+
+<h2>OpenPGP Key Setup</h2>
+
+<p>You'll need to generate a signing key and publish it to the keyservers
+so that users can retrieve the key.</p>
+
+<h3>Generating the key</h3>
+
+<pre><code>gpg --gen-key
+</code></pre>
+
+<p>All the defaults are fine.  You will want to use a real email address
+so users can tie the key to your account.</p>
+
+<h3>Publishing the key</h3>
+
+<p>This allows users worldwide to retrieve your public key.</p>
+
+<pre><code>gpg --keyserver pool.sks-keyservers.net --send-key 0xDEADBEEF
+</code></pre>
+
+<h3>Backups</h3>
+
+<p>Since you have actually published your key, it is highly advisable
+that you back it up onto some safe offline media.  There is no way to
+re-generate the key if you lose the copy on your machine.</p>
+
+<p>In addition, you'll want to generate a revocation certificate.  This
+allows you to send a revocation to the keyserver network in the event
+your key is compromised.</p>
+
+<pre><code>cd /media/usb_stick
+gpg --export-secret-key 0xDEADBEEF &gt; key_backup.gpg
+gpg --gen-revoke 0xDEADBEEF &gt; key_revoke.gpg
+</code></pre>
+
+<p>Please note that the revocation certificate is unencrypted, and anyone
+who can gain access to it can revoke your key worldwide.</p>
+
+<h3>The More You Know...</h3>
+
+<p>Since you will be using your key publicly, it is highly advisable that
+you read up more on gnupg and OpenPGP.  But that's out of scope for
+this article.</p>
+
+<h2>Signing Your Gem</h2>
+
+<p>Install rubygems-openpgp if you haven't yet.</p>
+
+<pre><code>gem install rubygems-openpgp
+</code></pre>
+
+<p>Sign your gem before publishing.</p>
+
+<pre><code>gem build foo.gemspec --sign
+</code></pre>
+
+<p>Check the signature.</p>
+
+<pre><code>gem verify foo-0.0.0.gem
+</code></pre>
+
+<p>Publish the gem.</p>
+
+<pre><code>gem push foo-0.0.0.gem
+</code></pre>
+
+<p>And that's it!</p>
+
+<p>At this point anyone can download your gem, retrieve your public key,
+and verify the contents.  However, they don't have an easy way to
+authenticate your key.  You may want to register it with this site.</p>
+
+<h2>Registering Your Public Key with rubygems-openpgp-ca.org</h2>
+
+<p>Fill out <a href="http://localhost:3000/users/sign_up">the application</a>.</p>
+
+<p>You will receive an email with some encrypted text:</p>
+
+<pre><code>-----BEGIN PGP MESSAGE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
+
+hQEMAxRYvMtqj3z2AQf+I1+9b6RAysFonkr+A0ETE6paWAw6enZw8Z0uj24DBIjr
+iRQf3s/HFKntOPs5ziLHWZS+5B7KuxvIiJQzvLDroLteBKYo0XwZTe3DTYAQz54b
+aqe8Yk58dPvmAGJSqFhICXV2kv3QJftLTzXka5OxjhA93EJtK8Z+Orl1ZHgml/70
+QAVqBEt83jLQhTfFJOYASoctAIJmTZzfUexGLReghOMBEF/hU85/9mMuMwHMrHou
+ctpQ6IfxTEtVy+rUnOiJ6rK4Ky5th2NA7KoLnlDtB15xkkr7vWwTD2NuMX3KQZ87
+GbvhqE272xCdJTGUAH9O1QcCMta6RSCKur19DkpBptI/AVKGxBdghd76yS8ImC7J
+E5kQJdGMXbV1NWTE8azfKnvf1/0PbW9VjjB0CIc62hyYEwkh/WLp2LPnQPjQ1FiY
+=qAbC
+-----END PGP MESSAGE-----
+</code></pre>
+
+<p>If you're not using an <a href="http://enigmail.net/home/index.php">encryption enabled email
+client</a> you'll need to copy the
+encrypted text into a file and decrypt manually:</p>
+
+<pre><code>gpg saved_text.asc
+cat saved_text
+</code></pre>
+
+<p>Follow the unencrypted link to complete the process.</p>
+
+<p>We'll review the application and hopefully sign off on your key.</p>
+
+<h2>Backup your public key</h2>
+
+<p>And after that...</p>
+
+<h2>Backup your public key</h2>
+
+<p>You did create a backup, right?</p>
+
+<h2>And you're done</h2>
+
+<p>That wasn't too bad, was it?</p>
+
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>24 Feb 2013</span> &raquo; <a href="/blog/the-complete-guide-to-signing-the-certificate-authority-keys.html">The Complete Guide to Signing the Certificate Authority Keys</a></li>
+    
+      <li><span>23 Feb 2013</span> &raquo; <a href="/blog/the-complete-guide-to-verifying-gems-with-rubygems-openpgp.html">The Complete Guide to Verifying Gems with rubygems-openpgp</a></li>
+    
+      <li><span>23 Feb 2013</span> &raquo; <a href="/blog/rubygems-openpgp-0.4-released.html">rubygems-openpgp 0.4 Released</a></li>
+    
+  </ul>
+</div>
+
+   <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'rubygems-openpgp-ca'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+
+  </body>
+</html>
