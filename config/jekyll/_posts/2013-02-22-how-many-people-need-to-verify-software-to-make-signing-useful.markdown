@@ -2,6 +2,7 @@
 layout: post
 published: true
 title: How Many People Need to Verify Software to Make Signing Useful?
+category: rants
 ---
 
 How Many People Need to Verify Software to Make Signing Useful?

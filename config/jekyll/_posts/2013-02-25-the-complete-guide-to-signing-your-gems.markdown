@@ -2,6 +2,7 @@
 layout: post
 published: true
 title: The Complete Guide to Signing Your Gems
+category: guides
 ---
 
 The Complete Guide to Signing Your Gems

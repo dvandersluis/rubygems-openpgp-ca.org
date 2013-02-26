@@ -2,6 +2,7 @@
 layout: post
 published: true
 title: Gem Signing - X.509 vs OpenPGP
+category: rants
 ---
 
 Gem Signing - X.509 vs OpenPGP

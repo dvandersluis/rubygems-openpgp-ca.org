@@ -2,6 +2,7 @@
 layout: post
 published: true
 title: rubygems-openpgp 0.4 Released
+category: releases
 ---
 
 rubygems-openpgp 0.4 Released
