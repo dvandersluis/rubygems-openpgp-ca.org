@@ -1,0 +1,292 @@
+<html>
+  <head>
+    <title>
+      
+    </title>
+    <link href="/blog/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/assets/application.css?body=1" media="all" rel="stylesheet" type="text/css" />
+    <script src="/assets/application.js?body=1" type="text/javascript"></script>
+    <meta content="authenticity_token" name="csrf-param" />
+    <meta content="USxg1KdEuBsICAhWZXAKxWE7jzckUM6mcN12xGbNe5k=" name="csrf-token" />
+  </head>
+  <body>
+  <script type="text/javascript">
+  
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-38732430-1']);
+    _gaq.push(['_setDomainName', 'rubygems-openpgp-ca.org']);
+    _gaq.push(['_setAllowLinker', true]);
+    _gaq.push(['_trackPageview']);
+  
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  
+  </script>
+<div class='header'>
+      <div class='project_title'>rubygems-openpgp Certificate Authority</div>
+      <ul class='menu'>
+        <li>
+          <a href='/'>
+            Home
+          </a>
+        </li>
+        <li>
+          <a href='/authentication'>
+            Authentication
+          </a>
+        </li>
+        <li>
+          <a href='/key_security'>
+            Key Security
+          </a>
+        </li>
+        <li>
+          <a href='/blog'>
+            Blog
+          </a>
+        </li>
+        <li>
+          <a href='/contact'>
+            Contact
+          </a>
+        </li>
+        <li>
+          <a href='/users/sign_up'>Apply Now!</a>
+        </li>
+      </ul>
+    </div>
+
+  <div id="post">
+<h1>Gem Signing - X.509 vs OpenPGP</h1>
+
+<p>This is a contentious topic.  It's right up there with Emacs vs Vim.
+Kirk vs Picard.  Jesus vs Santa.  Etc.</p>
+
+<p>Some people have been dismissive of rubygems-openpgp.  "Why not use
+X.509?  That has native ruby libraries!  You don't need to rely on
+gpg!"  And I'm ashamed to say I've been equally dismissive.  "Because
+X.509 sucks!  It's broken!  Totally wrong for open source!"  And then a
+third party will chime in, "Why are you arguing about technical
+details?  It's all just RSA signatures in the end!"</p>
+
+<p>I'm going to try to take a step back and articulate in concrete terms
+why I don't think there will ever be a decent X.509 signing solution
+for gems.  And why I think we should use OpenPGP even if it can't
+immediately be used by all users.</p>
+
+<p>I'll avoid the more arcane technical details of each standard, and I
+hope not to flame too much.</p>
+
+<h2>State of the Union</h2>
+
+<p>Basic functionality do sign gems with X.509 was introduced in release
+0.8.11 of rubygems, in July of 2005.  And 7-1/2 years later we
+have... basic functionality to sign gems with X.509.  In theory this
+can be used by anyone using rubygems.  In practice it's used by no one.</p>
+
+<h2>Central Thesis, in Terms Anyone Can Understand</h2>
+
+<ul>
+<li><p>An X.509 based system requires a complete <strong>centralized</strong> end-to-end
+authentication system to be in designed and implemented <strong>before</strong> it
+is useful to gem developers and users.</p></li>
+<li><p>An OpenPGP system allows gem developers and users to sign and verify
+in a useful way <em>immediately</em>.  Authentication systems can be added
+<strong>after</strong> the fact in a <strong>decentralized</strong> fashion.</p></li>
+</ul>
+
+
+<p>X.509 is the cathedral, OpenPGP is the bazaar.</p>
+
+<h2>Why does X.509 Need the Authentication System First?</h2>
+
+<p>X.509 certificate chains start with a root Certificate Authority, may
+have intermediate Certificate Authorities, that ultimately sign off on
+developer's certificates.  They are strict tree structures.  Because
+they are trees, each certificate can only have a single parent.</p>
+
+<p>As in biology, the parent must exist before the child.  Without a
+Certificate Authority system in place before hand, a developer is left
+with no choice but to issue a self-signed certificate.  This
+conveniently sidesteps the ability to reliably authenticate the
+signature.  Hence those nasty browser notices when you go to a
+<a href="https://web.monkeysphere.info/">self-signed web page</a>.</p>
+
+<h2>Why doesn't OpenPGP?</h2>
+
+<p>OpenPGP's trust model is the Web of Trust.  A developer creates a
+signing key.  After that, other key issuers can create signatures that
+point to the keys they think are authentic.  Multiple issuers can say
+they trust the same key.  The trust model is a directed graph.</p>
+
+<p>These signatures are issued <em>after</em> key creation at any time by anyone
+with or without involvement of the original developer.</p>
+
+<h2>Practical Implications</h2>
+
+<h3>X.509</h3>
+
+<h4>The Certificate Authority structure must be in place <em>before</em> developers can create their own certificates</h4>
+
+<p>A developer can't create their own certificate until the CA structure
+is designed and implemented.  They need to wait for the system to be
+in place first.  If there is no CA structure in place, the only
+alternative they have is to issue a self-signed certificate,
+essentially declaring themselves a mini-CA.  In addition to mostly
+side-stepping the authentication issue, thousands of self-signed
+certificates don't scale if a user actually tries to authenticate
+these self-signed keys.</p>
+
+<h4>A Certificate Authority can't approve old packages</h4>
+
+<p>If a developer later wants to switch over to a newly formed CA, they
+must generate new certificates signed by the CA and republish their
+software.  At the same time, if a Certificate Authority wants to
+authenticate an existing package, they need to convince the developer
+to do all of the above.  There are currently 50,000+ gems on
+rubygems.org that would need to retroactively be re-signed and
+republished if a new CA was introduced.</p>
+
+<h4>Single point of failure</h4>
+
+<p>Since each certificate can only have a single parent, if any parent or
+grandparent becomes invalid and revoked, the developer's certificate
+immediately becomes invalid as well.  The certificate chain cannot be
+followed.  In this event a developer needs to issue a new certificate
+signed by a new CA and republish their software.  An existing package
+can't be re-certified.</p>
+
+<h3>OpenPGP</h3>
+
+<h4>You can generate a usable key anytime you want</h4>
+
+<p>There is no need to wait for <strong>the man</strong> to build a CA framework and
+setup signing keys.  Developers can make their keys and start using
+them.  There is no penalty imposed by doing this.  A third party (or
+multiple parties) can declare the key authentic after the fact.  This
+can be done without having to republish the software and with or
+without the cooperation of the developer.</p>
+
+<h4>Multiple trust paths can be established</h4>
+
+<p>Multiple trust paths can be established to a developer's key.  If one
+trust path becomes compromised there may be alternate trust paths that
+can be used.  If an end user doesn't like a particular trust path,
+they can choose to ignore that and go with another.</p>
+
+<h4>Trees are subsets of directed graphs</h4>
+
+<p>You can implement a tree structure in a directed graph but not vice
+versa.  And that's exactly what our Certificate Authority does.  It
+models a CA-style tree on top the Web of Trust.</p>
+
+<h2>The problem with a volunteer X.509 solution</h2>
+
+<p>X.509 has a chicken-and-egg problem:</p>
+
+<ol>
+<li><p>The system isn't usable until the Certificate Authority is designed
+and implemented.</p></li>
+<li><p>The design and implementation of said Certificate Authority takes
+serious time and effort.</p></li>
+<li><p>This system needs a general consensus between the CA, gem
+developers, and gem users to be useful.  It is difficult to achieve
+when you have thousands of people with different goals and needs.</p></li>
+<li><p>There's no guarantee that the system will be adopted, making the
+time and effort to develop such a system high-risk.</p></li>
+</ol>
+
+
+<p>And that's why I think we still don't have a usable signing mechanism
+7-1/2 years after it was ostensibly possible for developers to sign
+gems.  No one wants to spend a significant amount of time and energy
+developing a solution in isolation that has no guarantee of being
+used by or useful to the community.</p>
+
+<h2>OpenPGP-based systems don't have that problem</h2>
+
+<ol>
+<li><p>A developer can start signing packages in a useful fashion with a
+five minute time investment.</p></li>
+<li><p>Various authentication systems can be implemented <em>after</em> there are
+a significant number of signed gems in circulation and it's easier to
+demonstrate their usefulness.</p></li>
+<li><p>These systems can be as experimental as you want.  They don't
+require anything near universal adoption.  They can be used in
+parallel.  Niche systems can be useful to some users but not the
+community at large.</p></li>
+</ol>
+
+
+<p>People can implement systems incrementally, and get the out there
+where they can be seen by the community.  They can iteratively work on
+a system and interact with other interested people from the beginning.</p>
+
+<h2>So what's better for a loosely based confederation of thousands of open source developers?</h2>
+
+<h3>A system that:</h3>
+
+<ul>
+<li><p>Is centralized?</p></li>
+<li><p>Requires up front design and implementation before it can be used
+by <em>anyone</em>?</p></li>
+<li><p>Is strictly hierarchical with a single point of failure?</p></li>
+<li><p>Requires republishing to establish a certificate chains on
+existing signed software?</p></li>
+</ul>
+
+
+<h3>Or an system that:</h3>
+
+<ul>
+<li><p>Is decentralized?</p></li>
+<li><p>Is immediately usable by developers?</p></li>
+<li><p>Is fault tolerant with multiple potential trust paths?</p></li>
+<li><p>Allows end users to pick-and choose their authentication systems?</p></li>
+<li><p>Allows various experimental authentication systems to fight-it-out
+in a Darwinian fashion?</p></li>
+<li><p>Allows certification to be performed after the fact without
+republishing software packages?</p></li>
+</ul>
+
+
+<h2>Answer: OpenPGP</h2>
+
+<p>So Start signing your gems.</p>
+
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>25 Feb 2013</span> &raquo; <a href="/blog/the-complete-guide-to-signing-your-gems.html">The Complete Guide to Signing Your Gems</a></li>
+    
+      <li><span>24 Feb 2013</span> &raquo; <a href="/blog/the-complete-guide-to-signing-the-certificate-authority-keys.html">The Complete Guide to Signing the Certificate Authority Keys</a></li>
+    
+      <li><span>23 Feb 2013</span> &raquo; <a href="/blog/the-complete-guide-to-verifying-gems-with-rubygems-openpgp.html">The Complete Guide to Verifying Gems with rubygems-openpgp</a></li>
+    
+  </ul>
+</div>
+
+   <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'rubygems-openpgp-ca'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+
+  </body>
+</html>
