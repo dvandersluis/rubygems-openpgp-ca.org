@@ -1,6 +1,6 @@
 ---
 layout: post
-published: false
+published: true
 title: The Complete Guide to Verifying Your Initial Install
 category: guides
 ---
@@ -12,8 +12,10 @@ Assuming you have already installed rubygems-openpgp, you can use it
 to verify new releases:
 
 <pre><code>johnmudhead:~ grant$ gem install rubygems-openpgp --verify --trust
-<span style='color:green;'>Signature for data.tar.gz from user Grant T. Olson (Personal email) <kgo@grant-olson.net> key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_ULTIMATE
-Signature for metadata.gz from user Grant T. Olson (Personal email) <kgo@grant-olson.net> key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_ULTIMATE</span>
+<span style='color:green;'>Signature for data.tar.gz from user Grant T. Olson (Personal email) 
+        &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_ULTIMATE
+Signature for metadata.gz from user Grant T. Olson (Personal email) 
+        &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_ULTIMATE</span>
 Successfully installed rubygems-openpgp-0.4.0
 1 gem installed
 Installing ri documentation for rubygems-openpgp-0.4.0...
@@ -32,6 +34,43 @@ detached signature.
 
 Obtain and Authenticate My Public Key
 -------------------------------------
+
+Fetch the key:
+
+    gpg --keyserver pool.sks-keyservers.net --recv-keys 0xE3B5806F
+
+Examine the fingerprint:
+
+   grant@johnicicleboy:~$ gpg --fingerprint --list-key 0xE3B5806F
+    pub   2048R/E3B5806F 2010-01-11 [expires: 2014-01-03]
+          Key fingerprint = A530 C31C D762 0D26 E2BA  C384 B6F6 FFD0 E3B5 806F
+    uid                  Grant T. Olson (Personal email) <kgo@grant-olson.net>
+    uid                  Grant T Olson <grant@webkite.com>
+    uid                  Grant T. Olson (pikimal) <grant@pikimal.com>
+    sub   2048R/6A8F7CF6 2010-01-11 [expires: 2014-01-03]
+    sub   2048R/A18A54D6 2010-03-01 [expires: 2014-01-03]
+    sub   2048R/D53982CE 2010-08-31 [expires: 2014-01-03]
+
+Compare this to a fingerprint obtained from another source.  Depending
+on how <del>paranoid</del> security conscious you are, you might trust
+this website, the [github
+page](https://github.com/grant-olson/rubygems-openpgp-ca.org), [my
+personal site](http://www.grant-olson.net/openpgp-key), or verify that
+you have the same key used to [sign release
+notices](http://www.ruby-forum.com/topic/4411248#new), or find a way
+to get it from me in person.
+
+After you've verified the fingerprint to your satisfaction, sign the
+key:
+
+    gpg --lsign 0xE3B5806F
+
+This will require that you have your own gpg key.  If you're
+impatient, just run:
+
+    gpg --gen-key
+
+And accept the defaults.
 
 Save the Detached Signature
 ---------------------------
