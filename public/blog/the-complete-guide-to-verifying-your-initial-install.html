@@ -1,0 +1,266 @@
+<html>
+  <head>
+    <title>
+      
+    </title>
+    <link href="/blog/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/assets/application.css?body=1" media="all" rel="stylesheet" type="text/css" />
+    <script src="/assets/application.js?body=1" type="text/javascript"></script>
+    <meta content="authenticity_token" name="csrf-param" />
+    <meta content="USxg1KdEuBsICAhWZXAKxWE7jzckUM6mcN12xGbNe5k=" name="csrf-token" />
+  </head>
+  <body>
+  <script type="text/javascript">
+  
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-38732430-1']);
+    _gaq.push(['_setDomainName', 'rubygems-openpgp-ca.org']);
+    _gaq.push(['_setAllowLinker', true]);
+    _gaq.push(['_trackPageview']);
+  
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  
+  </script>
+<div class='header'>
+      <div class='project_title'>rubygems-openpgp Certificate Authority</div>
+      <ul class='menu'>
+        <li>
+          <a href='/'>
+            Home
+          </a>
+        </li>
+        <li>
+          <a href='/authentication'>
+            Authentication
+          </a>
+        </li>
+        <li>
+          <a href='/key_security'>
+            Key Security
+          </a>
+        </li>
+        <li>
+          <a href='/blog'>
+            Blog
+          </a>
+        </li>
+        <li>
+          <a href='/contact'>
+            Contact
+          </a>
+        </li>
+        <li>
+          <a href='/users/sign_up'>Apply Now!</a>
+        </li>
+      </ul>
+    </div>
+
+  <div id="post">
+<h1>The Complete Guide to Verifying Your Initial Install</h1>
+
+<p>Assuming you have already installed rubygems-openpgp, you can use it
+to verify new releases:</p>
+
+<pre><code>johnmudhead:~ grant$ gem install rubygems-openpgp --verify --trust
+<span style='color:green;'>Signature for data.tar.gz from user Grant T. Olson (Personal email) 
+        &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_ULTIMATE
+Signature for metadata.gz from user Grant T. Olson (Personal email) 
+        &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_ULTIMATE</span>
+Successfully installed rubygems-openpgp-0.4.0
+1 gem installed
+Installing ri documentation for rubygems-openpgp-0.4.0...
+Installing RDoc documentation for rubygems-openpgp-0.4.0...
+</code></pre>
+
+
+<p>But how can you verify your initial install?  If you initially install
+a malicious version of rubygems-openpgp, it could do anything.  It
+could lie and tell you that the signature was authentic.  Every time a
+new version of the software is released, it could secretly download a
+new malicious version and once again lie and say the signature was
+authentic.</p>
+
+<p>To protect against this, you can check your initial install with a
+detached signature.</p>
+
+<h2>Obtain and Authenticate My Public Key</h2>
+
+<p>Fetch the key:</p>
+
+<pre><code>gpg --keyserver pool.sks-keyservers.net --recv-keys 0xE3B5806F
+</code></pre>
+
+<p>Examine the fingerprint:</p>
+
+<p>   grant@johnicicleboy:~$ gpg --fingerprint --list-key 0xE3B5806F</p>
+
+<pre><code>pub   2048R/E3B5806F 2010-01-11 [expires: 2014-01-03]
+      Key fingerprint = A530 C31C D762 0D26 E2BA  C384 B6F6 FFD0 E3B5 806F
+uid                  Grant T. Olson (Personal email) &lt;kgo@grant-olson.net&gt;
+uid                  Grant T Olson &lt;grant@webkite.com&gt;
+uid                  Grant T. Olson (pikimal) &lt;grant@pikimal.com&gt;
+sub   2048R/6A8F7CF6 2010-01-11 [expires: 2014-01-03]
+sub   2048R/A18A54D6 2010-03-01 [expires: 2014-01-03]
+sub   2048R/D53982CE 2010-08-31 [expires: 2014-01-03]
+</code></pre>
+
+<p>Compare this to a fingerprint obtained from another source.  Depending
+on how <del>paranoid</del> security conscious you are, you might trust
+this website, the <a href="https://github.com/grant-olson/rubygems-openpgp-ca.org">github
+page</a>, <a href="http://www.grant-olson.net/openpgp-key">my
+personal site</a>, or verify that
+you have the same key used to <a href="http://www.ruby-forum.com/topic/4411248#new">sign release
+notices</a>, or find a way
+to get it from me in person.</p>
+
+<p>After you've verified the fingerprint to your satisfaction, sign the
+key:</p>
+
+<pre><code>gpg --lsign 0xE3B5806F
+</code></pre>
+
+<p>This will require that you have your own gpg key.  If you're
+impatient, just run:</p>
+
+<pre><code>gpg --gen-key
+</code></pre>
+
+<p>And accept the defaults.</p>
+
+<h2>Save the Detached Signature</h2>
+
+<p>The signature for the 0.4.0 release is:</p>
+
+<pre><code>-----BEGIN PGP SIGNATURE-----
+Version: GnuPG/MacGPG2 v2.0.17 (Darwin)
+
+iQEcBAABCgAGBQJRKNPSAAoJEP5F5V2hilTWMS4IAIfrL21CuSrZCof8UcrFPZds
+LvCEhBKbfE4aB4Jgf8QBc6PXrm916TU8+IcfhWVzHc98ENRui+xUVtJ1LOF7tx31
+eUcck9VqGZQ7RkI9GpX5Dcbj+0SzL3ghVgVv+UMttwwAahqT8VXvPlS6ttHjroqD
+87flVoUED/MNFeT8AfGvDp4IOJ+lQl8Y7x6JUJJv+OCOSnG6e/xtQZcMaTf9LKWW
+z6FO9iplsjbLdwCndKjbPT6bygYRmw8/mF/t3DSJb7wf4HbFjLri24TkwNVZ5o9T
+hiUjubQJuZrjVTqpaPW7ZF0iL/0xgERCz7gN6SsvIM5MIm3Hok1oZ2oVMS8fzZQ=
+=RUfl
+-----END PGP SIGNATURE-----
+</code></pre>
+
+<p>Copy this and save it into a file <code>saved_sig.asc</code></p>
+
+<h2>Fetch, verify, and install rubygems-openpgp</h2>
+
+<p>Instead of just installing the gem, fetch it first to get a local
+copy:</p>
+
+<pre><code>johnmudhead:~ grant$ gem fetch rubygems-openpgp
+Fetching: rubygems-openpgp-0.4.0.gem (100%)
+Downloaded rubygems-openpgp-0.4.0
+</code></pre>
+
+<p>Verify the detached signature:</p>
+
+<pre><code>johnmudhead:~ grant$ gpg --verify saved_sig.asc rubygems-openpgp-0.4.0.gem 
+gpg: Signature made Sat Feb 23 09:36:02 2013 EST using RSA key ID A18A54D6
+gpg: Good signature from "Grant T. Olson (Personal email) &lt;kgo@grant-olson.net&gt;"
+gpg:                 aka "Grant T. Olson (pikimal) &lt;grant@pikimal.com&gt;"
+gpg:                 aka "Grant T Olson &lt;grant@webkite.com&gt;"
+</code></pre>
+
+<p>Install the verified gem:</p>
+
+<pre><code>johnmudhead:~ grant$ gem install rubygems-openpgp-0.4.0.gem 
+Successfully installed rubygems-openpgp-0.4.0
+1 gem installed
+Installing ri documentation for rubygems-openpgp-0.4.0...
+Installing RDoc documentation for rubygems-openpgp-0.4.0...
+</code></pre>
+
+<h2>That's it!</h2>
+
+<p>You've installed a manually verified copy of rubygems-openpgp.  Now
+that you've done that, you'll be able to update new versions using
+rubygems-openpgp itself.</p>
+
+<h2>Detached Signatures For All Public Releases</h2>
+
+<h3>0.4.0</h3>
+
+<pre><code>-----BEGIN PGP SIGNATURE-----
+Version: GnuPG/MacGPG2 v2.0.17 (Darwin)
+
+iQEcBAABCgAGBQJRKNPSAAoJEP5F5V2hilTWMS4IAIfrL21CuSrZCof8UcrFPZds
+LvCEhBKbfE4aB4Jgf8QBc6PXrm916TU8+IcfhWVzHc98ENRui+xUVtJ1LOF7tx31
+eUcck9VqGZQ7RkI9GpX5Dcbj+0SzL3ghVgVv+UMttwwAahqT8VXvPlS6ttHjroqD
+87flVoUED/MNFeT8AfGvDp4IOJ+lQl8Y7x6JUJJv+OCOSnG6e/xtQZcMaTf9LKWW
+z6FO9iplsjbLdwCndKjbPT6bygYRmw8/mF/t3DSJb7wf4HbFjLri24TkwNVZ5o9T
+hiUjubQJuZrjVTqpaPW7ZF0iL/0xgERCz7gN6SsvIM5MIm3Hok1oZ2oVMS8fzZQ=
+=RUfl
+-----END PGP SIGNATURE-----
+</code></pre>
+
+<h3>0.3.0</h3>
+
+<pre><code>-----BEGIN PGP SIGNATURE-----
+Version: GnuPG/MacGPG2 v2.0.17 (Darwin)
+
+iQEcBAABCgAGBQJRF6YqAAoJEP5F5V2hilTWDYQH/jEDDhI6MrgMtJrjtUY7RDdN
++MTwkTutOIZ8P35KnKen1gOrNKzrS+Pl5p7m2fa09VBv1e1v7XNsV4Rweh4jQcuP
+YDR9h0Cn4rexWj9ABC0rGVpvQrTDEJK1acTbBXI0PFs4w0m9DOT/0U5l147W+mii
+Sg7nUM3Tgvxk38d4djS3ifD+Aq6+Nm3F2hRhamTVfdaerjWJSy4Bg7HW+FaXTqyE
+dFob+Mv1PZG+VPG78zszq+4WMbhvNAUtegmsXvfl8+j9S142emw2HU2Mcs71QBo4
+/Tb6iPyaQsXAtR15Z9vO3W/bMTCyZsTq5Hwwgp01MIr+Ek+TjM6DK8wfT65sab8=
+=N+W6
+-----END PGP SIGNATURE-----
+</code></pre>
+
+<h3>0.2.1</h3>
+
+<pre><code>-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.10 (GNU/Linux)
+
+iQEcBAABAwAGBQJN5DZLAAoJEP5F5V2hilTWRT0H/0pOYJrQXeIWZHd1O/zu8Fk4
+dYlHy4Dpm3BrskJaq0EQm81BLVeHGawTPYIUr/tI3Wnmfy+pSBxpAgA7OZMkHnu2
+sHzLqU/FixMmYPMBkfZ0bDDsSgr1fAOINRCy6wlpQvlpnuMiybB7+UDboQEfaLLa
+c8kvCenhEWiI6MO3lyye7PKfgNXNbML5vGJ/WcI3HIQpAgJ8+ItB16tLnw22JlPe
+qv+IS9SlHE/0vY6HdAB3wnfuQpLXM5JZlpcErFR37dCGrvlcgetjWN84pEtm6jIO
+Jsk6YyxWu5uxE84UEc8HWzbFrb5sVstYLKW+vwqIVV76spK5EvAaKCOrMnzP/Qg=
+=Lltd
+-----END PGP SIGNATURE-----
+</code></pre>
+
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>26 Feb 2013</span> &raquo; <a href="/blog/gem-signing-x509-and-openpgp.html">Gem Signing - X.509 vs OpenPGP</a></li>
+    
+      <li><span>25 Feb 2013</span> &raquo; <a href="/blog/the-complete-guide-to-signing-your-gems.html">The Complete Guide to Signing Your Gems</a></li>
+    
+      <li><span>24 Feb 2013</span> &raquo; <a href="/blog/the-complete-guide-to-signing-the-certificate-authority-keys.html">The Complete Guide to Signing the Certificate Authority Keys</a></li>
+    
+  </ul>
+</div>
+
+   <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'rubygems-openpgp-ca'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+
+  </body>
+</html>

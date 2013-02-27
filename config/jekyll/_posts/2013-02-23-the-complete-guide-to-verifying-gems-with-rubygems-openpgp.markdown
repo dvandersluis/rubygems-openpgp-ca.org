@@ -19,7 +19,14 @@ Gem users can verify their gems with a few simple steps.
 
 ### Install the rubygems plugin
 
+Ideally you want to [verify the initial install with a detached
+signature](./the-complete-guide-to-verifying-your-initial-install.html).
+
+But if you're just trying to demo the software, you can just install
+the gem:
+
     gem install rubygems-openpgp
+
 
 ### Install gpg if not installed.
 
