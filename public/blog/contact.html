@@ -65,56 +65,50 @@
     </div>
 
   <div id="post">
-<h1>rubygems-openpgp 0.4 Released</h1>
+<h1>Contact</h1>
 
-<h2>Now with Trust!</h2>
+<h2>Mailing List</h2>
 
-<p>Previous versions could only verify signatures.  They didn't take your
-gnupg trust settings into account.  You can now provide the <code>--trust</code>
-flag and gems will only be installed if you trust the signing key.</p>
+<p>The google group
+<a href="https://groups.google.com/forum/#!forum/rubygems-openpgp">rubygems-openpgp</a>
+is available for discussion of all things remotely related to
+rubygems-openpgp.</p>
 
-<pre><code>gem install openpgp_signed_hola --verify --trust
+<h2>Bugs? Feature Requests?</h2>
+
+<p>Issues with the rubygems-openpgp gem can be reported at
+<a href="http://github.com/grant-olson/rubygems-openpgp/issues">rubygems-openpgp issue
+tracker</a>.</p>
+
+<p>Issues with this website can be reported at <a href="http://github.com/grant-olson/rubygems-openpgp-ca.org/issues">rubygems-openpgp-ca.org
+issue
+tracker</a>.</p>
+
+<h2>Questions?  Comments?</h2>
+
+<p>Feel free to shoot me an email: kgo at grant-olson dot net.  My
+OpenPGP key is 0xE3B5806F.  I always use an encryption-capable email
+client so feel free to encrypt, even if it's just for fun.</p>
+
+<pre><code>pub   2048R/E3B5806F 2010-01-11 [expires: 2014-01-03]
+      Key fingerprint = A530 C31C D762 0D26 E2BA  C384 B6F6 FFD0 E3B5 806F
+uid                  Grant T. Olson (Personal email) &lt;kgo at grant-olson dot net&gt;
+uid                  Grant T. Olson (pikimal) &lt;grant at pikimal dot com&gt;
+uid                  Grant T Olson &lt;grant at webkite dot com&gt;
+sub   2048R/6A8F7CF6 2010-01-11 [expires: 2014-01-03]
+sub   2048R/A18A54D6 2010-03-01 [expires: 2014-01-03]
+sub   2048R/D53982CE 2010-08-31 [expires: 2014-01-03]
 </code></pre>
 
-<p>And the install fail if the key isn't trusted.</p>
+<h2>Security issue?</h2>
 
-<pre><code><span style='color:GoldenRod;'>Signature for data.tar.gz from user Grant T. Olson (Personal email)
-    &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_UNDEFINED</span>
-<span style='color:red'>Trust Undefined and you've specified --trust.  Won't install.</span>
-ERROR:  Trust Undefined and you've specified --trust.  Won't install.
-</code></pre>
+<p>Same contact info as above.</p>
 
-
-<p>Learn more at <a href="./the-complete-guide-to-verifying-gems-with-rubygems-openpgp.html">The Complete Guide to Verifying Gems with
-rubygems-openpgp</a></p>
-
-<h2>Release Signature</h2>
-
-<p>Previous users of rubygems-openpgp should be able to verify this
-release with rubygems-openpgp.  New users may want to manually check
-the initial install.</p>
-
-<p>Save the release signature locally and then:</p>
-
-<pre><code>gem fetch rubygems-openpgp
-gpg --verify saved_sig.asc rubygems-openpgp-0.4.0.gem
-gem install rubygems-openpgp-0.4.0.gem
-</code></pre>
-
-<p>The release signature for 0.4.0 is:</p>
-
-<pre><code>-----BEGIN PGP SIGNATURE-----
-Version: GnuPG/MacGPG2 v2.0.17 (Darwin)
-
-iQEcBAABCgAGBQJRKNPSAAoJEP5F5V2hilTWMS4IAIfrL21CuSrZCof8UcrFPZds
-LvCEhBKbfE4aB4Jgf8QBc6PXrm916TU8+IcfhWVzHc98ENRui+xUVtJ1LOF7tx31
-eUcck9VqGZQ7RkI9GpX5Dcbj+0SzL3ghVgVv+UMttwwAahqT8VXvPlS6ttHjroqD
-87flVoUED/MNFeT8AfGvDp4IOJ+lQl8Y7x6JUJJv+OCOSnG6e/xtQZcMaTf9LKWW
-z6FO9iplsjbLdwCndKjbPT6bygYRmw8/mF/t3DSJb7wf4HbFjLri24TkwNVZ5o9T
-hiUjubQJuZrjVTqpaPW7ZF0iL/0xgERCz7gN6SsvIM5MIm3Hok1oZ2oVMS8fzZQ=
-=RUfl
------END PGP SIGNATURE-----
-</code></pre>
+<p>If you need to send an encrypted email by don't have the correct
+software installed, you can use
+<a href="https://privacybox.de/grant.msg">privacybox</a>. If you do so, please
+include a contact email in the message. Also note I will be unable to
+reply securely.</p>
 
 </div>
 

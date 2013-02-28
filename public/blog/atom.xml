@@ -4,7 +4,7 @@
  <title>rubygems-openpgp Certificate Authority</title>
  <link href="http://rubygems-openpgp-ca.org/blog/atom.xml" rel="self"/>
  <link href="http://rubygems-openpgp-ca.org/"/>
- <updated>2013-02-27T17:26:52-05:00</updated>
+ <updated>2013-02-27T20:53:57-05:00</updated>
  <id>http://rubygems-openpgp-ca.org/blog</id>
  <author>
    <name>rubygems-openpgp Certificate Authority</name>
@@ -1111,6 +1111,259 @@ signing a try too. In fact, rubygems-openpgp isn't incompatible with
 the existing solution.  You can sign with both solutions if you want.&lt;/p&gt;
 
 &lt;p&gt;Please just give it a try...&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Signing Key Security</title>
+   <link href="http://rubygems-openpgp-ca.org/blog/signing-key-security.html"/>
+   <updated>2013-02-20T00:00:00-05:00</updated>
+   <id>http://rubygems-openpgp-ca.org/blog/signing-key-security</id>
+   <content type="html">&lt;h1&gt;Signing Key Security&lt;/h1&gt;
+
+&lt;p&gt;It is critical that our signing keys are securely maintained.  If not,
+an attacker can issue malicious signatures on our behalf, bypassing
+the actual certification process.  Here are the steps we take to
+secure the signing keys.&lt;/p&gt;
+
+&lt;h2&gt;Master Signing Key authenticates the current Signing Key&lt;/h2&gt;
+
+&lt;p&gt;A master signing key authenticates the current active signing key. If
+the signing key is compromised, it will be revoked and a new one will
+take its place.  The master signing key was generated on a computer
+that has never been and will never be on a network.  To compromise the
+master key an attacker would need to access this computer physically
+at its current undisclosed location.&lt;/p&gt;
+
+&lt;p&gt;Master key fingerprint:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;pub   4096R/FDBA50FB 2013-02-16 [expires: 2014-02-16]
+      Key fingerprint = BEED FE71 7668 50BF A6DE  5A19 25A6 5396 FDBA 50FB
+uid                  rubygems-openpgp Certificate Authority MASTER KEY
+                                       (http://rubygems-openpgp-ca.org)
+sub   4096R/9A39A769 2013-02-16 [expires: 2014-02-16]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The fingerprint can also be retrieved from our &lt;a href=&quot;https://github.com/grant-olson/rubygems-openpgp-ca.org&quot;&gt;Github
+page&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Signing computer is physically located on-site&lt;/h2&gt;
+
+&lt;p&gt;It is not in the cloud.  It is physically controlled by us.&lt;/p&gt;
+
+&lt;h2&gt;Signing occurs over an 'air gap'&lt;/h2&gt;
+
+&lt;p&gt;Signatures are not issued via the web server where you registered your
+key.  After you have authenticated your key with the web server we
+sign on another computer with an 'air gap' in place.  If the web
+server is compromised, an attacker can't just ssh into the signing
+server.&lt;/p&gt;
+
+&lt;h2&gt;Signing key is on an OpenPGP smart card&lt;/h2&gt;
+
+&lt;p&gt;Once we're on the signing computer, the signing key is contained on an
+&lt;a href=&quot;http://g10code.com/p-card.html&quot;&gt;OpenPGP smart card&lt;/a&gt; that is only
+inserted and activated for the duration of signing.&lt;/p&gt;
+
+&lt;p&gt;If the signing computer is compromised remotely, an attacker won't be
+able to physically insert the smart card and activate it.&lt;/p&gt;
+
+&lt;p&gt;If the signing computer is compromised locally, an attacker still
+requires access to the smart card.&lt;/p&gt;
+
+&lt;p&gt;If the smart card lost or stolen, an attacker only has three attempts
+to enter a passphrase before the card lock itself down.  Attempting to
+unlock the card unsuccessfully three times will cause the card to self
+destruct.  A brute force attack is not possible.&lt;/p&gt;
+
+&lt;h2&gt;Signing key has a rotating expiration date&lt;/h2&gt;
+
+&lt;p&gt;The signing key is set to expire every sixty days.  At the end of that
+sixty days, assuming the key has not been compromised, it is renewed
+for another 60 days.  This forces users to practice good keyring
+hygiene and refresh their keyring, retrieving any revocations issued
+by the signing key, or to the signing key itself.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Contact</title>
+   <link href="http://rubygems-openpgp-ca.org/blog/contact.html"/>
+   <updated>2013-02-20T00:00:00-05:00</updated>
+   <id>http://rubygems-openpgp-ca.org/blog/contact</id>
+   <content type="html">&lt;h1&gt;Contact&lt;/h1&gt;
+
+&lt;h2&gt;Mailing List&lt;/h2&gt;
+
+&lt;p&gt;The google group
+&lt;a href=&quot;https://groups.google.com/forum/#!forum/rubygems-openpgp&quot;&gt;rubygems-openpgp&lt;/a&gt;
+is available for discussion of all things remotely related to
+rubygems-openpgp.&lt;/p&gt;
+
+&lt;h2&gt;Bugs? Feature Requests?&lt;/h2&gt;
+
+&lt;p&gt;Issues with the rubygems-openpgp gem can be reported at
+&lt;a href=&quot;http://github.com/grant-olson/rubygems-openpgp/issues&quot;&gt;rubygems-openpgp issue
+tracker&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Issues with this website can be reported at &lt;a href=&quot;http://github.com/grant-olson/rubygems-openpgp-ca.org/issues&quot;&gt;rubygems-openpgp-ca.org
+issue
+tracker&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Questions?  Comments?&lt;/h2&gt;
+
+&lt;p&gt;Feel free to shoot me an email: kgo at grant-olson dot net.  My
+OpenPGP key is 0xE3B5806F.  I always use an encryption-capable email
+client so feel free to encrypt, even if it's just for fun.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;pub   2048R/E3B5806F 2010-01-11 [expires: 2014-01-03]
+      Key fingerprint = A530 C31C D762 0D26 E2BA  C384 B6F6 FFD0 E3B5 806F
+uid                  Grant T. Olson (Personal email) &amp;lt;kgo at grant-olson dot net&amp;gt;
+uid                  Grant T. Olson (pikimal) &amp;lt;grant at pikimal dot com&amp;gt;
+uid                  Grant T Olson &amp;lt;grant at webkite dot com&amp;gt;
+sub   2048R/6A8F7CF6 2010-01-11 [expires: 2014-01-03]
+sub   2048R/A18A54D6 2010-03-01 [expires: 2014-01-03]
+sub   2048R/D53982CE 2010-08-31 [expires: 2014-01-03]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Security issue?&lt;/h2&gt;
+
+&lt;p&gt;Same contact info as above.&lt;/p&gt;
+
+&lt;p&gt;If you need to send an encrypted email by don't have the correct
+software installed, you can use
+&lt;a href=&quot;https://privacybox.de/grant.msg&quot;&gt;privacybox&lt;/a&gt;. If you do so, please
+include a contact email in the message. Also note I will be unable to
+reply securely.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Authentication</title>
+   <link href="http://rubygems-openpgp-ca.org/blog/authentication.html"/>
+   <updated>2013-02-20T00:00:00-05:00</updated>
+   <id>http://rubygems-openpgp-ca.org/blog/authentication</id>
+   <content type="html">&lt;h1&gt;Authentication&lt;/h1&gt;
+
+&lt;p&gt;To verify that a gem you've downloaded is authentic and hasn't been
+tampered with, you need to:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Verify that the gem itself is intact by checking a checksum.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Verify that the checksum is authentic by checking a digital
+signature issued by the gem's author.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Verify that the signature is valid by authenticating the key that
+issued the signature.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;But authentication is hard...&lt;/h2&gt;
+
+&lt;p&gt;How do you validate that a key is valid?  At first it seems simple.
+Well this is the same key that's on the author's website, so it has to
+be good.  But then you realize that if someone hacked the developer's
+laptop they could also just change the key on the website.  And then
+you think of another problem.  And another loophole.&lt;/p&gt;
+
+&lt;p&gt;And before you know it you've realized the only surefire way to
+authenticate the key is to meet the developer in person and verify it
+face to face.  (And now that you're paranoid, you start to wonder if
+that really is the developer, or a clone or robot designed by agents
+of Eastasia to deceive you.)&lt;/p&gt;
+
+&lt;p&gt;In the software world you may have different authentication
+requirements if:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;You're working through a tutorial at home.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;You run an e-commerce site that processes credit cards.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;You're storing sensitive patient medical records.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;You run a nuclear reactor.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;Enter the rubygems-openpgp Certificate Authority&lt;/h2&gt;
+
+&lt;p&gt;We provide some verification of signing keys.  It's not by any means
+perfect, but provides a reasonable starting point to trust signing
+keys.&lt;/p&gt;
+
+&lt;p&gt;We:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Verify that the person registering the key has control of their
+email address by sending a confirmation email.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;We verify that the developer controls the signing key by encrypting
+the confirmation link.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;We verify that the developer has a rubygems.org account tied to the
+same email account.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;We verify that the developer actually has previously developed and
+published gems to rubygems.org.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;A human verifies the sanity of all of the above elements for
+anything suspicious. (For example, a signing key that has user ids for
+haxxor@example.org and billg@microsoft.com, that is registered under
+the haxxor@example.org account.)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Once your key has been authenticated, the authentication is locked.
+If your email is compromised down the road, the malicious user won't
+be able to upload a replacement public key. (Eventually there will be
+a revocation policy for lost or compromised keys, but it will not be
+automatic.)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;By connecting the signing key to the rubygems.org account via email,
+we provide some basic assurances that the signing key is the correct
+one.&lt;/p&gt;
+
+&lt;h2&gt;But someone could still fake all that!&lt;/h2&gt;
+
+&lt;p&gt;Yes, someone could perform a zero-day exploit.  They could:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Compromise a developer's email.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Perform a password reset on rubygems.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Create their own private key.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Register their key here.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Upload malicious signed gem.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Exploit scenarios that are prevented:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Registering a forged key without access to developer's email
+account.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Swapping out an existing good signing key for a forged one and
+getting it signed by the Certificate Authority.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;A back-end exploit to rubygems.org could upload a compromised gem
+with an unauthenticated signing key, but the client would notice that
+the key is untrusted and reject the install.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;And as time goes on, it becomes less and less likely that a maintained
+gem has been compromised and signed by a malicious user.  If someone
+does pull off a zero-day exploit, and a developer goes on to do six
+releases over the course of a year, at some point someone will
+probably notice that something is suspicious.&lt;/p&gt;
+
+&lt;h2&gt;In conclusion...&lt;/h2&gt;
+
+&lt;p&gt;Once again, the authentication scheme isn't perfect.  But it isn't
+worthless either.  For most gem users we should provide enough
+authentication for your purposes.  And it's better than simply
+performing no authentication.&lt;/p&gt;
+
+&lt;p&gt;In addition, once developers sign their gems additional authentication
+systems can be put into place.  One of the goals of this project is to
+provide some incentive to get developers to sign their gems, so that a
+variety of additional authentication systems can be put into place.
+But we need the signatures first.  There are a variety of systems that
+can be put into place after developers sign their gems.&lt;/p&gt;
+
+&lt;h2&gt;So&lt;/h2&gt;
+
+&lt;p&gt;Sign your gems.&lt;/p&gt;
 </content>
  </entry>
  

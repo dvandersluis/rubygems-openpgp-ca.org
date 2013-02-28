@@ -1,0 +1,55 @@
+---
+layout: post
+published: true
+title: Contact
+---
+
+Contact
+=======
+
+Mailing List
+------------
+
+The google group
+[rubygems-openpgp](https://groups.google.com/forum/#!forum/rubygems-openpgp)
+is available for discussion of all things remotely related to
+rubygems-openpgp.
+
+Bugs? Feature Requests?
+-----------------------
+
+Issues with the rubygems-openpgp gem can be reported at
+[rubygems-openpgp issue
+tracker](http://github.com/grant-olson/rubygems-openpgp/issues).
+
+Issues with this website can be reported at [rubygems-openpgp-ca.org
+issue
+tracker](http://github.com/grant-olson/rubygems-openpgp-ca.org/issues).
+
+Questions?  Comments?
+---------------------
+
+Feel free to shoot me an email: kgo at grant-olson dot net.  My
+OpenPGP key is 0xE3B5806F.  I always use an encryption-capable email
+client so feel free to encrypt, even if it's just for fun.
+
+    pub   2048R/E3B5806F 2010-01-11 [expires: 2014-01-03]
+          Key fingerprint = A530 C31C D762 0D26 E2BA  C384 B6F6 FFD0 E3B5 806F
+    uid                  Grant T. Olson (Personal email) <kgo at grant-olson dot net>
+    uid                  Grant T. Olson (pikimal) <grant at pikimal dot com>
+    uid                  Grant T Olson <grant at webkite dot com>
+    sub   2048R/6A8F7CF6 2010-01-11 [expires: 2014-01-03]
+    sub   2048R/A18A54D6 2010-03-01 [expires: 2014-01-03]
+    sub   2048R/D53982CE 2010-08-31 [expires: 2014-01-03]
+
+Security issue?
+---------------
+
+Same contact info as above.
+
+If you need to send an encrypted email by don't have the correct
+software installed, you can use
+[privacybox](https://privacybox.de/grant.msg). If you do so, please
+include a contact email in the message. Also note I will be unable to
+reply securely.
+
