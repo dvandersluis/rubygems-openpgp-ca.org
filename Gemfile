@@ -6,11 +6,11 @@ gem 'rails', '3.2.11'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'pg'
-gem 'haml'
-gem 'devise'
-gem 'thin'
-gem 'bloggy'
+gem 'pg', "~> 0.14.1"
+gem 'haml', "~> 3.1.7"
+gem 'devise', "~> 2.2.3"
+gem 'thin', "~> 1.5.0"
+gem 'bloggy', "~> 0.2.1"
 
 # Gems used only for assets and not required
 # in production environments by default.
