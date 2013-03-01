@@ -1,0 +1,184 @@
+<html>
+  <head>
+    <title>
+      
+    </title>
+    <link href="/blog/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/assets/application.css?body=1" media="all" rel="stylesheet" type="text/css" />
+    <script src="/assets/application.js?body=1" type="text/javascript"></script>
+    <meta content="authenticity_token" name="csrf-param" />
+    <meta content="USxg1KdEuBsICAhWZXAKxWE7jzckUM6mcN12xGbNe5k=" name="csrf-token" />
+  </head>
+  <body>
+  <script type="text/javascript">
+  
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-38732430-1']);
+    _gaq.push(['_setDomainName', 'rubygems-openpgp-ca.org']);
+    _gaq.push(['_setAllowLinker', true]);
+    _gaq.push(['_trackPageview']);
+  
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  
+  </script>
+<div class='header'>
+      <div class='project_title'>rubygems-openpgp Certificate Authority</div>
+      <ul class='menu'>
+        <li>
+          <a href='/'>
+            Home
+          </a>
+        </li>
+        <li>
+          <a href='/blog/gem-signing-x509-and-openpgp.html'>
+            Why OpenPGP?
+          </a>
+        </li>
+        <li>
+          <a href='/blog/authentication.html'>
+            Gem Author Authentication
+          </a>
+        </li>
+        <li>
+          <a href='/blog/signing-key-security.html'>
+            Signing Key Security
+          </a>
+        </li>
+        <li>
+          <a href='/blog'>
+            Blog
+          </a>
+        </li>
+        <li>
+          <a href='/blog/contact.html'>
+            Contact
+          </a>
+        </li>
+        <li>
+          <a href='/users/sign_up'>Apply Now!</a>
+        </li>
+      </ul>
+    </div>
+
+  <div id="post">
+<h1>There's Trust and Then There's Trust and Then There's Trust</h1>
+
+<p>Trust is important when it comes to software packages.  Unfortunately
+it's also an overloaded word that has multiple meanings.  Lets talk
+about three different kinds of trust.</p>
+
+<h2>Trust (a.k.a. Trustworthiness)</h2>
+
+<p>This one is the most important.  Unfortunately it's also the hardest
+one to verify pragmatically.  How do you know that this gem you
+install won't fry your hard drive?  That it won't install a
+key-logger?  You don't.  And unfortunately this is very hard to verify
+in any Turing complete programming language, especially one with as
+dynamic and with as many meta-programming hooks as ruby.</p>
+
+<p>Still not all hope is lost.  Being able to verify that a package comes
+from an author that you consider trustworthy is important.  Most
+people would consider an authentic rails gem to be more trustworthy
+than a 0.0.1 version gem from a totally unknown person.</p>
+
+<p>Digital signatures allow you to verify that a software package does
+indeed come from a source you consider trustworthy by other means.</p>
+
+<h2>Trust (a.k.a. Authenticity)</h2>
+
+<p>This is also important.  You need to be able to trust that a package
+is authentic.  This is something that can be solved with technology
+and digital signatures.</p>
+
+<p>If you want any of those pawn shop shows, you've seen someone bring in
+some autographed merchandise.  But they don't have any sort of
+certificate of authenticity.  And the pawn shop owners need to call in
+an expert.</p>
+
+<p>Just because a digital signature claims a software package has been
+signed by Racer X, it doesn't mean it actually was signed by Racer X.
+However, if you can either verify yourself that the signing key is
+authentic,, you can ensure that you're at least installing the right
+version of the package.  Hopefully from a trusted (a.k.a. trustworthy)
+source.</p>
+
+<h2>Trust (a.k.a. the Vouch)</h2>
+
+<p>This is when you trust a party to vouch for another source.  I may not
+be able to trust (a.k.a. Authenticate) Racer X directly.  However,
+maybe my friend did.  I consider him to be generally trustworthy, I've
+authenticated his signing key's authenticity, and I trust him to vouch
+for the identity of another.  In this case I can infer that I have the
+proper signing key for Racer X.</p>
+
+<p>This is where either a Certificate Authority or the Web of Trust comes
+into play.  You put your faith in other parties that you believe are:</p>
+
+<ol>
+<li><p>Trustworthy.</p></li>
+<li><p>Authentic.</p></li>
+<li><p>Reliable regarding authentication of others.</p></li>
+</ol>
+
+
+<p>To simplify the process of authenticating entities that you've never
+met perfectly.  Of course this still doesn't do anything to establish
+Racer X's trustworthiness, but does establish who the real Racer X is.</p>
+
+<h2>Gnupg Implementation Detail</h2>
+
+<p>Unfortunately gnupg uses the term trust in two contexts.  The first is
+trust (a.k.a. authenticity).  The trust for a key indicates that you
+consider the key to be authentic and belong to the listed owner.  It
+also has the concept of <strong>owner trust</strong> (a.k.a the Vouch).  You need
+to set the owner trust on a key to help with Web of Trust
+calculations.  And of course the third form of trust (a.k.a
+trustworthiness) is bypassed altogether.</p>
+
+<h2>And That's the Three Different Kinds of Trust</h2>
+
+<p>Next time you hear the term <strong>trust</strong> in the context of software
+authentication ask yourself which kind of trust we're actually talking
+about.</p>
+
+<h2>So</h2>
+
+<p>Sign your gems.</p>
+
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>27 Feb 2013</span> &raquo; <a href="/blog/the-complete-guide-to-verifying-your-initial-install.html">The Complete Guide to Verifying Your Initial Install</a></li>
+    
+      <li><span>26 Feb 2013</span> &raquo; <a href="/blog/gem-signing-x509-and-openpgp.html">Gem Signing - X.509 vs OpenPGP</a></li>
+    
+      <li><span>25 Feb 2013</span> &raquo; <a href="/blog/the-complete-guide-to-signing-your-gems.html">The Complete Guide to Signing Your Gems</a></li>
+    
+  </ul>
+</div>
+
+   <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'rubygems-openpgp-ca'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+
+  </body>
+</html>
