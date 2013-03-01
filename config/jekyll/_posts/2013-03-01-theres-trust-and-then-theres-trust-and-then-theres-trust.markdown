@@ -39,23 +39,29 @@ and digital signatures.
 If you want any of those pawn shop shows, you've seen someone bring in
 some autographed merchandise.  But they don't have any sort of
 certificate of authenticity.  And the pawn shop owners need to call in
-an expert.
+an expert who can properly verify the signature.
 
 Just because a digital signature claims a software package has been
 signed by Racer X, it doesn't mean it actually was signed by Racer X.
-However, if you can either verify yourself that the signing key is
-authentic,, you can ensure that you're at least installing the right
-version of the package.  Hopefully from a trusted (a.k.a. trustworthy)
-source.
+There are multiple OpenPGP keys available for the [President of the
+United
+States](http://pool.sks-keyservers.net:11371/pks/lookup?search=president%40whitehouse.gov&fingerprint=on&op=index&exact=off).
+We can safely assume most of these are forgeries.  Someone could just
+as easily generate a forged key for a known developer or a popular
+software package.
+
+However, if you can verify that the signing key is authentic, you can
+ensure that you're at least installing the official version of the
+package.  Hopefully from a trusted (a.k.a. trustworthy) source.
 
 Trust (a.k.a. the Vouch)
 --------------------------
 
 This is when you trust a party to vouch for another source.  I may not
-be able to trust (a.k.a. Authenticate) Racer X directly.  However,
-maybe my friend did.  I consider him to be generally trustworthy, I've
-authenticated his signing key's authenticity, and I trust him to vouch
-for the identity of another.  In this case I can infer that I have the
+be able to trust (a.k.a. Authenticate) Racer X's signing key directly.
+But maybe my father did.  I consider him to be generally trustworthy,
+I've authenticated his signing key's authenticity, and I trust him to
+vouch for the identity of another.  I can now infer that I have the
 proper signing key for Racer X.
 
 This is where either a Certificate Authority or the Web of Trust comes
@@ -67,18 +73,18 @@ into play.  You put your faith in other parties that you believe are:
 
 1. Reliable regarding authentication of others.
 
-To simplify the process of authenticating entities that you've never
-met perfectly.  Of course this still doesn't do anything to establish
-Racer X's trustworthiness, but does establish who the real Racer X is.
-
+This simplifies the process of authenticating entities that you've
+never met and never will meet personally.  Of course this still
+doesn't do anything to establish Racer X's trustworthiness, but does
+establish that Racer X's signing key is authentic.
 
 Gnupg Implementation Detail
 ---------------------------
 
-Unfortunately gnupg uses the term trust in two contexts.  The first is
+Unfortunately gnupg uses the term *trust* in two contexts.  The first is
 trust (a.k.a. authenticity).  The trust for a key indicates that you
 consider the key to be authentic and belong to the listed owner.  It
-also has the concept of **owner trust** (a.k.a the Vouch).  You need
+also has the concept of **owner trust** (a.k.a the vouch).  You need
 to set the owner trust on a key to help with Web of Trust
 calculations.  And of course the third form of trust (a.k.a
 trustworthiness) is bypassed altogether.
