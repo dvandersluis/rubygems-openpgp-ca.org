@@ -65,56 +65,64 @@
     </div>
 
   <div id="post">
-<h1>rubygems-openpgp 0.4 Released</h1>
+<h1>Verifying the rubygems-openpgp Source</h1>
 
-<h2>Now with Trust!</h2>
+<p>Verifying gems is all well and good, but what happens if you want to
+build rubygems-openpgp from the source on github.  How can you verify
+that you have the right source code?  Fortunately git allows you to
+digitally sign tags.  All rubygems-openpgp releases are tagged and
+signed in the git repository.</p>
 
-<p>Previous versions could only verify signatures.  They didn't take your
-gnupg trust settings into account.  You can now provide the <code>--trust</code>
-flag and gems will only be installed if you trust the signing key.</p>
+<h2>Getting the Source</h2>
 
-<pre><code>gem install openpgp_signed_hola --verify --trust
+<pre><code>grant@johnicicleboy:~$ git clone git://github.com/grant-olson/rubygems-openpgp.git
+Cloning into 'rubygems-openpgp'...
+remote: Counting objects: 497, done.
+remote: Compressing objects: 100% (313/313), done.
+remote: Total 497 (delta 252), reused 421 (delta 176)
+Receiving objects: 100% (497/497), 74.91 KiB, done.
+Resolving deltas: 100% (252/252), done.
 </code></pre>
 
-<p>And the install fail if the key isn't trusted.</p>
+<h2>Checking a Release Tag Signature</h2>
 
-<pre><code><span style='color:GoldenRod;'>Signature for data.tar.gz from user Grant T. Olson (Personal email)
-    &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_UNDEFINED</span>
-<span style='color:red'>Trust Undefined and you've specified --trust.  Won't install.</span>
-ERROR:  Trust Undefined and you've specified --trust.  Won't install.
+<p>All the standard caveats about authenticating signing keys apply.
+This step is only useful if you've authenticated my key.</p>
+
+<pre><code>grant@johnicicleboy:~$ cd rubygems-openpgp/
+grant@johnicicleboy:~/rubygems-openpgp$ git tag -v 0.4.0
+object a8f38e7c41964da034516625ab02a23c93c865db
+type commit
+tag 0.4.0
+tagger Grant Olson &lt;grant@pikimal.com&gt; 1361630125 -0500
+
+0.4.0
+gpg: Signature made Sat 23 Feb 2013 09:35:38 AM EST using RSA key ID A18A54D6
+gpg: Good signature from "Grant T. Olson (Personal email) &lt;kgo@grant-olson.net&gt;"
+gpg:                 aka "Grant T Olson &lt;grant@webkite.com&gt;"
+gpg:                 aka "Grant T. Olson (pikimal) &lt;grant@pikimal.com&gt;"
 </code></pre>
 
+<h2>Checking out the tag</h2>
 
-<p>Learn more at <a href="./the-complete-guide-to-verifying-gems-with-rubygems-openpgp.html">The Complete Guide to Verifying Gems with
-rubygems-openpgp</a></p>
+<pre><code>grant@johnicicleboy:~/rubygems-openpgp$ git checkout 0.4.0
+Note: checking out '0.4.0'.
 
-<h2>Release Signature</h2>
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
 
-<p>Previous users of rubygems-openpgp should be able to verify this
-release with rubygems-openpgp.  New users may want to manually check
-the initial install.</p>
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
 
-<p>Save the release signature locally and then:</p>
+  git checkout -b new_branch_name
 
-<pre><code>gem fetch rubygems-openpgp
-gpg --verify saved_sig.asc rubygems-openpgp-0.4.0.gem
-gem install rubygems-openpgp-0.4.0.gem
+HEAD is now at a8f38e7... Tagged CHANGELOG for release
 </code></pre>
 
-<p>The release signature for 0.4.0 is:</p>
+<h2>Go Crazy!</h2>
 
-<pre><code>-----BEGIN PGP SIGNATURE-----
-Version: GnuPG/MacGPG2 v2.0.17 (Darwin)
-
-iQEcBAABCgAGBQJRKNPSAAoJEP5F5V2hilTWMS4IAIfrL21CuSrZCof8UcrFPZds
-LvCEhBKbfE4aB4Jgf8QBc6PXrm916TU8+IcfhWVzHc98ENRui+xUVtJ1LOF7tx31
-eUcck9VqGZQ7RkI9GpX5Dcbj+0SzL3ghVgVv+UMttwwAahqT8VXvPlS6ttHjroqD
-87flVoUED/MNFeT8AfGvDp4IOJ+lQl8Y7x6JUJJv+OCOSnG6e/xtQZcMaTf9LKWW
-z6FO9iplsjbLdwCndKjbPT6bygYRmw8/mF/t3DSJb7wf4HbFjLri24TkwNVZ5o9T
-hiUjubQJuZrjVTqpaPW7ZF0iL/0xgERCz7gN6SsvIM5MIm3Hok1oZ2oVMS8fzZQ=
-=RUfl
------END PGP SIGNATURE-----
-</code></pre>
+<p>Now you can build, branch off of the tag, etc.</p>
 
 </div>
 
@@ -122,11 +130,11 @@ hiUjubQJuZrjVTqpaPW7ZF0iL/0xgERCz7gN6SsvIM5MIm3Hok1oZ2oVMS8fzZQ=
   <h2>Related Posts</h2>
   <ul class="posts">
     
-      <li><span>02 Mar 2013</span> &raquo; <a href="/blog/verifying-the-rubygems-openpgp-source.html">Verifying the rubygems-openpgp Source</a></li>
-    
       <li><span>01 Mar 2013</span> &raquo; <a href="/blog/theres-trust-and-then-theres-trust-and-then-theres-trust.html">There's Trust and Then There's Trust and Then There's Trust</a></li>
     
       <li><span>27 Feb 2013</span> &raquo; <a href="/blog/the-complete-guide-to-verifying-your-initial-install.html">The Complete Guide to Verifying Your Initial Install</a></li>
+    
+      <li><span>26 Feb 2013</span> &raquo; <a href="/blog/gem-signing-x509-and-openpgp.html">Gem Signing - X.509 vs OpenPGP</a></li>
     
   </ul>
 </div>
