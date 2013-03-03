@@ -4,12 +4,99 @@
  <title>rubygems-openpgp Certificate Authority</title>
  <link href="http://rubygems-openpgp-ca.org/blog/atom.xml" rel="self"/>
  <link href="http://rubygems-openpgp-ca.org/"/>
- <updated>2013-03-02T14:49:32-05:00</updated>
+ <updated>2013-03-03T17:56:11-05:00</updated>
  <id>http://rubygems-openpgp-ca.org/blog</id>
  <author>
    <name>rubygems-openpgp Certificate Authority</name>
  </author>
 
+ 
+ <entry>
+   <title>Key Revocation</title>
+   <link href="http://rubygems-openpgp-ca.org/blog/key-revocation.html"/>
+   <updated>2013-03-04T00:00:00-05:00</updated>
+   <id>http://rubygems-openpgp-ca.org/blog/key-revocation</id>
+   <content type="html">&lt;h1&gt;Key Revocation&lt;/h1&gt;
+
+&lt;p&gt;If your key is compromised or simply lost, you'll need to revoke it.
+This relies on generation of a revocation key.&lt;/p&gt;
+
+&lt;h2&gt;Backing Up Your Key and Generating a Revocation Certificate&lt;/h2&gt;
+
+&lt;p&gt;If you are signing your gems and haven't done this yet, please do so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gpg --armor --export-secret-keys &amp;gt; /media/usb_stick/key_backup.asc
+gpg --gen-revoke 0xDEADBEEF &amp;gt; /media/usb_stick/key_revoke.asc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that the exported secret key is still encrypted with your
+passphrase and relatively safe.  However, the revocation certificate
+is not.  if someone gains access to your revocation certificate, they
+can revoke your key without any safeguards.&lt;/p&gt;
+
+&lt;h2&gt;Revoking Your Own Key&lt;/h2&gt;
+
+&lt;p&gt;In the event you decide you need to revoke your own key, run:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gpg --import /media/usb_stick/key_revoke.asc
+gpg --keyserver pool.sks-keyservers.net --send-keys 0xDEADBEEF
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And this will publish the revocation.&lt;/p&gt;
+
+&lt;h2&gt;Keeping Your Keyring Up-to-date&lt;/h2&gt;
+
+&lt;p&gt;Even after a revocation has been published, users need to get that
+updated information.  To keep your keyring up-to-date, you should
+periodically run:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gpg --keyserver pool.sks-keyservers.net --refresh-keys
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will grab any updates for any keys on your keyring.&lt;/p&gt;
+
+&lt;h2&gt;Forcing Users to Keep Their Keyrings Up-to-date&lt;/h2&gt;
+
+&lt;p&gt;One way to force users to update their keyring is to set a revolving
+expiration date on your key.  This way the system will tell them the
+key is expired and they will need to refresh their keyring to get the
+updated expiration information.&lt;/p&gt;
+
+&lt;p&gt;I set my personal key to expire yearly for this reason.  I've also set
+the official CA signing key to have a rotating expiration of 60 days
+to hopefully force rubygems-openpgp users to keep their keyrings
+up-to-date.&lt;/p&gt;
+
+&lt;h2&gt;If All Else Fails, the CA Should be Able to Revoke Its Signature&lt;/h2&gt;
+
+&lt;p&gt;Of course eventually someone is going start signing their gems, fail
+to generate backups, and somehow lose their key.  We'll need some way
+to revoke the CA's certification signature.  There currently isn't a
+policy in place.&lt;/p&gt;
+
+&lt;p&gt;It seems a user should be able to request that we revoke their key.
+However, we now end up in a situation where a malicious user only
+needs access to a user's email address to reset their password and
+issue a revocation.  They would then be able to submit a new signing
+key.&lt;/p&gt;
+
+&lt;p&gt;Right now I think the only solution is to have a time-out period after
+this revocation is requested.  If we implement the ability to request
+revocation via the website only, the signature will be revoked, and
+there will be a 60 day cooling off period where we won't accept a new
+key.&lt;/p&gt;
+
+&lt;p&gt;This isn't perfect, but it minimizes the amount of damage a malicious
+user could do before the actual user realizes their email has been
+compromised.&lt;/p&gt;
+
+&lt;h2&gt;What Do You Think?&lt;/h2&gt;
+
+&lt;p&gt;Is the above proposal reasonable?  Is there a better way?  Should we
+simply leave revocation in the hands of users and not allow our
+certification to be revoked?&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Verifying the rubygems-openpgp Source</title>

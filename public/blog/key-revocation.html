@@ -65,50 +65,85 @@
     </div>
 
   <div id="post">
-<h1>Contact</h1>
+<h1>Key Revocation</h1>
 
-<h2>Mailing List</h2>
+<p>If your key is compromised or simply lost, you'll need to revoke it.
+This relies on generation of a revocation key.</p>
 
-<p>The google group
-<a href="https://groups.google.com/forum/#!forum/rubygems-openpgp">rubygems-openpgp</a>
-is available for discussion of all things remotely related to
-rubygems-openpgp.</p>
+<h2>Backing Up Your Key and Generating a Revocation Certificate</h2>
 
-<h2>Bugs? Feature Requests?</h2>
+<p>If you are signing your gems and haven't done this yet, please do so:</p>
 
-<p>Issues with the rubygems-openpgp gem can be reported at
-<a href="http://github.com/grant-olson/rubygems-openpgp/issues">rubygems-openpgp issue
-tracker</a>.</p>
-
-<p>Issues with this website can be reported at <a href="http://github.com/grant-olson/rubygems-openpgp-ca.org/issues">rubygems-openpgp-ca.org
-issue
-tracker</a>.</p>
-
-<h2>Questions?  Comments?</h2>
-
-<p>Feel free to shoot me an email: kgo at grant-olson dot net.  My
-OpenPGP key is 0xE3B5806F.  I always use an encryption-capable email
-client so feel free to encrypt, even if it's just for fun.</p>
-
-<pre><code>pub   2048R/E3B5806F 2010-01-11 [expires: 2014-01-03]
-      Key fingerprint = A530 C31C D762 0D26 E2BA  C384 B6F6 FFD0 E3B5 806F
-uid                  Grant T. Olson (Personal email) &lt;kgo at grant-olson dot net&gt;
-uid                  Grant T. Olson (pikimal) &lt;grant at pikimal dot com&gt;
-uid                  Grant T Olson &lt;grant at webkite dot com&gt;
-sub   2048R/6A8F7CF6 2010-01-11 [expires: 2014-01-03]
-sub   2048R/A18A54D6 2010-03-01 [expires: 2014-01-03]
-sub   2048R/D53982CE 2010-08-31 [expires: 2014-01-03]
+<pre><code>gpg --armor --export-secret-keys &gt; /media/usb_stick/key_backup.asc
+gpg --gen-revoke 0xDEADBEEF &gt; /media/usb_stick/key_revoke.asc
 </code></pre>
 
-<h2>Security issue?</h2>
+<p>Note that the exported secret key is still encrypted with your
+passphrase and relatively safe.  However, the revocation certificate
+is not.  if someone gains access to your revocation certificate, they
+can revoke your key without any safeguards.</p>
 
-<p>Same contact info as above.</p>
+<h2>Revoking Your Own Key</h2>
 
-<p>If you need to send an encrypted email by don't have the correct
-software installed, you can use
-<a href="https://privacybox.de/grant.msg">privacybox</a>. If you do so, please
-include a contact email in the message. Also note I will be unable to
-reply securely.</p>
+<p>In the event you decide you need to revoke your own key, run:</p>
+
+<pre><code>gpg --import /media/usb_stick/key_revoke.asc
+gpg --keyserver pool.sks-keyservers.net --send-keys 0xDEADBEEF
+</code></pre>
+
+<p>And this will publish the revocation.</p>
+
+<h2>Keeping Your Keyring Up-to-date</h2>
+
+<p>Even after a revocation has been published, users need to get that
+updated information.  To keep your keyring up-to-date, you should
+periodically run:</p>
+
+<pre><code>gpg --keyserver pool.sks-keyservers.net --refresh-keys
+</code></pre>
+
+<p>This will grab any updates for any keys on your keyring.</p>
+
+<h2>Forcing Users to Keep Their Keyrings Up-to-date</h2>
+
+<p>One way to force users to update their keyring is to set a revolving
+expiration date on your key.  This way the system will tell them the
+key is expired and they will need to refresh their keyring to get the
+updated expiration information.</p>
+
+<p>I set my personal key to expire yearly for this reason.  I've also set
+the official CA signing key to have a rotating expiration of 60 days
+to hopefully force rubygems-openpgp users to keep their keyrings
+up-to-date.</p>
+
+<h2>If All Else Fails, the CA Should be Able to Revoke Its Signature</h2>
+
+<p>Of course eventually someone is going start signing their gems, fail
+to generate backups, and somehow lose their key.  We'll need some way
+to revoke the CA's certification signature.  There currently isn't a
+policy in place.</p>
+
+<p>It seems a user should be able to request that we revoke their key.
+However, we now end up in a situation where a malicious user only
+needs access to a user's email address to reset their password and
+issue a revocation.  They would then be able to submit a new signing
+key.</p>
+
+<p>Right now I think the only solution is to have a time-out period after
+this revocation is requested.  If we implement the ability to request
+revocation via the website only, the signature will be revoked, and
+there will be a 60 day cooling off period where we won't accept a new
+key.</p>
+
+<p>This isn't perfect, but it minimizes the amount of damage a malicious
+user could do before the actual user realizes their email has been
+compromised.</p>
+
+<h2>What Do You Think?</h2>
+
+<p>Is the above proposal reasonable?  Is there a better way?  Should we
+simply leave revocation in the hands of users and not allow our
+certification to be revoked?</p>
 
 </div>
 
@@ -116,11 +151,11 @@ reply securely.</p>
   <h2>Related Posts</h2>
   <ul class="posts">
     
-      <li><span>04 Mar 2013</span> &raquo; <a href="/blog/key-revocation.html">Key Revocation</a></li>
-    
       <li><span>02 Mar 2013</span> &raquo; <a href="/blog/verifying-the-rubygems-openpgp-source.html">Verifying the rubygems-openpgp Source</a></li>
     
       <li><span>01 Mar 2013</span> &raquo; <a href="/blog/theres-trust-and-then-theres-trust-and-then-theres-trust.html">There's Trust and Then There's Trust and Then There's Trust</a></li>
+    
+      <li><span>27 Feb 2013</span> &raquo; <a href="/blog/the-complete-guide-to-verifying-your-initial-install.html">The Complete Guide to Verifying Your Initial Install</a></li>
     
   </ul>
 </div>
