@@ -70,79 +70,79 @@
     
       <h3><span>04 Mar 2013</span> &raquo; <a href="/blog/key-revocation.html">Key Revocation</a>
       </h3>
-      <p class='blog_preview'>Key Revocation If your key is compromised or simply lost, you'll need to revoke it. This relies on generation of a revocation key. Backing Up Your Key and Generating a Revocation Certificate If you are signing your gems and haven't done this yet, please do so: gpg --armor --export-secret-keys &gt; /media/usb_stick/key_backup.asc gpg --gen-revoke 0xDEADBEEF &gt; /media/usb_stick/key_revoke.asc Note that the exported secret key is still encrypted with your passphrase and relatively safe. However, the revocation certificate...
+      <p class='blog_preview'>If your key is compromised or simply lost, you'll need to revoke it. This relies on generation of a revocation key. Backing Up Your Key and Generating a Revocation Certificate If you are signing your gems and haven't done this yet, please do so: Note that the exported secret key is still encrypted with your passphrase and relatively safe. However, the revocation certificate is not. if someone gains access to your revocation certificate, they can...
 <a href="/blog/key-revocation.html">[Read More]</a>
 </p>
     
       <h3><span>02 Mar 2013</span> &raquo; <a href="/blog/verifying-the-rubygems-openpgp-source.html">Verifying the rubygems-openpgp Source</a>
       </h3>
-      <p class='blog_preview'>Verifying the rubygems-openpgp Source Verifying gems is all well and good, but what happens if you want to build rubygems-openpgp from the source on github. How can you verify that you have the right source code? Fortunately git allows you to digitally sign tags. All rubygems-openpgp releases are tagged and signed in the git repository. Getting the Source grant@johnicicleboy:~$ git clone git://github.com/grant-olson/rubygems-openpgp.git Cloning into 'rubygems-openpgp'... remote: Counting objects: 497, done. remote: Compressing objects: 100% (313/313),...
+      <p class='blog_preview'>Verifying gems is all well and good, but what happens if you want to build rubygems-openpgp from the source on github. How can you verify that you have the right source code? Fortunately git allows you to digitally sign tags. All rubygems-openpgp releases are tagged and signed in the git repository. Getting the Source Checking a Release Tag Signature All the standard caveats about authenticating signing keys apply. This step is only useful if you've...
 <a href="/blog/verifying-the-rubygems-openpgp-source.html">[Read More]</a>
 </p>
     
       <h3><span>01 Mar 2013</span> &raquo; <a href="/blog/theres-trust-and-then-theres-trust-and-then-theres-trust.html">There's Trust and Then There's Trust and Then There's Trust</a>
       </h3>
-      <p class='blog_preview'>There's Trust and Then There's Trust and Then There's Trust Trust is important when it comes to software packages. Unfortunately it's also an overloaded word that has multiple meanings. Lets talk about three different kinds of trust. Trust (a.k.a. Trustworthiness) This one is the most important. Unfortunately it's also the hardest one to verify pragmatically. How do you know that this gem you install won't fry your hard drive? That it won't install a key-logger?...
+      <p class='blog_preview'>Trust is important when it comes to software packages. Unfortunately it's also an overloaded word that has multiple meanings. Lets talk about three different kinds of trust. Trust (a.k.a. Trustworthiness) This one is the most important. Unfortunately it's also the hardest one to verify pragmatically. How do you know that this gem you install won't fry your hard drive? That it won't install a key-logger? You don't. And unfortunately this is very hard to verify...
 <a href="/blog/theres-trust-and-then-theres-trust-and-then-theres-trust.html">[Read More]</a>
 </p>
     
       <h3><span>27 Feb 2013</span> &raquo; <a href="/blog/the-complete-guide-to-verifying-your-initial-install.html">The Complete Guide to Verifying Your Initial Install</a>
       </h3>
-      <p class='blog_preview'>The Complete Guide to Verifying Your Initial Install Assuming you have already installed rubygems-openpgp, you can use it to verify new releases: johnmudhead:~ grant$ gem install rubygems-openpgp --verify --trust Signature for data.tar.gz from user Grant T. Olson (Personal email) &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_ULTIMATE Signature for metadata.gz from user Grant T. Olson (Personal email) &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_ULTIMATE Successfully installed rubygems-openpgp-0.4.0 1 gem installed Installing ri documentation for...
+      <p class='blog_preview'>Assuming you have already installed rubygems-openpgp, you can use it to verify new releases: But how can you verify your initial install? If you initially install a malicious version of rubygems-openpgp, it could do anything. It could lie and tell you that the signature was authentic. Every time a new version of the software is released, it could secretly download a new malicious version and once again lie and say the signature was authentic. To...
 <a href="/blog/the-complete-guide-to-verifying-your-initial-install.html">[Read More]</a>
 </p>
     
       <h3><span>26 Feb 2013</span> &raquo; <a href="/blog/gem-signing-x509-and-openpgp.html">Gem Signing - X.509 vs OpenPGP</a>
       </h3>
-      <p class='blog_preview'>Gem Signing - X.509 vs OpenPGP This is a contentious topic. It's right up there with Emacs vs Vim. Kirk vs Picard. Jesus vs Santa. Etc. Some people have been dismissive of rubygems-openpgp. "Why not use X.509? That has native ruby libraries! You don't need to rely on gpg!" And I'm ashamed to say I've been equally dismissive. "Because X.509 sucks! It's broken! Totally wrong for open source!" And then a third party will chime...
+      <p class='blog_preview'>This is a contentious topic. It's right up there with Emacs vs Vim. Kirk vs Picard. Jesus vs Santa. Etc. Some people have been dismissive of rubygems-openpgp. "Why not use X.509? That has native ruby libraries! You don't need to rely on gpg!" And I'm ashamed to say I've been equally dismissive. "Because X.509 sucks! It's broken! Totally wrong for open source!" And then a third party will chime in, "Why are you arguing about...
 <a href="/blog/gem-signing-x509-and-openpgp.html">[Read More]</a>
 </p>
     
       <h3><span>25 Feb 2013</span> &raquo; <a href="/blog/the-complete-guide-to-signing-your-gems.html">The Complete Guide to Signing Your Gems</a>
       </h3>
-      <p class='blog_preview'>The Complete Guide to Signing Your Gems By signing your gems you allow other users to verify the gem was actually written and build by you. OpenPGP Key Setup You'll need to generate a signing key and publish it to the keyservers so that users can retrieve the key. Generating the key gpg --gen-key All the defaults are fine. You will want to use a real email address so users can tie the key to...
+      <p class='blog_preview'>By signing your gems you allow other users to verify the gem was actually written and build by you. OpenPGP Key Setup You'll need to generate a signing key and publish it to the keyservers so that users can retrieve the key. Generating the key All the defaults are fine. You will want to use a real email address so users can tie the key to your account. Publishing the key This allows users worldwide...
 <a href="/blog/the-complete-guide-to-signing-your-gems.html">[Read More]</a>
 </p>
     
       <h3><span>24 Feb 2013</span> &raquo; <a href="/blog/the-complete-guide-to-signing-the-certificate-authority-keys.html">The Complete Guide to Signing the Certificate Authority Keys</a>
       </h3>
-      <p class='blog_preview'>The Complete Guide to Signing the Certificate Authority Keys In a perfect world you would meet the developer of every gem you use in person, verify their OpenPGP key, and sign off on it. But this approach doesn't scale very well. Even if you skip the in person part of the verification and trust each developer's github page, you can still end up with hundreds of keys that need to be verified. A Certificate Authority...
+      <p class='blog_preview'>In a perfect world you would meet the developer of every gem you use in person, verify their OpenPGP key, and sign off on it. But this approach doesn't scale very well. Even if you skip the in person part of the verification and trust each developer's github page, you can still end up with hundreds of keys that need to be verified. A Certificate Authority can help with that. The basic idea is that...
 <a href="/blog/the-complete-guide-to-signing-the-certificate-authority-keys.html">[Read More]</a>
 </p>
     
       <h3><span>23 Feb 2013</span> &raquo; <a href="/blog/the-complete-guide-to-verifying-gems-with-rubygems-openpgp.html">The Complete Guide to Verifying Gems with rubygems-openpgp</a>
       </h3>
-      <p class='blog_preview'>The Complete Guide to Verifying Gems with rubygems-openpgp rubygems-openpgp allows you to verify a gem by checking the digital signature. This helps to ensure that the gem you are using is actually the gem published by the author and that it hasn't been replaced with malicious code. Gem users can verify their gems with a few simple steps. Setup Install the rubygems plugin Ideally you want to verify the initial install with a detached signature....
+      <p class='blog_preview'>rubygems-openpgp allows you to verify a gem by checking the digital signature. This helps to ensure that the gem you are using is actually the gem published by the author and that it hasn't been replaced with malicious code. Gem users can verify their gems with a few simple steps. Setup Install the rubygems plugin Ideally you want to verify the initial install with a detached signature. But if you're just trying to demo the...
 <a href="/blog/the-complete-guide-to-verifying-gems-with-rubygems-openpgp.html">[Read More]</a>
 </p>
     
       <h3><span>23 Feb 2013</span> &raquo; <a href="/blog/rubygems-openpgp-0.4-released.html">rubygems-openpgp 0.4 Released</a>
       </h3>
-      <p class='blog_preview'>rubygems-openpgp 0.4 Released Now with Trust! Previous versions could only verify signatures. They didn't take your gnupg trust settings into account. You can now provide the --trust flag and gems will only be installed if you trust the signing key. gem install openpgp_signed_hola --verify --trust And the install fail if the key isn't trusted. Signature for data.tar.gz from user Grant T. Olson (Personal email) &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_UNDEFINED Trust Undefined and...
+      <p class='blog_preview'>Now with Trust! Previous versions could only verify signatures. They didn't take your gnupg trust settings into account. You can now provide the --trust flag and gems will only be installed if you trust the signing key. And the install fail if the key isn't trusted. Learn more at The Complete Guide to Verifying Gems with rubygems-openpgp Release Signature Previous users of rubygems-openpgp should be able to verify this release with rubygems-openpgp. New users may...
 <a href="/blog/rubygems-openpgp-0.4-released.html">[Read More]</a>
 </p>
     
       <h3><span>22 Feb 2013</span> &raquo; <a href="/blog/how-many-people-need-to-verify-software-to-make-signing-useful.html">How Many People Need to Verify Software to Make Signing Useful?</a>
       </h3>
-      <p class='blog_preview'>How Many People Need to Verify Software to Make Signing Useful? Lets do a quick straw poll. Raise your hand if you're concerned with being able to verify software. I imagine everyone has their hands up now. After all, this site is dedicated to software verification. Keep your hand up if you've ever downloaded a linux distribution from the web. I imagine a few hands dropped, but we're all software developers here, and most of...
+      <p class='blog_preview'>Lets do a quick straw poll. Raise your hand if you're concerned with being able to verify software. I imagine everyone has their hands up now. After all, this site is dedicated to software verification. Keep your hand up if you've ever downloaded a linux distribution from the web. I imagine a few hands dropped, but we're all software developers here, and most of us have probably played with linux. Now keep your hand up...
 <a href="/blog/how-many-people-need-to-verify-software-to-make-signing-useful.html">[Read More]</a>
 </p>
     
       <h3><span>20 Feb 2013</span> &raquo; <a href="/blog/signing-key-security.html">Signing Key Security</a>
       </h3>
-      <p class='blog_preview'>Signing Key Security It is critical that our signing keys are securely maintained. If not, an attacker can issue malicious signatures on our behalf, bypassing the actual certification process. Here are the steps we take to secure the signing keys. Master Signing Key authenticates the current Signing Key A master signing key authenticates the current active signing key. If the signing key is compromised, it will be revoked and a new one will take its...
+      <p class='blog_preview'>It is critical that our signing keys are securely maintained. If not, an attacker can issue malicious signatures on our behalf, bypassing the actual certification process. Here are the steps we take to secure the signing keys. Master Signing Key authenticates the current Signing Key A master signing key authenticates the current active signing key. If the signing key is compromised, it will be revoked and a new one will take its place. The master...
 <a href="/blog/signing-key-security.html">[Read More]</a>
 </p>
     
       <h3><span>20 Feb 2013</span> &raquo; <a href="/blog/contact.html">Contact</a>
       </h3>
-      <p class='blog_preview'>Contact Mailing List The google group rubygems-openpgp is available for discussion of all things remotely related to rubygems-openpgp. Bugs? Feature Requests? Issues with the rubygems-openpgp gem can be reported at rubygems-openpgp issue tracker. Issues with this website can be reported at rubygems-openpgp-ca.org issue tracker. Questions? Comments? Feel free to shoot me an email: kgo at grant-olson dot net. My OpenPGP key is 0xE3B5806F. I always use an encryption-capable email client so feel free to encrypt,...
+      <p class='blog_preview'>Mailing List The google group rubygems-openpgp is available for discussion of all things remotely related to rubygems-openpgp. Bugs? Feature Requests? Issues with the rubygems-openpgp gem can be reported at rubygems-openpgp issue tracker. Issues with this website can be reported at rubygems-openpgp-ca.org issue tracker. Questions? Comments? Feel free to shoot me an email: kgo at grant-olson dot net. My OpenPGP key is 0xE3B5806F. I always use an encryption-capable email client so feel free to encrypt, even...
 <a href="/blog/contact.html">[Read More]</a>
 </p>
     
       <h3><span>20 Feb 2013</span> &raquo; <a href="/blog/authentication.html">Authentication</a>
       </h3>
-      <p class='blog_preview'>Authentication To verify that a gem you've downloaded is authentic and hasn't been tampered with, you need to: Verify that the gem itself is intact by checking a checksum. Verify that the checksum is authentic by checking a digital signature issued by the gem's author. Verify that the signature is valid by authenticating the key that issued the signature. But authentication is hard... How do you validate that a key is valid? At first it...
+      <p class='blog_preview'>To verify that a gem you've downloaded is authentic and hasn't been tampered with, you need to: Verify that the gem itself is intact by checking a checksum. Verify that the checksum is authentic by checking a digital signature issued by the gem's author. Verify that the signature is valid by authenticating the key that issued the signature. But authentication is hard... How do you validate that a key is valid? At first it seems...
 <a href="/blog/authentication.html">[Read More]</a>
 </p>
     
