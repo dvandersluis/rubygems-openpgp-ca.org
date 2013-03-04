@@ -9,7 +9,7 @@ title: Zach Bruhnke
     {% for post in site.posts %}
       <h3><span>{{ post.date | date_to_string }}</span> &raquo; <a href="/blog{{ post.url }}">{{ post.title }}</a>
       </h3>
-      <p class='blog_preview'>{{post.content | strip_html | truncatewords:75}}
+      <p class='blog_preview'>{{post.content | strip_h1_and_pre | strip_html | truncatewords:75}}
 <a href="/blog{{ post.url }}">[Read More]</a>
 </p>
     {% endfor %}
