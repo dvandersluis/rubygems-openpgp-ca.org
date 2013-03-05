@@ -4,7 +4,7 @@
  <title>rubygems-openpgp Certificate Authority</title>
  <link href="http://rubygems-openpgp-ca.org/blog/atom.xml" rel="self"/>
  <link href="http://rubygems-openpgp-ca.org/"/>
- <updated>2013-03-03T20:01:25-05:00</updated>
+ <updated>2013-03-04T19:57:06-05:00</updated>
  <id>http://rubygems-openpgp-ca.org/blog</id>
  <author>
    <name>rubygems-openpgp Certificate Authority</name>
@@ -1486,6 +1486,12 @@ software installed, you can use
 &lt;a href=&quot;https://privacybox.de/grant.msg&quot;&gt;privacybox&lt;/a&gt;. If you do so, please
 include a contact email in the message. Also note I will be unable to
 reply securely.&lt;/p&gt;
+
+&lt;h2&gt;Donations?&lt;/h2&gt;
+
+&lt;p&gt;To date I've spent over 100 hours and $280 on this project.  If you
+want to say thanks, send some bitcoins to
+1GEuzdKztPBTsUe5c4r8zs123pJ18CmTi6.&lt;/p&gt;
 </content>
  </entry>
  
