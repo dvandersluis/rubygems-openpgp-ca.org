@@ -4,12 +4,58 @@
  <title>rubygems-openpgp Certificate Authority</title>
  <link href="http://rubygems-openpgp-ca.org/blog/atom.xml" rel="self"/>
  <link href="http://rubygems-openpgp-ca.org/"/>
- <updated>2013-03-10T10:31:33-04:00</updated>
+ <updated>2013-03-10T13:53:37-04:00</updated>
  <id>http://rubygems-openpgp-ca.org/blog</id>
  <author>
    <name>rubygems-openpgp Certificate Authority</name>
  </author>
 
+ 
+ <entry>
+   <title>rubygems-openpgp 0.5.1 Released</title>
+   <link href="http://rubygems-openpgp-ca.org/blog/rubygems-openpgp-0.5.1-released.html"/>
+   <updated>2013-03-11T00:00:00-04:00</updated>
+   <id>http://rubygems-openpgp-ca.org/blog/rubygems-openpgp-0.5.1-released</id>
+   <content type="html">&lt;h1&gt;rubygems-openpgp 0.5.1 Released&lt;/h1&gt;
+
+&lt;p&gt;This release corrects a minor issue where a Windows machine couldn't
+sign an existing gem built on linux.&lt;/p&gt;
+
+&lt;h2&gt;Verifying Your Initial Install&lt;/h2&gt;
+
+&lt;p&gt;Existing users of rubygems-openpgp can verify the install with
+rubygems-openpgp itself:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gem install rubygems-openpgp --verify --trust
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It is recommended that new users fetch the gem and verify it against a
+detached signature.  Instructions on how to do so can be found at the
+&lt;a href=&quot;http://bit.ly/13NxsNI&quot;&gt;Guide to Verifying Your Initial Install&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3&gt;Detached signature for the 0.5.1 release&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
+
+iQEcBAABAgAGBQJRPMTkAAoJEP5F5V2hilTWuBMH/30hvYMpCP6dawq6LwufKTgB
+w+hsiII3nRshCo6yicYs8kBsT/7oSc7XZg1q3oHXQgJdal/eLBdVEOXdZ8a7zKPh
+SjvuHRSBpei3wA1DjPAvJxqjdGOX883rzDLRtP+pvyzazeO6Fj/8d/c8Y6YArEf5
+gwWdaA2s0XXdecH21yWMZPKD3x2YQEARCJJWhyngt+FW5ZHlaAwXPkhpAptzchEe
+MC8ThY4WZIPRc3+O9II93wGcNJu3T0sOg5NUzgT6vNLzCOtNLNe/hpD/QWUt/5za
+RbwqxGcP0QyNDEZQTVpLTBiiq++qyGRUb7cySTDVBqgwasal19VmVsflhTCbBt0=
+=mU3L
+-----END PGP SIGNATURE-----
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Enjoy&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Grant&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>rubygems-openpgp 0.5.0 Released</title>
@@ -529,10 +575,10 @@ to verify new releases:&lt;/p&gt;
         &amp;lt;kgo@grant-olson.net&amp;gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_ULTIMATE
 Signature for metadata.gz from user Grant T. Olson (Personal email) 
         &amp;lt;kgo@grant-olson.net&amp;gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_ULTIMATE&lt;/span&gt;
-Successfully installed rubygems-openpgp-0.5.0
+Successfully installed rubygems-openpgp-0.5.1
 1 gem installed
-Installing ri documentation for rubygems-openpgp-0.5.0...
-Installing RDoc documentation for rubygems-openpgp-0.5.0...
+Installing ri documentation for rubygems-openpgp-0.5.1...
+Installing RDoc documentation for rubygems-openpgp-0.5.1...
 &lt;/code&gt;&lt;/pre&gt;
 
 
@@ -592,18 +638,18 @@ impatient, just run:&lt;/p&gt;
 
 &lt;h2&gt;Save the Detached Signature&lt;/h2&gt;
 
-&lt;p&gt;The signature for the 0.5.0 release is:&lt;/p&gt;
+&lt;p&gt;The signature for the 0.5.1 release is:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;-----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.11 (GNU/Linux)
 
-iQEcBAABAgAGBQJRPJY3AAoJEP5F5V2hilTWVj8H/2R3Ue+4lJxbpZwu/cOodlWb
-ApflZwrhOnGHjxswL7cV7Rf15sPP9WHUvNf/n8Cuc4hHKArW7/wwdw1LP4wmrRz4
-8RxKx8kR7An9JFvs9HhrDt1BvS/j9moaKn//lZfZV7LPIEEuHEUTCNCtHkuV/oBG
-LH9tNSMs1CO1D1kkPyxc2aXZm0mRpygWrS1YskJPy7xdR2aNQk4LHJNF168m+XJH
-2l8U29QgoCpD0W4iL+6ooyY2lyVFWYhQbBd7ojVRG16Q8CxUf4+ZNey+3tgchVEP
-qBFa4M/+m2LoVdCGPOL8meFMytDR75J4VGWtGmRxjfhBeOeNVhneIQT5C6fHCfw=
-=Qxhv
+iQEcBAABAgAGBQJRPMTkAAoJEP5F5V2hilTWuBMH/30hvYMpCP6dawq6LwufKTgB
+w+hsiII3nRshCo6yicYs8kBsT/7oSc7XZg1q3oHXQgJdal/eLBdVEOXdZ8a7zKPh
+SjvuHRSBpei3wA1DjPAvJxqjdGOX883rzDLRtP+pvyzazeO6Fj/8d/c8Y6YArEf5
+gwWdaA2s0XXdecH21yWMZPKD3x2YQEARCJJWhyngt+FW5ZHlaAwXPkhpAptzchEe
+MC8ThY4WZIPRc3+O9II93wGcNJu3T0sOg5NUzgT6vNLzCOtNLNe/hpD/QWUt/5za
+RbwqxGcP0QyNDEZQTVpLTBiiq++qyGRUb7cySTDVBqgwasal19VmVsflhTCbBt0=
+=mU3L
 -----END PGP SIGNATURE-----
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -644,6 +690,21 @@ that you've done that, you'll be able to update new versions using
 rubygems-openpgp itself.&lt;/p&gt;
 
 &lt;h2&gt;Detached Signatures For All Public Releases&lt;/h2&gt;
+
+&lt;h3&gt;0.5.1&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
+
+iQEcBAABAgAGBQJRPMTkAAoJEP5F5V2hilTWuBMH/30hvYMpCP6dawq6LwufKTgB
+w+hsiII3nRshCo6yicYs8kBsT/7oSc7XZg1q3oHXQgJdal/eLBdVEOXdZ8a7zKPh
+SjvuHRSBpei3wA1DjPAvJxqjdGOX883rzDLRtP+pvyzazeO6Fj/8d/c8Y6YArEf5
+gwWdaA2s0XXdecH21yWMZPKD3x2YQEARCJJWhyngt+FW5ZHlaAwXPkhpAptzchEe
+MC8ThY4WZIPRc3+O9II93wGcNJu3T0sOg5NUzgT6vNLzCOtNLNe/hpD/QWUt/5za
+RbwqxGcP0QyNDEZQTVpLTBiiq++qyGRUb7cySTDVBqgwasal19VmVsflhTCbBt0=
+=mU3L
+-----END PGP SIGNATURE-----
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3&gt;0.5.0&lt;/h3&gt;
 

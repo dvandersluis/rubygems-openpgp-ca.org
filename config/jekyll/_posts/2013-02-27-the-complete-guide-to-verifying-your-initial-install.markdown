@@ -16,10 +16,10 @@ to verify new releases:
         &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_ULTIMATE
 Signature for metadata.gz from user Grant T. Olson (Personal email) 
         &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_ULTIMATE</span>
-Successfully installed rubygems-openpgp-0.5.0
+Successfully installed rubygems-openpgp-0.5.1
 1 gem installed
-Installing ri documentation for rubygems-openpgp-0.5.0...
-Installing RDoc documentation for rubygems-openpgp-0.5.0...
+Installing ri documentation for rubygems-openpgp-0.5.1...
+Installing RDoc documentation for rubygems-openpgp-0.5.1...
 </code></pre>
 
 But how can you verify your initial install?  If you initially install
@@ -75,18 +75,18 @@ And accept the defaults.
 Save the Detached Signature
 ---------------------------
 
-The signature for the 0.5.0 release is:
+The signature for the 0.5.1 release is:
 
     -----BEGIN PGP SIGNATURE-----
     Version: GnuPG v1.4.11 (GNU/Linux)
     
-    iQEcBAABAgAGBQJRPJY3AAoJEP5F5V2hilTWVj8H/2R3Ue+4lJxbpZwu/cOodlWb
-    ApflZwrhOnGHjxswL7cV7Rf15sPP9WHUvNf/n8Cuc4hHKArW7/wwdw1LP4wmrRz4
-    8RxKx8kR7An9JFvs9HhrDt1BvS/j9moaKn//lZfZV7LPIEEuHEUTCNCtHkuV/oBG
-    LH9tNSMs1CO1D1kkPyxc2aXZm0mRpygWrS1YskJPy7xdR2aNQk4LHJNF168m+XJH
-    2l8U29QgoCpD0W4iL+6ooyY2lyVFWYhQbBd7ojVRG16Q8CxUf4+ZNey+3tgchVEP
-    qBFa4M/+m2LoVdCGPOL8meFMytDR75J4VGWtGmRxjfhBeOeNVhneIQT5C6fHCfw=
-    =Qxhv
+    iQEcBAABAgAGBQJRPMTkAAoJEP5F5V2hilTWuBMH/30hvYMpCP6dawq6LwufKTgB
+    w+hsiII3nRshCo6yicYs8kBsT/7oSc7XZg1q3oHXQgJdal/eLBdVEOXdZ8a7zKPh
+    SjvuHRSBpei3wA1DjPAvJxqjdGOX883rzDLRtP+pvyzazeO6Fj/8d/c8Y6YArEf5
+    gwWdaA2s0XXdecH21yWMZPKD3x2YQEARCJJWhyngt+FW5ZHlaAwXPkhpAptzchEe
+    MC8ThY4WZIPRc3+O9II93wGcNJu3T0sOg5NUzgT6vNLzCOtNLNe/hpD/QWUt/5za
+    RbwqxGcP0QyNDEZQTVpLTBiiq++qyGRUb7cySTDVBqgwasal19VmVsflhTCbBt0=
+    =mU3L
     -----END PGP SIGNATURE-----
 
 Copy this and save it into a file `saved_sig.asc`
@@ -126,6 +126,20 @@ rubygems-openpgp itself.
 
 Detached Signatures For All Public Releases
 -------------------------------------------
+
+### 0.5.1
+
+    -----BEGIN PGP SIGNATURE-----
+    Version: GnuPG v1.4.11 (GNU/Linux)
+    
+    iQEcBAABAgAGBQJRPMTkAAoJEP5F5V2hilTWuBMH/30hvYMpCP6dawq6LwufKTgB
+    w+hsiII3nRshCo6yicYs8kBsT/7oSc7XZg1q3oHXQgJdal/eLBdVEOXdZ8a7zKPh
+    SjvuHRSBpei3wA1DjPAvJxqjdGOX883rzDLRtP+pvyzazeO6Fj/8d/c8Y6YArEf5
+    gwWdaA2s0XXdecH21yWMZPKD3x2YQEARCJJWhyngt+FW5ZHlaAwXPkhpAptzchEe
+    MC8ThY4WZIPRc3+O9II93wGcNJu3T0sOg5NUzgT6vNLzCOtNLNe/hpD/QWUt/5za
+    RbwqxGcP0QyNDEZQTVpLTBiiq++qyGRUb7cySTDVBqgwasal19VmVsflhTCbBt0=
+    =mU3L
+    -----END PGP SIGNATURE-----
 
 ### 0.5.0
 
