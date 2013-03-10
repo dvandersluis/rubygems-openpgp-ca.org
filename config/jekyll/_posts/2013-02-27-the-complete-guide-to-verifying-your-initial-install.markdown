@@ -16,10 +16,10 @@ to verify new releases:
         &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_ULTIMATE
 Signature for metadata.gz from user Grant T. Olson (Personal email) 
         &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_ULTIMATE</span>
-Successfully installed rubygems-openpgp-0.4.0
+Successfully installed rubygems-openpgp-0.5.0
 1 gem installed
-Installing ri documentation for rubygems-openpgp-0.4.0...
-Installing RDoc documentation for rubygems-openpgp-0.4.0...
+Installing ri documentation for rubygems-openpgp-0.5.0...
+Installing RDoc documentation for rubygems-openpgp-0.5.0...
 </code></pre>
 
 But how can you verify your initial install?  If you initially install
@@ -75,18 +75,18 @@ And accept the defaults.
 Save the Detached Signature
 ---------------------------
 
-The signature for the 0.4.0 release is:
+The signature for the 0.5.0 release is:
 
     -----BEGIN PGP SIGNATURE-----
-    Version: GnuPG/MacGPG2 v2.0.17 (Darwin)
+    Version: GnuPG v1.4.11 (GNU/Linux)
     
-    iQEcBAABCgAGBQJRKNPSAAoJEP5F5V2hilTWMS4IAIfrL21CuSrZCof8UcrFPZds
-    LvCEhBKbfE4aB4Jgf8QBc6PXrm916TU8+IcfhWVzHc98ENRui+xUVtJ1LOF7tx31
-    eUcck9VqGZQ7RkI9GpX5Dcbj+0SzL3ghVgVv+UMttwwAahqT8VXvPlS6ttHjroqD
-    87flVoUED/MNFeT8AfGvDp4IOJ+lQl8Y7x6JUJJv+OCOSnG6e/xtQZcMaTf9LKWW
-    z6FO9iplsjbLdwCndKjbPT6bygYRmw8/mF/t3DSJb7wf4HbFjLri24TkwNVZ5o9T
-    hiUjubQJuZrjVTqpaPW7ZF0iL/0xgERCz7gN6SsvIM5MIm3Hok1oZ2oVMS8fzZQ=
-    =RUfl
+    iQEcBAABAgAGBQJRPJY3AAoJEP5F5V2hilTWVj8H/2R3Ue+4lJxbpZwu/cOodlWb
+    ApflZwrhOnGHjxswL7cV7Rf15sPP9WHUvNf/n8Cuc4hHKArW7/wwdw1LP4wmrRz4
+    8RxKx8kR7An9JFvs9HhrDt1BvS/j9moaKn//lZfZV7LPIEEuHEUTCNCtHkuV/oBG
+    LH9tNSMs1CO1D1kkPyxc2aXZm0mRpygWrS1YskJPy7xdR2aNQk4LHJNF168m+XJH
+    2l8U29QgoCpD0W4iL+6ooyY2lyVFWYhQbBd7ojVRG16Q8CxUf4+ZNey+3tgchVEP
+    qBFa4M/+m2LoVdCGPOL8meFMytDR75J4VGWtGmRxjfhBeOeNVhneIQT5C6fHCfw=
+    =Qxhv
     -----END PGP SIGNATURE-----
 
 Copy this and save it into a file `saved_sig.asc`
@@ -98,12 +98,12 @@ Instead of just installing the gem, fetch it first to get a local
 copy:
 
     johnmudhead:~ grant$ gem fetch rubygems-openpgp
-    Fetching: rubygems-openpgp-0.4.0.gem (100%)
-    Downloaded rubygems-openpgp-0.4.0
+    Fetching: rubygems-openpgp-0.5.0.gem (100%)
+    Downloaded rubygems-openpgp-0.5.0
 
 Verify the detached signature:
 
-    johnmudhead:~ grant$ gpg --verify saved_sig.asc rubygems-openpgp-0.4.0.gem 
+    johnmudhead:~ grant$ gpg --verify saved_sig.asc rubygems-openpgp-0.5.0.gem 
     gpg: Signature made Sat Feb 23 09:36:02 2013 EST using RSA key ID A18A54D6
     gpg: Good signature from "Grant T. Olson (Personal email) <kgo@grant-olson.net>"
     gpg:                 aka "Grant T. Olson (pikimal) <grant@pikimal.com>"
@@ -111,11 +111,11 @@ Verify the detached signature:
 
 Install the verified gem:
 
-    johnmudhead:~ grant$ gem install rubygems-openpgp-0.4.0.gem 
-    Successfully installed rubygems-openpgp-0.4.0
+    johnmudhead:~ grant$ gem install rubygems-openpgp-0.5.0.gem 
+    Successfully installed rubygems-openpgp-0.5.0
     1 gem installed
-    Installing ri documentation for rubygems-openpgp-0.4.0...
-    Installing RDoc documentation for rubygems-openpgp-0.4.0...
+    Installing ri documentation for rubygems-openpgp-0.5.0...
+    Installing RDoc documentation for rubygems-openpgp-0.5.0...
 
 That's it!
 ----------
@@ -126,6 +126,20 @@ rubygems-openpgp itself.
 
 Detached Signatures For All Public Releases
 -------------------------------------------
+
+### 0.5.0
+
+    -----BEGIN PGP SIGNATURE-----
+    Version: GnuPG v1.4.11 (GNU/Linux)
+    
+    iQEcBAABAgAGBQJRPJY3AAoJEP5F5V2hilTWVj8H/2R3Ue+4lJxbpZwu/cOodlWb
+    ApflZwrhOnGHjxswL7cV7Rf15sPP9WHUvNf/n8Cuc4hHKArW7/wwdw1LP4wmrRz4
+    8RxKx8kR7An9JFvs9HhrDt1BvS/j9moaKn//lZfZV7LPIEEuHEUTCNCtHkuV/oBG
+    LH9tNSMs1CO1D1kkPyxc2aXZm0mRpygWrS1YskJPy7xdR2aNQk4LHJNF168m+XJH
+    2l8U29QgoCpD0W4iL+6ooyY2lyVFWYhQbBd7ojVRG16Q8CxUf4+ZNey+3tgchVEP
+    qBFa4M/+m2LoVdCGPOL8meFMytDR75J4VGWtGmRxjfhBeOeNVhneIQT5C6fHCfw=
+    =Qxhv
+    -----END PGP SIGNATURE-----
 
 ### 0.4.0
 
