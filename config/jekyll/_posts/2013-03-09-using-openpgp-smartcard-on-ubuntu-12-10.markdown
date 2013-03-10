@@ -109,8 +109,8 @@ ssh-agent, it was grabbing my smart-card before gnome-keyring-daemon
 could.  So I commented out the entries for that, and sure enough card
 reading was broken again.
 
-The Proper Fix
---------------
+The Proper Fix (or is it?)
+--------------------------
 
 Add this to ~/.gnupg-agent.conf to enable ssh support:
 
@@ -125,6 +125,27 @@ if [ -f "${HOME}/.gnupg/gpg-agent-info-HOSTNAME" ]; then
            export SSH_AUTH_SOCK
          fi
 
+
+Another Complication!
+---------------------
+
+Everything seemed to be working, but then I got this generic error
+message from Enigmail:
+
+    No SmartCard 
+    could not be found in your reader 
+    Please insert your SmartCard and repeat the operation.
+
+After enabling a debug log, it turned out the error was the same
+unsupported certificate error I was getting before, even though
+signing still worked from the command line.  Killing the
+gnome-keyring-daemon process allowed me to sign emails again.
+
+So, I went back to:
+
+    sudo mv /usr/bin/gnome-keyring-daemon /usr/bin/gnome-keyring-daemon.bak
+
+And everything seems to be working... for now.
 
 That's All for Now
 ------------------

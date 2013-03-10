@@ -4,7 +4,7 @@
  <title>rubygems-openpgp Certificate Authority</title>
  <link href="http://rubygems-openpgp-ca.org/blog/atom.xml" rel="self"/>
  <link href="http://rubygems-openpgp-ca.org/"/>
- <updated>2013-03-09T18:44:17-05:00</updated>
+ <updated>2013-03-10T08:20:15-04:00</updated>
  <id>http://rubygems-openpgp-ca.org/blog</id>
  <author>
    <name>rubygems-openpgp Certificate Authority</name>
@@ -120,7 +120,7 @@ ssh-agent, it was grabbing my smart-card before gnome-keyring-daemon
 could.  So I commented out the entries for that, and sure enough card
 reading was broken again.&lt;/p&gt;
 
-&lt;h2&gt;The Proper Fix&lt;/h2&gt;
+&lt;h2&gt;The Proper Fix (or is it?)&lt;/h2&gt;
 
 &lt;p&gt;Add this to ~/.gnupg-agent.conf to enable ssh support:&lt;/p&gt;
 
@@ -137,6 +137,28 @@ gnome-keyring-daemon, substituting your host name:&lt;/p&gt;
        export SSH_AUTH_SOCK
      fi
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Another Complication!&lt;/h2&gt;
+
+&lt;p&gt;Everything seemed to be working, but then I got this generic error
+message from Enigmail:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;No SmartCard 
+could not be found in your reader 
+Please insert your SmartCard and repeat the operation.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After enabling a debug log, it turned out the error was the same
+unsupported certificate error I was getting before, even though
+signing still worked from the command line.  Killing the
+gnome-keyring-daemon process allowed me to sign emails again.&lt;/p&gt;
+
+&lt;p&gt;So, I went back to:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo mv /usr/bin/gnome-keyring-daemon /usr/bin/gnome-keyring-daemon.bak
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And everything seems to be working... for now.&lt;/p&gt;
 
 &lt;h2&gt;That's All for Now&lt;/h2&gt;
 
