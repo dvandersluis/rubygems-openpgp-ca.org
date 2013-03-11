@@ -17,6 +17,16 @@ OpenPGP Key Setup
 You'll need to generate a signing key and publish it to the keyservers
 so that users can retrieve the key.
 
+### Install gpg if not installed.
+
+* [Windows](http://www.gpg4win.org)
+* [OSX](https://www.gpgtools.org/)
+* Linux - installed
+
+Not sure if you need to? Run:
+
+    gpg --version
+
 ### Generating the key
 
     gpg --gen-key
