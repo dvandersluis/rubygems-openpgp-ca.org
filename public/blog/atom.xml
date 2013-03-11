@@ -4,7 +4,7 @@
  <title>rubygems-openpgp Certificate Authority</title>
  <link href="http://rubygems-openpgp-ca.org/blog/atom.xml" rel="self"/>
  <link href="http://rubygems-openpgp-ca.org/"/>
- <updated>2013-03-10T13:53:37-04:00</updated>
+ <updated>2013-03-11T15:45:35-04:00</updated>
  <id>http://rubygems-openpgp-ca.org/blog</id>
  <author>
    <name>rubygems-openpgp Certificate Authority</name>
@@ -1056,7 +1056,7 @@ authenticate your key.  You may want to register it with this site.&lt;/p&gt;
 
 &lt;h2&gt;Registering Your Public Key with rubygems-openpgp-ca.org&lt;/h2&gt;
 
-&lt;p&gt;Fill out &lt;a href=&quot;http://localhost:3000/users/sign_up&quot;&gt;the application&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Fill out &lt;a href=&quot;/users/sign_up&quot;&gt;the application&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;You will receive an email with some encrypted text:&lt;/p&gt;
 
