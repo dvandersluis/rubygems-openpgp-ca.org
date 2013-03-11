@@ -65,56 +65,44 @@
     </div>
 
   <div id="post">
-<h1>Contact</h1>
+<h1>rubygems-openpgp 0.5.1 Released</h1>
 
-<h2>Mailing List</h2>
+<p>This release corrects a minor issue where a Windows machine couldn't
+sign an existing gem built on linux.</p>
 
-<p>The google group
-<a href="https://groups.google.com/forum/#!forum/rubygems-openpgp">rubygems-openpgp</a>
-is available for discussion of all things remotely related to
-rubygems-openpgp.</p>
+<h2>Verifying Your Initial Install</h2>
 
-<h2>Bugs? Feature Requests?</h2>
+<p>Existing users of rubygems-openpgp can verify the install with
+rubygems-openpgp itself:</p>
 
-<p>Issues with the rubygems-openpgp gem can be reported at
-<a href="http://github.com/grant-olson/rubygems-openpgp/issues">rubygems-openpgp issue
-tracker</a>.</p>
-
-<p>Issues with this website can be reported at <a href="http://github.com/grant-olson/rubygems-openpgp-ca.org/issues">rubygems-openpgp-ca.org
-issue
-tracker</a>.</p>
-
-<h2>Questions?  Comments?</h2>
-
-<p>Feel free to shoot me an email: kgo at grant-olson dot net.  My
-OpenPGP key is 0xE3B5806F.  I always use an encryption-capable email
-client so feel free to encrypt, even if it's just for fun.</p>
-
-<pre><code>pub   2048R/E3B5806F 2010-01-11 [expires: 2014-01-03]
-      Key fingerprint = A530 C31C D762 0D26 E2BA  C384 B6F6 FFD0 E3B5 806F
-uid                  Grant T. Olson (Personal email) &lt;kgo at grant-olson dot net&gt;
-uid                  Grant T. Olson (pikimal) &lt;grant at pikimal dot com&gt;
-uid                  Grant T Olson &lt;grant at webkite dot com&gt;
-sub   2048R/6A8F7CF6 2010-01-11 [expires: 2014-01-03]
-sub   2048R/A18A54D6 2010-03-01 [expires: 2014-01-03]
-sub   2048R/D53982CE 2010-08-31 [expires: 2014-01-03]
+<pre><code>gem install rubygems-openpgp --verify --trust
 </code></pre>
 
-<h2>Security issue?</h2>
+<p>It is recommended that new users fetch the gem and verify it against a
+detached signature.  Instructions on how to do so can be found at the
+<a href="http://bit.ly/13NxsNI">Guide to Verifying Your Initial Install</a>.</p>
 
-<p>Same contact info as above.</p>
+<h3>Detached signature for the 0.5.1 release</h3>
 
-<p>If you need to send an encrypted email by don't have the correct
-software installed, you can use
-<a href="https://privacybox.de/grant.msg">privacybox</a>. If you do so, please
-include a contact email in the message. Also note I will be unable to
-reply securely.</p>
+<pre><code>-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
 
-<h2>Donations?</h2>
+iQEcBAABAgAGBQJRPMTkAAoJEP5F5V2hilTWuBMH/30hvYMpCP6dawq6LwufKTgB
+w+hsiII3nRshCo6yicYs8kBsT/7oSc7XZg1q3oHXQgJdal/eLBdVEOXdZ8a7zKPh
+SjvuHRSBpei3wA1DjPAvJxqjdGOX883rzDLRtP+pvyzazeO6Fj/8d/c8Y6YArEf5
+gwWdaA2s0XXdecH21yWMZPKD3x2YQEARCJJWhyngt+FW5ZHlaAwXPkhpAptzchEe
+MC8ThY4WZIPRc3+O9II93wGcNJu3T0sOg5NUzgT6vNLzCOtNLNe/hpD/QWUt/5za
+RbwqxGcP0QyNDEZQTVpLTBiiq++qyGRUb7cySTDVBqgwasal19VmVsflhTCbBt0=
+=mU3L
+-----END PGP SIGNATURE-----
+</code></pre>
 
-<p>To date I've spent over 100 hours and $280 on this project.  If you
-want to say thanks, send some bitcoins to
-1GEuzdKztPBTsUe5c4r8zs123pJ18CmTi6.</p>
+<h2>Enjoy</h2>
+
+<ul>
+<li>Grant</li>
+</ul>
+
 
 </div>
 
@@ -124,7 +112,7 @@ want to say thanks, send some bitcoins to
     
       <li><span>27 Feb 2013</span> &raquo; <a href="/blog/the-complete-guide-to-verifying-your-initial-install.html">The Complete Guide to Verifying Your Initial Install</a></li>
     
-      <li><span>24 Feb 2013</span> &raquo; <a href="/blog/the-complete-guide-to-signing-the-certificate-authority-keys.html">The Complete Guide to Signing the Certificate Authority Keys</a></li>
+      <li><span>11 Mar 2013</span> &raquo; <a href="/blog/rubygems-openpgp-0.5.0-released.html">rubygems-openpgp 0.5.0 Released</a></li>
     
       <li><span>23 Feb 2013</span> &raquo; <a href="/blog/the-complete-guide-to-verifying-gems-with-rubygems-openpgp.html">The Complete Guide to Verifying Gems with rubygems-openpgp</a></li>
     
