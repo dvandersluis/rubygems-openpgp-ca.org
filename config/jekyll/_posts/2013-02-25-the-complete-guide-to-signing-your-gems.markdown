@@ -81,7 +81,7 @@ authenticate your key.  You may want to register it with this site.
 Registering Your Public Key with rubygems-openpgp-ca.org
 --------------------------------------------------------
 
-Fill out [the application](http://localhost:3000/users/sign_up).
+Fill out [the application](/users/sign_up).
 
 You will receive an email with some encrypted text:
 
