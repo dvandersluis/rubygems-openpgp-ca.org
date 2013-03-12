@@ -4,7 +4,7 @@
  <title>rubygems-openpgp Certificate Authority</title>
  <link href="http://rubygems-openpgp-ca.org/blog/atom.xml" rel="self"/>
  <link href="http://rubygems-openpgp-ca.org/"/>
- <updated>2013-03-11T15:45:35-04:00</updated>
+ <updated>2013-03-11T21:24:37-04:00</updated>
  <id>http://rubygems-openpgp-ca.org/blog</id>
  <author>
    <name>rubygems-openpgp Certificate Authority</name>
@@ -31,7 +31,7 @@ rubygems-openpgp itself:&lt;/p&gt;
 
 &lt;p&gt;It is recommended that new users fetch the gem and verify it against a
 detached signature.  Instructions on how to do so can be found at the
-&lt;a href=&quot;http://bit.ly/13NxsNI&quot;&gt;Guide to Verifying Your Initial Install&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&quot;/blog/the-complete-guide-to-verifying-your-initial-install.html&quot;&gt;Guide to Verifying Your Initial Install&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h3&gt;Detached signature for the 0.5.1 release&lt;/h3&gt;
 
@@ -124,7 +124,7 @@ rubygems-openpgp itself:&lt;/p&gt;
 
 &lt;p&gt;It is recommended that new users fetch the gem and verify it against a
 detached signature.  Instructions on how to do so can be found at the
-&lt;a href=&quot;http://bit.ly/13NxsNI&quot;&gt;Guide to Verifying Your Initial Install&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&quot;/blog/the-complete-guide-to-verifying-your-initial-install.html&quot;&gt;Guide to Verifying Your Initial Install&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h3&gt;Detached signature for the 0.5.0 release&lt;/h3&gt;
 
@@ -986,6 +986,20 @@ actually written and build by you.&lt;/p&gt;
 
 &lt;p&gt;You'll need to generate a signing key and publish it to the keyservers
 so that users can retrieve the key.&lt;/p&gt;
+
+&lt;h3&gt;Install gpg if not installed.&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.gpg4win.org&quot;&gt;Windows&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.gpgtools.org/&quot;&gt;OSX&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Linux - installed&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Not sure if you need to? Run:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gpg --version
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3&gt;Generating the key&lt;/h3&gt;
 

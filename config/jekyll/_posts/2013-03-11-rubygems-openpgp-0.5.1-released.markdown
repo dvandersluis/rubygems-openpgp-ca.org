@@ -21,7 +21,7 @@ rubygems-openpgp itself:
 
 It is recommended that new users fetch the gem and verify it against a
 detached signature.  Instructions on how to do so can be found at the
-[Guide to Verifying Your Initial Install](http://bit.ly/13NxsNI).
+[Guide to Verifying Your Initial Install](/blog/the-complete-guide-to-verifying-your-initial-install.html).
 
 ### Detached signature for the 0.5.1 release
 
