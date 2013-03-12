@@ -65,64 +65,24 @@
     </div>
 
   <div id="post">
-<h1>Verifying the rubygems-openpgp Source</h1>
+<h1>Gems Signed with rubygems-openpgp</h1>
 
-<p>Verifying gems is all well and good, but what happens if you want to
-build rubygems-openpgp from the source on github.  How can you verify
-that you have the right source code?  Fortunately git allows you to
-digitally sign tags.  All rubygems-openpgp releases are tagged and
-signed in the git repository.</p>
+<p>This is a list of gems known to be signed by rubygems-openpgp.  Have a
+signed gem that's not on the list?  <a href="mailto:kgo@grant-olson.net">Let us
+know!</a></p>
 
-<h2>Getting the Source</h2>
+<ul>
+<li><a href="https://rubygems.org/gems/crash-watch">crash-watch</a></li>
+<li><a href="https://rubygems.org/gems/daemon_controller">daemon_controller</a></li>
+<li><a href="https://rubygems.org/gems/default_value_for">default_value_for</a></li>
+<li><a href="https://rubygems.org/gems/digest-sha3">digest-sha3-ruby</a></li>
+<li><a href="https://rubygems.org/gems/eurovat">eurovat</a></li>
+<li><a href="https://rubygems.org/gems/gpg_status_parser">gpg_status_parser</a></li>
+<li><a href="https://rubygems.org/gems/mizuho">mizuho</a></li>
+<li><a href="https://rubygems.org/gems/openpgp_signed_hola">openpgp_signed_hola</a></li>
+<li><a href="https://rubygems.org/gems/rubygems-openpgp">rubygems-openpgp</a></li>
+</ul>
 
-<pre><code>grant@johnicicleboy:~$ git clone git://github.com/grant-olson/rubygems-openpgp.git
-Cloning into 'rubygems-openpgp'...
-remote: Counting objects: 497, done.
-remote: Compressing objects: 100% (313/313), done.
-remote: Total 497 (delta 252), reused 421 (delta 176)
-Receiving objects: 100% (497/497), 74.91 KiB, done.
-Resolving deltas: 100% (252/252), done.
-</code></pre>
-
-<h2>Checking a Release Tag Signature</h2>
-
-<p>All the standard caveats about authenticating signing keys apply.
-This step is only useful if you've authenticated my key.</p>
-
-<pre><code>grant@johnicicleboy:~$ cd rubygems-openpgp/
-grant@johnicicleboy:~/rubygems-openpgp$ git tag -v 0.4.0
-object a8f38e7c41964da034516625ab02a23c93c865db
-type commit
-tag 0.4.0
-tagger Grant Olson &lt;grant@pikimal.com&gt; 1361630125 -0500
-
-0.4.0
-gpg: Signature made Sat 23 Feb 2013 09:35:38 AM EST using RSA key ID A18A54D6
-gpg: Good signature from "Grant T. Olson (Personal email) &lt;kgo@grant-olson.net&gt;"
-gpg:                 aka "Grant T Olson &lt;grant@webkite.com&gt;"
-gpg:                 aka "Grant T. Olson (pikimal) &lt;grant@pikimal.com&gt;"
-</code></pre>
-
-<h2>Checking out the tag</h2>
-
-<pre><code>grant@johnicicleboy:~/rubygems-openpgp$ git checkout 0.4.0
-Note: checking out '0.4.0'.
-
-You are in 'detached HEAD' state. You can look around, make experimental
-changes and commit them, and you can discard any commits you make in this
-state without impacting any branches by performing another checkout.
-
-If you want to create a new branch to retain commits you create, you may
-do so (now or later) by using -b with the checkout command again. Example:
-
-  git checkout -b new_branch_name
-
-HEAD is now at a8f38e7... Tagged CHANGELOG for release
-</code></pre>
-
-<h2>Go Crazy!</h2>
-
-<p>Now you can build, branch off of the tag, etc.</p>
 
 </div>
 
@@ -130,11 +90,11 @@ HEAD is now at a8f38e7... Tagged CHANGELOG for release
   <h2>Related Posts</h2>
   <ul class="posts">
     
-      <li><span>27 Feb 2013</span> &raquo; <a href="/blog/the-complete-guide-to-verifying-your-initial-install.html">The Complete Guide to Verifying Your Initial Install</a></li>
-    
-      <li><span>24 Feb 2013</span> &raquo; <a href="/blog/the-complete-guide-to-signing-the-certificate-authority-keys.html">The Complete Guide to Signing the Certificate Authority Keys</a></li>
-    
       <li><span>23 Feb 2013</span> &raquo; <a href="/blog/the-complete-guide-to-verifying-gems-with-rubygems-openpgp.html">The Complete Guide to Verifying Gems with rubygems-openpgp</a></li>
+    
+      <li><span>25 Feb 2013</span> &raquo; <a href="/blog/the-complete-guide-to-signing-your-gems.html">The Complete Guide to Signing Your Gems</a></li>
+    
+      <li><span>11 Mar 2013</span> &raquo; <a href="/blog/rubygems-openpgp-0.5.0-released.html">rubygems-openpgp 0.5.0 Released</a></li>
     
   </ul>
 </div>
