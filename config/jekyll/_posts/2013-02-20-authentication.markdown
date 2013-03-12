@@ -2,6 +2,7 @@
 layout: post
 published: true
 title: Authentication
+category: cms
 ---
 
 Authentication

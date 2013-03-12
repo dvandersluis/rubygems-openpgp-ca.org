@@ -2,7 +2,7 @@
 layout: post
 published: true
 title: The Complete Guide to Signing the Certificate Authority Keys
-category: guides
+category: cms
 ---
 
 The Complete Guide to Signing the Certificate Authority Keys

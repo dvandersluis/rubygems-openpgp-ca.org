@@ -7,11 +7,13 @@ title: Zach Bruhnke
   <h1>Blog Posts</h1>
   <ul class="posts">
     {% for post in site.posts %}
+      {% if post.category != 'cms' %}
       <h3><span>{{ post.date | date_to_string }}</span> &raquo; <a href="/blog{{ post.url }}">{{ post.title }}</a>
       </h3>
       <p class='blog_preview'>{{post.content | strip_h1_and_pre | strip_html | truncatewords:75}}
 <a href="/blog{{ post.url }}">[Read More]</a>
 </p>
+      {% endif %} 
     {% endfor %}
   </ul>
 </div>

@@ -2,7 +2,7 @@
 layout: post
 published: true
 title: The Complete Guide to Verifying Your Initial Install
-category: guides
+category: cms
 ---
 
 The Complete Guide to Verifying Your Initial Install

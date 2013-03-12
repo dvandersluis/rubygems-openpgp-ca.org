@@ -2,6 +2,7 @@
 layout: post
 published: true
 title: Gems Signed with rubygems-openpgp
+category: cms
 ---
 
 Gems Signed with rubygems-openpgp
