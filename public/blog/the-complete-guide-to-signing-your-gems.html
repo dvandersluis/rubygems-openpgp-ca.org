@@ -226,7 +226,35 @@ cat saved_text
 
 <p>Follow the unencrypted link to complete the process.</p>
 
-<p>We'll review the application and hopefully sign off on your key.</p>
+<p>We'll review the application, hopefully sign off on your key, and
+notify you one way or the other.</p>
+
+<h2>Retrieving Our Signature</h2>
+
+<p>After we've sent our signature to the keyservers you'll want to
+retreive a copy by refreshing your keyring:</p>
+
+<pre><code>gpg --keyserver pool.sks-keyservers.net --refresh-keys
+</code></pre>
+
+<p>This will look for new signatures on all keys on your keyring.  You
+want to do this periodically to retrieve any new signatures,
+revocations, and expirations that have been published after you
+originally retrieved any given key.</p>
+
+<p>You can now confirm that your key has been signed.  Just use the
+command <code>gpg --list-sigs 0xDEADBEEF</code>.  You'll see something like:</p>
+
+<pre><code>johnmudhead:pikimal grant$ gpg --list-sigs 0xE3B5806F
+pub   2048R/E3B5806F 2010-01-11 [expires: 2014-01-03]
+uid                  Grant T. Olson (Personal email) &lt;kgo@grant-olson.net&gt;
+sig 3        E3B5806F 2013-01-03  Grant T. Olson (Personal email) &lt;kgo@grant-olson.net&gt;
+sig 3        6094090A 2013-02-18  rubygems-openpgp Certificate Authority
+                                  Signing Key (http://rubygems-openpgp-ca.org)
+uid                  Grant T. Olson (pikimal) &lt;grant@pikimal.com&gt;
+</code></pre>
+
+<p>And now that you've done all that, please be sure to...</p>
 
 <h2>Backup your public key</h2>
 
@@ -246,11 +274,11 @@ cat saved_text
   <h2>Related Posts</h2>
   <ul class="posts">
     
+      <li><span>25 Feb 2013</span> &raquo; <a href="/blog/the-complete-guide-to-signing-your-gems.html">The Complete Guide to Signing Your Gems</a></li>
+    
       <li><span>24 Feb 2013</span> &raquo; <a href="/blog/the-complete-guide-to-signing-the-certificate-authority-keys.html">The Complete Guide to Signing the Certificate Authority Keys</a></li>
     
       <li><span>23 Feb 2013</span> &raquo; <a href="/blog/the-complete-guide-to-verifying-gems-with-rubygems-openpgp.html">The Complete Guide to Verifying Gems with rubygems-openpgp</a></li>
-    
-      <li><span>04 Mar 2013</span> &raquo; <a href="/blog/key-revocation.html">Key Revocation</a></li>
     
   </ul>
 </div>

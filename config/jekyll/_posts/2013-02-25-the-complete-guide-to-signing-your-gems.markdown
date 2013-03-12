@@ -117,8 +117,35 @@ encrypted text into a file and decrypt manually:
 
 Follow the unencrypted link to complete the process.
 
-We'll review the application and hopefully sign off on your key.
+We'll review the application, hopefully sign off on your key, and
+notify you one way or the other.
 
+Retrieving Our Signature
+------------------------
+
+After we've sent our signature to the keyservers you'll want to
+retreive a copy by refreshing your keyring:
+
+    gpg --keyserver pool.sks-keyservers.net --refresh-keys
+    
+This will look for new signatures on all keys on your keyring.  You
+want to do this periodically to retrieve any new signatures,
+revocations, and expirations that have been published after you
+originally retrieved any given key.
+
+You can now confirm that your key has been signed.  Just use the
+command `gpg --list-sigs 0xDEADBEEF`.  You'll see something like:
+
+    johnmudhead:pikimal grant$ gpg --list-sigs 0xE3B5806F
+    pub   2048R/E3B5806F 2010-01-11 [expires: 2014-01-03]
+    uid                  Grant T. Olson (Personal email) <kgo@grant-olson.net>
+    sig 3        E3B5806F 2013-01-03  Grant T. Olson (Personal email) <kgo@grant-olson.net>
+    sig 3        6094090A 2013-02-18  rubygems-openpgp Certificate Authority
+                                      Signing Key (http://rubygems-openpgp-ca.org)
+    uid                  Grant T. Olson (pikimal) <grant@pikimal.com>
+
+
+And now that you've done all that, please be sure to...
 
 Backup your public key
 ----------------------

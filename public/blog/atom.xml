@@ -4,7 +4,7 @@
  <title>rubygems-openpgp Certificate Authority</title>
  <link href="http://rubygems-openpgp-ca.org/blog/atom.xml" rel="self"/>
  <link href="http://rubygems-openpgp-ca.org/"/>
- <updated>2013-03-12T16:08:11-04:00</updated>
+ <updated>2013-03-12T16:40:25-04:00</updated>
  <id>http://rubygems-openpgp-ca.org/blog</id>
  <author>
    <name>rubygems-openpgp Certificate Authority</name>
@@ -1124,7 +1124,35 @@ cat saved_text
 
 &lt;p&gt;Follow the unencrypted link to complete the process.&lt;/p&gt;
 
-&lt;p&gt;We'll review the application and hopefully sign off on your key.&lt;/p&gt;
+&lt;p&gt;We'll review the application, hopefully sign off on your key, and
+notify you one way or the other.&lt;/p&gt;
+
+&lt;h2&gt;Retrieving Our Signature&lt;/h2&gt;
+
+&lt;p&gt;After we've sent our signature to the keyservers you'll want to
+retreive a copy by refreshing your keyring:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gpg --keyserver pool.sks-keyservers.net --refresh-keys
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will look for new signatures on all keys on your keyring.  You
+want to do this periodically to retrieve any new signatures,
+revocations, and expirations that have been published after you
+originally retrieved any given key.&lt;/p&gt;
+
+&lt;p&gt;You can now confirm that your key has been signed.  Just use the
+command &lt;code&gt;gpg --list-sigs 0xDEADBEEF&lt;/code&gt;.  You'll see something like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;johnmudhead:pikimal grant$ gpg --list-sigs 0xE3B5806F
+pub   2048R/E3B5806F 2010-01-11 [expires: 2014-01-03]
+uid                  Grant T. Olson (Personal email) &amp;lt;kgo@grant-olson.net&amp;gt;
+sig 3        E3B5806F 2013-01-03  Grant T. Olson (Personal email) &amp;lt;kgo@grant-olson.net&amp;gt;
+sig 3        6094090A 2013-02-18  rubygems-openpgp Certificate Authority
+                                  Signing Key (http://rubygems-openpgp-ca.org)
+uid                  Grant T. Olson (pikimal) &amp;lt;grant@pikimal.com&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And now that you've done all that, please be sure to...&lt;/p&gt;
 
 &lt;h2&gt;Backup your public key&lt;/h2&gt;
 
