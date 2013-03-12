@@ -142,7 +142,6 @@ command `gpg --list-sigs 0xDEADBEEF`.  You'll see something like:
     sig 3        E3B5806F 2013-01-03  Grant T. Olson (Personal email) <kgo@grant-olson.net>
     sig 3        6094090A 2013-02-18  rubygems-openpgp Certificate Authority
                                       Signing Key (http://rubygems-openpgp-ca.org)
-    uid                  Grant T. Olson (pikimal) <grant@pikimal.com>
 
 
 And now that you've done all that, please be sure to...
