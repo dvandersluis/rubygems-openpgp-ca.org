@@ -34,6 +34,7 @@ a:hover{
 .menu li{
 	display: inline-block;
 	margin: 4px 10px;
+	font-weight:600;
 	}
 .menu a{
 	color: black;
@@ -42,6 +43,19 @@ a:hover{
 .menu a:hover{
 	color: white;
 	}
+
+ul.menu li ul { display:none;}
+ul.menu li ul li {
+    display:list-item;
+    list-style-type:none;
+    font-size:1em;
+}
+ul.menu li:hover > ul {
+    display:block;
+    position: absolute;
+    background: #85a3ff;
+    border: 1px solid black;
+}
 p{
 	color:#333;
 	font-size: 1rem;

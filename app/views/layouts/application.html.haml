@@ -31,14 +31,35 @@
             Home
 
         %li
+          Guides
+          %ul
+            %li
+              %a{:href =>'/blog/the-complete-guide-to-verifying-gems-with-rubygems-openpgp.html'}
+                The Complete Guide to Verifying Gems
+            %li
+              %a{:href =>'/blog/the-complete-guide-to-signing-the-certificate-authority-keys.html'}
+                The Complete Guide to Signing the Certificate Authority Keys
+            %li
+              %a{:href =>'/blog/the-complete-guide-to-signing-your-gems.html'}
+                The Complete Guide to Signing Your Gems
+
+            %li
+              %a{:href => '/blog/the-complete-guide-to-verifying-your-initial-install.html'}
+                The Complete Guide to Verifying Your Initial Install
+
+        %li
+          Policies
+          %ul
+            %li
+              %a{:href => "/blog/authentication.html"}
+                Gem Developer Authentication
+            %li
+              %a{:href => "/blog/signing-key-security.html"}
+                Signing Key Security
+
+        %li
           %a{:href => "/blog/gem-signing-x509-and-openpgp.html"}
             Why OpenPGP?
-        %li
-          %a{:href => "/blog/authentication.html"}
-            Gem Developer Authentication
-        %li
-          %a{:href => "/blog/signing-key-security.html"}
-            Signing Key Security
 
         %li
           %a{:href => "/blog"}
