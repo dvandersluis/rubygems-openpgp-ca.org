@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
  
  <title>rubygems-openpgp Certificate Authority</title>
- <link href="http://rubygems-openpgp-ca.org/blog/atom.xml" rel="self"/>
- <link href="http://rubygems-openpgp-ca.org/"/>
- <updated>2013-03-13T08:39:43-04:00</updated>
- <id>http://rubygems-openpgp-ca.org/blog</id>
+ <link href="https://www.rubygems-openpgp-ca.org/blog/atom.xml" rel="self"/>
+ <link href="https://www.rubygems-openpgp-ca.org/"/>
+ <updated>2013-03-13T10:52:15-04:00</updated>
+ <id>https://www.rubygems-openpgp-ca.org/blog</id>
  <author>
    <name>rubygems-openpgp Certificate Authority</name>
  </author>
@@ -13,9 +13,9 @@
  
  <entry>
    <title>Gems Signed with rubygems-openpgp</title>
-   <link href="http://rubygems-openpgp-ca.org/blog/gems-signed-with-rubygems-openpgp.html"/>
+   <link href="https://www.rubygems-openpgp-ca.org/blog/gems-signed-with-rubygems-openpgp.html"/>
    <updated>2013-03-12T00:00:00-04:00</updated>
-   <id>http://rubygems-openpgp-ca.org/blog/gems-signed-with-rubygems-openpgp</id>
+   <id>https://www.rubygems-openpgp-ca.org/blog/gems-signed-with-rubygems-openpgp</id>
    <content type="html">&lt;h1&gt;Gems Signed with rubygems-openpgp&lt;/h1&gt;
 
 &lt;p&gt;This is a list of gems known to be signed by rubygems-openpgp.  Have a
@@ -41,9 +41,9 @@ know!&lt;/a&gt;&lt;/p&gt;
  
  <entry>
    <title>rubygems-openpgp 0.5.1 Released</title>
-   <link href="http://rubygems-openpgp-ca.org/blog/rubygems-openpgp-0.5.1-released.html"/>
+   <link href="https://www.rubygems-openpgp-ca.org/blog/rubygems-openpgp-0.5.1-released.html"/>
    <updated>2013-03-11T00:00:00-04:00</updated>
-   <id>http://rubygems-openpgp-ca.org/blog/rubygems-openpgp-0.5.1-released</id>
+   <id>https://www.rubygems-openpgp-ca.org/blog/rubygems-openpgp-0.5.1-released</id>
    <content type="html">&lt;h1&gt;rubygems-openpgp 0.5.1 Released&lt;/h1&gt;
 
 &lt;p&gt;This release corrects a minor issue where a Windows machine couldn't
@@ -87,9 +87,9 @@ RbwqxGcP0QyNDEZQTVpLTBiiq++qyGRUb7cySTDVBqgwasal19VmVsflhTCbBt0=
  
  <entry>
    <title>rubygems-openpgp 0.5.0 Released</title>
-   <link href="http://rubygems-openpgp-ca.org/blog/rubygems-openpgp-0.5.0-released.html"/>
+   <link href="https://www.rubygems-openpgp-ca.org/blog/rubygems-openpgp-0.5.0-released.html"/>
    <updated>2013-03-11T00:00:00-04:00</updated>
-   <id>http://rubygems-openpgp-ca.org/blog/rubygems-openpgp-0.5.0-released</id>
+   <id>https://www.rubygems-openpgp-ca.org/blog/rubygems-openpgp-0.5.0-released</id>
    <content type="html">&lt;h1&gt;rubygems-openpgp 0.5.0 Released&lt;/h1&gt;
 
 &lt;p&gt;rubygems-openpgp is a rubygems plugin that allows you to sign and
@@ -182,9 +182,9 @@ qBFa4M/+m2LoVdCGPOL8meFMytDR75J4VGWtGmRxjfhBeOeNVhneIQT5C6fHCfw=
  
  <entry>
    <title>Using an OpenPGP Smartcard on Ubuntu 12.10</title>
-   <link href="http://rubygems-openpgp-ca.org/blog/using-openpgp-smartcard-on-ubuntu-12-10.html"/>
+   <link href="https://www.rubygems-openpgp-ca.org/blog/using-openpgp-smartcard-on-ubuntu-12-10.html"/>
    <updated>2013-03-09T00:00:00-05:00</updated>
-   <id>http://rubygems-openpgp-ca.org/blog/using-openpgp-smartcard-on-ubuntu-12-10</id>
+   <id>https://www.rubygems-openpgp-ca.org/blog/using-openpgp-smartcard-on-ubuntu-12-10</id>
    <content type="html">&lt;h1&gt;Using an OpenPGP Smartcard on Ubuntu 12.10&lt;/h1&gt;
 
 &lt;p&gt;I'm currently adding a key continuity feature to rubygems-openpgp.  It
@@ -339,9 +339,9 @@ gnome-keyring-daemon process allowed me to sign emails again.&lt;/p&gt;
  
  <entry>
    <title>Key Revocation</title>
-   <link href="http://rubygems-openpgp-ca.org/blog/key-revocation.html"/>
+   <link href="https://www.rubygems-openpgp-ca.org/blog/key-revocation.html"/>
    <updated>2013-03-04T00:00:00-05:00</updated>
-   <id>http://rubygems-openpgp-ca.org/blog/key-revocation</id>
+   <id>https://www.rubygems-openpgp-ca.org/blog/key-revocation</id>
    <content type="html">&lt;h1&gt;Key Revocation&lt;/h1&gt;
 
 &lt;p&gt;If your key is compromised or simply lost, you'll need to revoke it.
@@ -426,9 +426,9 @@ certification to be revoked?&lt;/p&gt;
  
  <entry>
    <title>Verifying the rubygems-openpgp Source</title>
-   <link href="http://rubygems-openpgp-ca.org/blog/verifying-the-rubygems-openpgp-source.html"/>
+   <link href="https://www.rubygems-openpgp-ca.org/blog/verifying-the-rubygems-openpgp-source.html"/>
    <updated>2013-03-02T00:00:00-05:00</updated>
-   <id>http://rubygems-openpgp-ca.org/blog/verifying-the-rubygems-openpgp-source</id>
+   <id>https://www.rubygems-openpgp-ca.org/blog/verifying-the-rubygems-openpgp-source</id>
    <content type="html">&lt;h1&gt;Verifying the rubygems-openpgp Source&lt;/h1&gt;
 
 &lt;p&gt;Verifying gems is all well and good, but what happens if you want to
@@ -492,9 +492,9 @@ HEAD is now at a8f38e7... Tagged CHANGELOG for release
  
  <entry>
    <title>There's Trust and Then There's Trust and Then There's Trust</title>
-   <link href="http://rubygems-openpgp-ca.org/blog/theres-trust-and-then-theres-trust-and-then-theres-trust.html"/>
+   <link href="https://www.rubygems-openpgp-ca.org/blog/theres-trust-and-then-theres-trust-and-then-theres-trust.html"/>
    <updated>2013-03-01T00:00:00-05:00</updated>
-   <id>http://rubygems-openpgp-ca.org/blog/theres-trust-and-then-theres-trust-and-then-theres-trust</id>
+   <id>https://www.rubygems-openpgp-ca.org/blog/theres-trust-and-then-theres-trust-and-then-theres-trust</id>
    <content type="html">&lt;h1&gt;There's Trust and Then There's Trust and Then There's Trust&lt;/h1&gt;
 
 &lt;p&gt;Trust is important when it comes to software packages.  Unfortunately
@@ -590,9 +590,9 @@ about.&lt;/p&gt;
  
  <entry>
    <title>The Complete Guide to Verifying Your Initial Install</title>
-   <link href="http://rubygems-openpgp-ca.org/blog/the-complete-guide-to-verifying-your-initial-install.html"/>
+   <link href="https://www.rubygems-openpgp-ca.org/blog/the-complete-guide-to-verifying-your-initial-install.html"/>
    <updated>2013-02-27T00:00:00-05:00</updated>
-   <id>http://rubygems-openpgp-ca.org/blog/the-complete-guide-to-verifying-your-initial-install</id>
+   <id>https://www.rubygems-openpgp-ca.org/blog/the-complete-guide-to-verifying-your-initial-install</id>
    <content type="html">&lt;h1&gt;The Complete Guide to Verifying Your Initial Install&lt;/h1&gt;
 
 &lt;p&gt;Assuming you have already installed rubygems-openpgp, you can use it
@@ -798,9 +798,9 @@ Jsk6YyxWu5uxE84UEc8HWzbFrb5sVstYLKW+vwqIVV76spK5EvAaKCOrMnzP/Qg=
  
  <entry>
    <title>Gem Signing - X.509 vs OpenPGP</title>
-   <link href="http://rubygems-openpgp-ca.org/blog/gem-signing-x509-and-openpgp.html"/>
+   <link href="https://www.rubygems-openpgp-ca.org/blog/gem-signing-x509-and-openpgp.html"/>
    <updated>2013-02-26T00:00:00-05:00</updated>
-   <id>http://rubygems-openpgp-ca.org/blog/gem-signing-x509-and-openpgp</id>
+   <id>https://www.rubygems-openpgp-ca.org/blog/gem-signing-x509-and-openpgp</id>
    <content type="html">&lt;h1&gt;Gem Signing - X.509 vs OpenPGP&lt;/h1&gt;
 
 &lt;p&gt;This is a contentious topic.  It's right up there with Emacs vs Vim.
@@ -1002,9 +1002,9 @@ republishing software packages?&lt;/p&gt;&lt;/li&gt;
  
  <entry>
    <title>The Complete Guide to Signing Your Gems</title>
-   <link href="http://rubygems-openpgp-ca.org/blog/the-complete-guide-to-signing-your-gems.html"/>
+   <link href="https://www.rubygems-openpgp-ca.org/blog/the-complete-guide-to-signing-your-gems.html"/>
    <updated>2013-02-25T00:00:00-05:00</updated>
-   <id>http://rubygems-openpgp-ca.org/blog/the-complete-guide-to-signing-your-gems</id>
+   <id>https://www.rubygems-openpgp-ca.org/blog/the-complete-guide-to-signing-your-gems</id>
    <content type="html">&lt;h1&gt;The Complete Guide to Signing Your Gems&lt;/h1&gt;
 
 &lt;p&gt;By signing your gems you allow other users to verify the gem was
@@ -1171,9 +1171,9 @@ sig 3        6094090A 2013-02-18  rubygems-openpgp Certificate Authority
  
  <entry>
    <title>The Complete Guide to Signing the Certificate Authority Keys</title>
-   <link href="http://rubygems-openpgp-ca.org/blog/the-complete-guide-to-signing-the-certificate-authority-keys.html"/>
+   <link href="https://www.rubygems-openpgp-ca.org/blog/the-complete-guide-to-signing-the-certificate-authority-keys.html"/>
    <updated>2013-02-24T00:00:00-05:00</updated>
-   <id>http://rubygems-openpgp-ca.org/blog/the-complete-guide-to-signing-the-certificate-authority-keys</id>
+   <id>https://www.rubygems-openpgp-ca.org/blog/the-complete-guide-to-signing-the-certificate-authority-keys</id>
    <content type="html">&lt;h1&gt;The Complete Guide to Signing the Certificate Authority Keys&lt;/h1&gt;
 
 &lt;p&gt;In a perfect world you would meet the developer of every gem you use
@@ -1414,9 +1414,9 @@ Successfully installed openpgp_signed_hola-0.0.0
  
  <entry>
    <title>The Complete Guide to Verifying Gems with rubygems-openpgp</title>
-   <link href="http://rubygems-openpgp-ca.org/blog/the-complete-guide-to-verifying-gems-with-rubygems-openpgp.html"/>
+   <link href="https://www.rubygems-openpgp-ca.org/blog/the-complete-guide-to-verifying-gems-with-rubygems-openpgp.html"/>
    <updated>2013-02-23T00:00:00-05:00</updated>
-   <id>http://rubygems-openpgp-ca.org/blog/the-complete-guide-to-verifying-gems-with-rubygems-openpgp</id>
+   <id>https://www.rubygems-openpgp-ca.org/blog/the-complete-guide-to-verifying-gems-with-rubygems-openpgp</id>
    <content type="html">&lt;h1&gt;The Complete Guide to Verifying Gems with rubygems-openpgp&lt;/h1&gt;
 
 &lt;p&gt;rubygems-openpgp allows you to verify a gem by checking the digital
@@ -1595,9 +1595,9 @@ easier.&lt;/p&gt;
  
  <entry>
    <title>rubygems-openpgp 0.4 Released</title>
-   <link href="http://rubygems-openpgp-ca.org/blog/rubygems-openpgp-0.4-released.html"/>
+   <link href="https://www.rubygems-openpgp-ca.org/blog/rubygems-openpgp-0.4-released.html"/>
    <updated>2013-02-23T00:00:00-05:00</updated>
-   <id>http://rubygems-openpgp-ca.org/blog/rubygems-openpgp-0.4-released</id>
+   <id>https://www.rubygems-openpgp-ca.org/blog/rubygems-openpgp-0.4-released</id>
    <content type="html">&lt;h1&gt;rubygems-openpgp 0.4 Released&lt;/h1&gt;
 
 &lt;h2&gt;Now with Trust!&lt;/h2&gt;
@@ -1653,9 +1653,9 @@ hiUjubQJuZrjVTqpaPW7ZF0iL/0xgERCz7gN6SsvIM5MIm3Hok1oZ2oVMS8fzZQ=
  
  <entry>
    <title>How Many People Need to Verify Software to Make Signing Useful?</title>
-   <link href="http://rubygems-openpgp-ca.org/blog/how-many-people-need-to-verify-software-to-make-signing-useful.html"/>
+   <link href="https://www.rubygems-openpgp-ca.org/blog/how-many-people-need-to-verify-software-to-make-signing-useful.html"/>
    <updated>2013-02-22T00:00:00-05:00</updated>
-   <id>http://rubygems-openpgp-ca.org/blog/how-many-people-need-to-verify-software-to-make-signing-useful</id>
+   <id>https://www.rubygems-openpgp-ca.org/blog/how-many-people-need-to-verify-software-to-make-signing-useful</id>
    <content type="html">&lt;h1&gt;How Many People Need to Verify Software to Make Signing Useful?&lt;/h1&gt;
 
 &lt;h2&gt;Lets do a quick straw poll.&lt;/h2&gt;
@@ -1764,9 +1764,9 @@ the existing solution.  You can sign with both solutions if you want.&lt;/p&gt;
  
  <entry>
    <title>Signing Key Security</title>
-   <link href="http://rubygems-openpgp-ca.org/blog/signing-key-security.html"/>
+   <link href="https://www.rubygems-openpgp-ca.org/blog/signing-key-security.html"/>
    <updated>2013-02-20T00:00:00-05:00</updated>
-   <id>http://rubygems-openpgp-ca.org/blog/signing-key-security</id>
+   <id>https://www.rubygems-openpgp-ca.org/blog/signing-key-security</id>
    <content type="html">&lt;h1&gt;Signing Key Security&lt;/h1&gt;
 
 &lt;p&gt;It is critical that our signing keys are securely maintained.  If not,
@@ -1836,9 +1836,9 @@ by the signing key, or to the signing key itself.&lt;/p&gt;
  
  <entry>
    <title>Contact</title>
-   <link href="http://rubygems-openpgp-ca.org/blog/contact.html"/>
+   <link href="https://www.rubygems-openpgp-ca.org/blog/contact.html"/>
    <updated>2013-02-20T00:00:00-05:00</updated>
-   <id>http://rubygems-openpgp-ca.org/blog/contact</id>
+   <id>https://www.rubygems-openpgp-ca.org/blog/contact</id>
    <content type="html">&lt;h1&gt;Contact&lt;/h1&gt;
 
 &lt;h2&gt;Mailing List&lt;/h2&gt;
@@ -1894,9 +1894,9 @@ want to say thanks, send some bitcoins to
  
  <entry>
    <title>Authentication</title>
-   <link href="http://rubygems-openpgp-ca.org/blog/authentication.html"/>
+   <link href="https://www.rubygems-openpgp-ca.org/blog/authentication.html"/>
    <updated>2013-02-20T00:00:00-05:00</updated>
-   <id>http://rubygems-openpgp-ca.org/blog/authentication</id>
+   <id>https://www.rubygems-openpgp-ca.org/blog/authentication</id>
    <content type="html">&lt;h1&gt;Authentication&lt;/h1&gt;
 
 &lt;p&gt;To verify that a gem you've downloaded is authentic and hasn't been

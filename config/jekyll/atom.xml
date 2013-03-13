@@ -5,10 +5,10 @@ layout: nil
 <feed xmlns="http://www.w3.org/2005/Atom">
  
  <title>rubygems-openpgp Certificate Authority</title>
- <link href="http://rubygems-openpgp-ca.org/blog/atom.xml" rel="self"/>
- <link href="http://rubygems-openpgp-ca.org/"/>
+ <link href="https://www.rubygems-openpgp-ca.org/blog/atom.xml" rel="self"/>
+ <link href="https://www.rubygems-openpgp-ca.org/"/>
  <updated>{{ site.time | date_to_xmlschema }}</updated>
- <id>http://rubygems-openpgp-ca.org/blog</id>
+ <id>https://www.rubygems-openpgp-ca.org/blog</id>
  <author>
    <name>rubygems-openpgp Certificate Authority</name>
  </author>
@@ -16,9 +16,9 @@ layout: nil
  {% for post in site.posts %}
  <entry>
    <title>{{ post.title }}</title>
-   <link href="http://rubygems-openpgp-ca.org/blog{{ post.url }}"/>
+   <link href="https://www.rubygems-openpgp-ca.org/blog{{ post.url }}"/>
    <updated>{{ post.date | date_to_xmlschema }}</updated>
-   <id>http://rubygems-openpgp-ca.org/blog{{ post.id }}</id>
+   <id>https://www.rubygems-openpgp-ca.org/blog{{ post.id }}</id>
    <content type="html">{{ post.content | xml_escape }}</content>
  </entry>
  {% endfor %}
