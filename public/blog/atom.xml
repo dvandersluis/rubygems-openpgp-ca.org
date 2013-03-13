@@ -4,7 +4,7 @@
  <title>rubygems-openpgp Certificate Authority</title>
  <link href="http://rubygems-openpgp-ca.org/blog/atom.xml" rel="self"/>
  <link href="http://rubygems-openpgp-ca.org/"/>
- <updated>2013-03-12T16:40:25-04:00</updated>
+ <updated>2013-03-12T21:06:05-04:00</updated>
  <id>http://rubygems-openpgp-ca.org/blog</id>
  <author>
    <name>rubygems-openpgp Certificate Authority</name>
@@ -29,8 +29,10 @@ know!&lt;/a&gt;&lt;/p&gt;
 &lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/digest-sha3&quot;&gt;digest-sha3-ruby&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/eurovat&quot;&gt;eurovat&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/gpg_status_parser&quot;&gt;gpg_status_parser&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/henry-container&quot;&gt;henry-container&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/mizuho&quot;&gt;mizuho&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/openpgp_signed_hola&quot;&gt;openpgp_signed_hola&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/rack-jsonp-middleware&quot;&gt;rack-jsonp-middleware&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/rubygems-openpgp&quot;&gt;rubygems-openpgp&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -1149,7 +1151,6 @@ uid                  Grant T. Olson (Personal email) &amp;lt;kgo@grant-olson.net
 sig 3        E3B5806F 2013-01-03  Grant T. Olson (Personal email) &amp;lt;kgo@grant-olson.net&amp;gt;
 sig 3        6094090A 2013-02-18  rubygems-openpgp Certificate Authority
                                   Signing Key (http://rubygems-openpgp-ca.org)
-uid                  Grant T. Olson (pikimal) &amp;lt;grant@pikimal.com&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;And now that you've done all that, please be sure to...&lt;/p&gt;
