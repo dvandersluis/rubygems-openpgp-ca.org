@@ -4,12 +4,90 @@
  <title>rubygems-openpgp Certificate Authority</title>
  <link href="https://www.rubygems-openpgp-ca.org/blog/atom.xml" rel="self"/>
  <link href="https://www.rubygems-openpgp-ca.org/"/>
- <updated>2013-03-13T10:52:15-04:00</updated>
+ <updated>2013-03-14T08:15:49-04:00</updated>
  <id>https://www.rubygems-openpgp-ca.org/blog</id>
  <author>
    <name>rubygems-openpgp Certificate Authority</name>
  </author>
 
+ 
+ <entry>
+   <title>CA Exploited by Uber-Hacker Havenwood! -or- How Revocation Works</title>
+   <link href="https://www.rubygems-openpgp-ca.org/blog/ca-exploited-by-uber-hacker-havenwood.html"/>
+   <updated>2013-03-14T00:00:00-04:00</updated>
+   <id>https://www.rubygems-openpgp-ca.org/blog/ca-exploited-by-uber-hacker-havenwood</id>
+   <content type="html">&lt;h1&gt;CA Exploited by Uber-Hacker Havenwood!&lt;/h1&gt;
+
+&lt;p&gt;On Feb-20-2013 at approximately 10:00 GMT a mysterious user known only
+as &lt;a href=&quot;https://github.com/havenwood&quot;&gt;Havenwood&lt;/a&gt; was able to bypass
+several layers of security and receive certification from the
+authority without proper authentication.&lt;/p&gt;
+
+&lt;p&gt;He is believed to be a Caucasian male, between fifteen to fifty years
+old, four to six feet high, weighing between one and three hundred
+pounds.  If you have any information about his whereabouts, please
+contact us.  If you encounter him in person, contact your local
+authorities.  Do not attempt to apprehend him yourself.  He is rumored
+to be armed and extremely dangerous.&lt;/p&gt;
+
+&lt;h3&gt;Actually, That's Not Quite What Happened&lt;/h3&gt;
+
+&lt;p&gt;Havenwood submitted an application for certification.  Because of a
+bug in the code, we did not realize that he never actually confirmed
+his account, which meant that he never demonstrated that he actually
+controlled the submitted private key.  In spite of this, we signed off
+on his key.&lt;/p&gt;
+
+&lt;h3&gt;Game Over?&lt;/h3&gt;
+
+&lt;p&gt;Nope.  If we've issued a signature in error, or later decide that a
+previously authenticated user has malicious intent, we can revoke our
+certification.&lt;/p&gt;
+
+&lt;h2&gt;How Revocation Works&lt;/h2&gt;
+
+&lt;p&gt;Once the problem was discovered we were able to issue a revocation of
+the original signature and send it off to the keyservers.  You can see
+the
+&lt;a href=&quot;http://pool.sks-keyservers.net:11371/pks/lookup?op=vindex&amp;amp;fingerprint=on&amp;amp;search=0xCF61546750DBC4B4&quot;&gt;revocation on pool.sks-keyservers.net&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The line starting including &lt;strong&gt;revoke&lt;/strong&gt; indicates our original signature
+has been revoked.  You will no longer trust the authenticity of
+Havenwood's key, at least based on our signature.  If you've
+authenticated the key via other means, you'll still trust that and
+ignore our revocation.&lt;/p&gt;
+
+&lt;h2&gt;How Do Users Get the Revocation Certificate?&lt;/h2&gt;
+
+&lt;p&gt;For this revocation to take effect users would need to pull the
+revocation down from the keyserver network.  If they've previously
+downloaded the key and they never refresh it, they'll never know we
+revoked our certification.&lt;/p&gt;
+
+&lt;p&gt;To encourage good keyring hygiene we've setup a rotating expiration
+date on our signing key.  On May 17th, 2013 the signing key will
+expire.  At that time we will bump up the expiration date and publish
+this information.&lt;/p&gt;
+
+&lt;p&gt;If a user hasn't been keeping their keyring up-to-date, authentication
+of users we have certified would start failing on their machine
+because the system will think our signing key is expired.  They would
+need to refresh their keyring by running:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gpg --keyserver pool.sks-keyservers.net --refresh-keys
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Performing this operation will grab an updated expiration date for our
+signing key.  It will also grab our revocation of our signature
+against Havenwood's key.  Any attempt to install software signed by
+this key with the &lt;code&gt;--trust&lt;/code&gt; option would now fail as the key will no
+longer be trusted.&lt;/p&gt;
+
+&lt;h2&gt;And that's how our revocation system works&lt;/h2&gt;
+
+&lt;p&gt;Thanks for being a good sport Havenwood.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Gems Signed with rubygems-openpgp</title>
