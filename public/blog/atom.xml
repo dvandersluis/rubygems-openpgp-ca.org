@@ -4,7 +4,7 @@
  <title>rubygems-openpgp Certificate Authority</title>
  <link href="https://www.rubygems-openpgp-ca.org/blog/atom.xml" rel="self"/>
  <link href="https://www.rubygems-openpgp-ca.org/"/>
- <updated>2013-03-14T08:15:49-04:00</updated>
+ <updated>2013-03-15T19:35:38-04:00</updated>
  <id>https://www.rubygems-openpgp-ca.org/blog</id>
  <author>
    <name>rubygems-openpgp Certificate Authority</name>
@@ -101,6 +101,7 @@ signed gem that's not on the list?  &lt;a href=&quot;mailto:kgo@grant-olson.net&
 know!&lt;/a&gt;&lt;/p&gt;
 
 &lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/acts_as_textcaptcha&quot;&gt;acts_as_textcaptcha&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/crash-watch&quot;&gt;crash-watch&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/daemon_controller&quot;&gt;daemon_controller&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/default_value_for&quot;&gt;default_value_for&lt;/a&gt;&lt;/li&gt;

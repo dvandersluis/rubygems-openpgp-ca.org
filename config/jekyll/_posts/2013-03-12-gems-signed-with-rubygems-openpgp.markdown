@@ -12,6 +12,7 @@ This is a list of gems known to be signed by rubygems-openpgp.  Have a
 signed gem that's not on the list?  [Let us
 know!](mailto:kgo@grant-olson.net)
 
+* [acts_as_textcaptcha](https://rubygems.org/gems/acts_as_textcaptcha)
 * [crash-watch](https://rubygems.org/gems/crash-watch)
 * [daemon_controller](https://rubygems.org/gems/daemon_controller)
 * [default_value_for](https://rubygems.org/gems/default_value_for)
