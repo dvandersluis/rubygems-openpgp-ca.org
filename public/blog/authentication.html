@@ -107,24 +107,13 @@
   <div id="post">
 <h1>Authentication</h1>
 
-<p>To verify that a gem you've downloaded is authentic and hasn't been
-tampered with, you need to:</p>
+<h2>Authentication is hard...</h2>
 
-<ul>
-<li><p>Verify that the gem itself is intact by checking a checksum.</p></li>
-<li><p>Verify that the checksum is authentic by checking a digital
-signature issued by the gem's author.</p></li>
-<li><p>Verify that the signature is valid by authenticating the key that
-issued the signature.</p></li>
-</ul>
-
-
-<h2>But authentication is hard...</h2>
-
-<p>How do you validate that a key is valid?  At first it seems simple.
-Well this is the same key that's on the author's website, so it has to
-be good.  But then you realize that if someone hacked the developer's
-laptop they could also just change the key on the website.  And then
+<p>How do you validate that a signing key is authentic?  At first it
+seems simple.  Well this is the same key that's on the author's
+website or github page, so it has to be good.  But then you realize
+that if someone hacked the developer's email they could also just
+reset a password and publish a forged key on the website.  And then
 you think of another problem.  And another loophole.</p>
 
 <p>And before you know it you've realized the only surefire way to
@@ -133,95 +122,109 @@ face to face.  (And now that you're paranoid, you start to wonder if
 that really is the developer, or a clone or robot designed by agents
 of Eastasia to deceive you.)</p>
 
-<p>In the software world you may have different authentication
-requirements if:</p>
-
-<ul>
-<li><p>You're working through a tutorial at home.</p></li>
-<li><p>You run an e-commerce site that processes credit cards.</p></li>
-<li><p>You're storing sensitive patient medical records.</p></li>
-<li><p>You run a nuclear reactor.</p></li>
-</ul>
-
-
 <h2>Enter the rubygems-openpgp Certificate Authority</h2>
 
-<p>We provide some verification of signing keys.  It's not by any means
-perfect, but provides a reasonable starting point to trust signing
-keys.</p>
+<p>We attempt to provide some base-level authentication of gem
+developer's signing keys.  It's not by any means perfect, but provides
+a reasonable starting point to trust signing keys without having to
+authenticate hundreds of individual developer's keys.</p>
 
-<p>We:</p>
+<h3>When we've signed off on a key, we're asserting...</h3>
+
+<h4>The applicant controlled the email account attached to the signing key.</h4>
+
+<p>Anyone can generate a key with any email.  We confirm the applicant is
+actually in possession of the email address used to sign by sending a
+confirmation email.</p>
+
+<h4>The applicant controlled their signing key</h4>
+
+<p>This is why we send an encrypted confirmation link.  A applicant won't
+be able to complete confirmation without control of their personal
+signing key.</p>
+
+<h4>The applicant actually is an active applicant</h4>
+
+<p>We check to see that the applicant has a rubygems.org account, has
+contributed a non-trivial gem, and is on some level a member of the
+ruby community.</p>
+
+<h4>The applicant is authorized to publish on rubygems.org</h4>
+
+<p>We do this by confirming either:</p>
 
 <ul>
-<li><p>Verify that the person registering the key has control of their
-email address by sending a confirmation email.</p></li>
-<li><p>We verify that the developer controls the signing key by encrypting
-the confirmation link.</p></li>
-<li><p>We verify that the developer has a rubygems.org account tied to the
-same email account.</p></li>
-<li><p>We verify that the developer actually has previously developed and
-published gems to rubygems.org.</p></li>
-<li><p>A human verifies the sanity of all of the above elements for
-anything suspicious. (For example, a signing key that has user ids for
+<li>That the applicant has the same email account on rubygems.org as
+they do on the application.  (They could reset their password on
+rubygems.org)</li>
+</ul>
+
+
+<p>Or, in the case the applicant is using an organizational signing key:</p>
+
+<ul>
+<li>That the applicant has successfully published a gem to rubygems.org
+signed by their signing key.</li>
+</ul>
+
+
+<h3>All signing is manually verified by a human</h3>
+
+<p>A human verifies the sanity of all of the above elements for anything
+suspicious. (For example, a signing key that has user ids for
 haxxor@example.org and billg@microsoft.com, that is registered under
-the haxxor@example.org account.)</p></li>
-<li><p>Once your key has been authenticated, the authentication is locked.
-If your email is compromised down the road, the malicious user won't
+the haxxor@example.org account.)</p>
+
+<h3>Once your key has been authenticated, the authentication is locked.</h3>
+
+<p>If your email is compromised down the road, the malicious user won't
 be able to upload a replacement public key. (Eventually there will be
 a revocation policy for lost or compromised keys, but it will not be
-automatic.)</p></li>
-</ul>
+automatic.)</p>
 
+<h2>What we do not authenticate</h2>
 
-<p>By connecting the signing key to the rubygems.org account via email,
-we provide some basic assurances that the signing key is the correct
-one.</p>
+<h4>That a applicant has no malicous intent.</h4>
 
-<h2>But someone could still fake all that!</h2>
+<p>They could still upload a gem that runs <code>rm -rf /</code></p>
 
-<p>Yes, someone could perform a zero-day exploit.  They could:</p>
+<h4>That the applicant has good security practices</h4>
 
-<ul>
-<li><p>Compromise a developer's email.</p></li>
-<li><p>Perform a password reset on rubygems.</p></li>
-<li><p>Create their own private key.</p></li>
-<li><p>Register their key here.</p></li>
-<li><p>Upload malicious signed gem.</p></li>
-</ul>
-
-
-<p>Exploit scenarios that are prevented:</p>
+<p>We can't guarantee that an applicant:</p>
 
 <ul>
-<li><p>Registering a forged key without access to developer's email
-account.</p></li>
-<li><p>Swapping out an existing good signing key for a forged one and
-getting it signed by the Certificate Authority.</p></li>
-<li><p>A back-end exploit to rubygems.org could upload a compromised gem
-with an unauthenticated signing key, but the client would notice that
-the key is untrusted and reject the install.</p></li>
+<li><p>Properly secures their signing key.</p></li>
+<li><p>Used a strong password at rubygems.org.</p></li>
+<li><p>Etc.</p></li>
 </ul>
 
 
-<p>And as time goes on, it becomes less and less likely that a maintained
-gem has been compromised and signed by a malicious user.  If someone
-does pull off a zero-day exploit, and a developer goes on to do six
-releases over the course of a year, at some point someone will
-probably notice that something is suspicious.</p>
+<h2>Our system isn't the be-all and end-all to authentication, it's just the beginning</h2>
 
-<h2>In conclusion...</h2>
+<p>The authentication scheme isn't perfect.  But it isn't worthless
+either.  We think this should provide enough authentication
+for most users.  And it's better than simply performing no
+authentication.</p>
 
-<p>Once again, the authentication scheme isn't perfect.  But it isn't
-worthless either.  For most gem users we should provide enough
-authentication for your purposes.  And it's better than simply
-performing no authentication.</p>
+<p>One of the goals of this project is to provide some incentive to get
+developers to sign their gems, so that a variety of additional
+authentication systems can be put into place.</p>
 
-<p>In addition, once developers sign their gems additional authentication
-systems can be put into place.  One of the goals of this project is to
-provide some incentive to get developers to sign their gems, so that a
-variety of additional authentication systems can be put into place.
-But we need the signatures first.  There are a variety of systems that
-can be put into place after developers sign their gems.</p>
+<p>Imagine a world where in addition to our certification any or all of
+the following happened:</p>
+
+<ul>
+<li><p>Developers who knew each other personally authenticated each others keys.</p></li>
+<li><p>Local user groups authenticated keys, establishing not only
+authenticity but that the signee is considered to be a member in
+good standing with the local community.</p></li>
+<li><p>Keys were signed by something like "RailsConf 2013" establishing
+that the user has been at said conference.</p></li>
+<li><p>And more...</p></li>
+</ul>
+
+
+<p>But for that we need the signatures first.</p>
 
 <h2>So</h2>
 
@@ -235,9 +238,9 @@ can be put into place after developers sign their gems.</p>
     
       <li><span>24 Feb 2013</span> &raquo; <a href="/blog/the-complete-guide-to-signing-the-certificate-authority-keys.html">The Complete Guide to Signing the Certificate Authority Keys</a></li>
     
-      <li><span>23 Feb 2013</span> &raquo; <a href="/blog/the-complete-guide-to-verifying-gems-with-rubygems-openpgp.html">The Complete Guide to Verifying Gems with rubygems-openpgp</a></li>
-    
       <li><span>26 Feb 2013</span> &raquo; <a href="/blog/gem-signing-x509-and-openpgp.html">Gem Signing - X.509 vs OpenPGP</a></li>
+    
+      <li><span>23 Feb 2013</span> &raquo; <a href="/blog/the-complete-guide-to-verifying-gems-with-rubygems-openpgp.html">The Complete Guide to Verifying Gems with rubygems-openpgp</a></li>
     
   </ul>
 </div>

@@ -105,70 +105,25 @@
     </div>
 
   <div id="post">
-<h1>Signing Key Security</h1>
+<h1>Change to Authentication Policy</h1>
 
-<p>It is critical that our signing keys are securely maintained.  If not,
-an attacker can issue malicious signatures on our behalf, bypassing
-the actual certification process.  Here are the steps we take to
-secure the signing keys.</p>
+<p>Our previous authentication policy required that you registered with
+the same email address as your rubygems.org account.  The <em>intent</em> was
+to demonstrate that you were authorized to publish to the rubygems
+account.</p>
 
-<h2>Master Signing Key authenticates the current Signing Key</h2>
+<p>We've run into a few cases where this wasn't practical.  In one case a
+user wanted to use an
+<a href="http://pool.sks-keyservers.net:11371/pks/lookup?op=index&amp;search=software-signing%40phusion.nl">organizational key</a>
+that wasn't tied to the actual rubygems.org user email.  In a few
+other cases, users had previously registered with legacy emails and
+were unable to change them.</p>
 
-<p>A master signing key authenticates the current active signing key. If
-the signing key is compromised, it will be revoked and a new one will
-take its place.  The master signing key was generated on a computer
-that has never been and will never be on a network.  To compromise the
-master key an attacker would need to access this computer physically
-at its current undisclosed location.</p>
-
-<p>Master key fingerprint:</p>
-
-<pre><code>pub   4096R/FDBA50FB 2013-02-16 [expires: 2014-02-16]
-      Key fingerprint = BEED FE71 7668 50BF A6DE  5A19 25A6 5396 FDBA 50FB
-uid                  rubygems-openpgp Certificate Authority MASTER KEY
-                                       (http://rubygems-openpgp-ca.org)
-sub   4096R/9A39A769 2013-02-16 [expires: 2014-02-16]
-</code></pre>
-
-<p>The fingerprint can also be retrieved from our <a href="https://github.com/grant-olson/rubygems-openpgp-ca.org">Github
-page</a>.</p>
-
-<h2>Signing computer is physically located on-site</h2>
-
-<p>It is not in the cloud.  It is physically controlled by us.</p>
-
-<h2>Signing occurs over an 'air gap'</h2>
-
-<p>Signatures are not issued via the web server where you registered your
-key.  After you have authenticated your key with the web server we
-sign on another computer with an 'air gap' in place.  If the web
-server is compromised, an attacker can't just ssh into the signing
-server.</p>
-
-<h2>Signing key is on an OpenPGP smart card</h2>
-
-<p>Once we're on the signing computer, the signing key is contained on an
-<a href="http://g10code.com/p-card.html">OpenPGP smart card</a> that is only
-inserted and activated for the duration of signing.</p>
-
-<p>If the signing computer is compromised remotely, an attacker won't be
-able to physically insert the smart card and activate it.</p>
-
-<p>If the signing computer is compromised locally, an attacker still
-requires access to the smart card.</p>
-
-<p>If the smart card lost or stolen, an attacker only has three attempts
-to enter a passphrase before the card lock itself down.  Attempting to
-unlock the card unsuccessfully three times will cause the card to self
-destruct.  A brute force attack is not possible.</p>
-
-<h2>Signing key has a rotating expiration date</h2>
-
-<p>The signing key is set to expire every sixty days.  At the end of that
-sixty days, assuming the key has not been compromised, it is renewed
-for another 60 days.  This forces users to practice good keyring
-hygiene and refresh their keyring, retrieving any revocations issued
-by the signing key, or to the signing key itself.</p>
+<p>Since the <em>intent</em> was to demonstrate that a user was authorized to
+publish to that account, we've added an alternate way to demonstrate
+this.  Simply publish a gem signed by your signing key to rubygems.org
+prior to applying for certification.  This demonstrates that you are
+indeed able to publish to your account.</p>
 
 </div>
 
@@ -176,9 +131,9 @@ by the signing key, or to the signing key itself.</p>
   <h2>Related Posts</h2>
   <ul class="posts">
     
-      <li><span>24 Feb 2013</span> &raquo; <a href="/blog/the-complete-guide-to-signing-the-certificate-authority-keys.html">The Complete Guide to Signing the Certificate Authority Keys</a></li>
+      <li><span>20 Feb 2013</span> &raquo; <a href="/blog/authentication.html">Authentication</a></li>
     
-      <li><span>04 Mar 2013</span> &raquo; <a href="/blog/key-revocation.html">Key Revocation</a></li>
+      <li><span>25 Feb 2013</span> &raquo; <a href="/blog/the-complete-guide-to-signing-your-gems.html">The Complete Guide to Signing Your Gems</a></li>
     
       <li><span>26 Feb 2013</span> &raquo; <a href="/blog/gem-signing-x509-and-openpgp.html">Gem Signing - X.509 vs OpenPGP</a></li>
     
