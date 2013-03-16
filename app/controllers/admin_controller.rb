@@ -3,7 +3,7 @@ class AdminController < ApplicationController
   before_filter :admin_user
 
   def pending_applications
-    @pending_users = User.find_all_by_status(User::STATUS_PENDING).select { |u| !u.confirmed_at.nil? }
+    @pending_users = User.pending
   end
 
   def edit_status

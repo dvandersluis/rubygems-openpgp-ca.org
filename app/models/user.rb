@@ -55,6 +55,10 @@ class User < ActiveRecord::Base
   class GPGError < StandardError
   end
 
+  def self.pending
+    find_all_by_status(User::STATUS_PENDING).select { |u| !u.confirmed_at.nil? }
+  end
+
 private
 
   def run_command command, message=nil
