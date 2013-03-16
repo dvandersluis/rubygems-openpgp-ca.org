@@ -3,7 +3,9 @@ layout: post
 published: true
 title: Gems Signed with rubygems-openpgp
 category: cms
-# 14 total users - 5 actual signers - 13 signed gems
+# 14 total registered users 
+# 5 actual gem signers
+# 13 signed gems
 ---
 
 Gems Signed with rubygems-openpgp
