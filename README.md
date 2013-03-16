@@ -1,7 +1,6 @@
 Experimental Rubygem OpenPGP Certificate Authority
 ==================================================
 
-
 More details on the [website](http://rubygems-openpgp-ca.org).
 
 If you are here for the key fingerprints, here they are:
