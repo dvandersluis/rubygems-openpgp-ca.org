@@ -4,12 +4,111 @@
  <title>rubygems-openpgp Certificate Authority</title>
  <link href="https://www.rubygems-openpgp-ca.org/blog/atom.xml" rel="self"/>
  <link href="https://www.rubygems-openpgp-ca.org/"/>
- <updated>2013-03-16T07:06:34-04:00</updated>
+ <updated>2013-03-16T17:51:37-04:00</updated>
  <id>https://www.rubygems-openpgp-ca.org/blog</id>
  <author>
    <name>rubygems-openpgp Certificate Authority</name>
  </author>
 
+ 
+ <entry>
+   <title>Signing Specification</title>
+   <link href="https://www.rubygems-openpgp-ca.org/blog/signing-specification.html"/>
+   <updated>2013-03-16T00:00:00-04:00</updated>
+   <id>https://www.rubygems-openpgp-ca.org/blog/signing-specification</id>
+   <content type="html">&lt;h1&gt;Signing Specification&lt;/h1&gt;
+
+&lt;p&gt;Here's some brief documentation on the file format for OpenPGP
+signing.  With it you should know enough to be able to either manually
+verify or build signed gems without using rubygems-openpgp itself.&lt;/p&gt;
+
+&lt;h2&gt;Basic .gem format&lt;/h2&gt;
+
+&lt;p&gt;A gem is actually a tar-file.  If you use tar to extract it you will
+extract payload files: &lt;code&gt;data.tar.gz&lt;/code&gt; and &lt;code&gt;metadata.gz&lt;/code&gt;.  Rubygems 2.0
+also adds in &lt;code&gt;checksums.yaml.gz&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2&gt;X.509 signatures&lt;/h2&gt;
+
+&lt;p&gt;If a gem has X.509 signatures they are simply generated for each of
+the real payload files, creating &lt;code&gt;data.tar.gz.sig&lt;/code&gt;, &lt;code&gt;metadata.gz.sig&lt;/code&gt;,
+and (on rubygems 2.0) &lt;code&gt;checksums.yaml.gz.sig&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2&gt;OpenPGP signatures&lt;/h2&gt;
+
+&lt;p&gt;OpenPGP signatures are generated for the payload files only.  There is
+no point in re-signing the X.509 signatures.  Signatures are
+ascii-armored and saved with the .asc extension.&lt;/p&gt;
+
+&lt;p&gt;These are the exact same files that would be generated if you ran:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gpg --armor --detach-sign data.tar.gz
+gpg --armor --detach-sign metadata.gz
+gpg --armor --detach-sign checksums.yaml.gz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Full file formats&lt;/h2&gt;
+
+&lt;h3&gt;Rubygems 1.8-style gem&lt;/h3&gt;
+
+&lt;pre&gt;
++ foo.gem
+\
+ +- data.tar.gz
+ +- &lt;b&gt;data.tar.gz.asc&lt;/b&gt; [OpenPGP Sig]
+ +- metadata.gz
+ +- &lt;b&gt;metadata.gz.asc&lt;/b&gt; [OpenPGP Sig]
+&lt;/pre&gt;
+
+
+&lt;h3&gt;Rubygems 1.8-style gem - X.509 Signed&lt;/h3&gt;
+
+&lt;pre&gt;
++ foo.gem
+\
+ +- data.tar.gz
+ +- data.tar.gz.sig [X.509 Sig]
+ +- &lt;b&gt;data.tar.gz.asc&lt;/b&gt; [OpenPGP Sig]
+ +- metadata.gz
+ +- metadata.gz.sig [X.509 Sig]
+ +- &lt;b&gt;metadata.gz.asc&lt;/b&gt; [OpenPGP Sig]
+&lt;/pre&gt;
+
+
+&lt;h3&gt;Rubygems 2.0-style gem&lt;/h3&gt;
+
+&lt;pre&gt;
++ foo.gem
+\
+ +- data.tar.gz
+ +- &lt;b&gt;data.tar.gz.asc&lt;/b&gt; [OpenPGP Sig]
+ +- metadata.gz
+ +- &lt;b&gt;metadata.gz.asc&lt;/b&gt; [OpenPGP Sig]
+ +- checksums.yaml.gz
+ +- &lt;b&gt;checksums.yaml.gz.asc&lt;/b&gt; [OpenPGP Sig]
+&lt;/pre&gt;
+
+
+&lt;h3&gt;Rubygems 2.0-style gem - X509 Signed&lt;/h3&gt;
+
+&lt;pre&gt;
++ foo.gem
+\
+ +- data.tar.gz
+ +- data.tar.gz.sig [X.509 Sig]
+ +- &lt;b&gt;data.tar.gz.asc&lt;/b&gt; [OpenPGP Sig]
+ +- metadata.gz
+ +- metadata.gz.sig [X.509 Sig]
+ +- &lt;b&gt;metadata.gz.asc&lt;/b&gt; [OpenPGP Sig]
+ +- checksums.yaml.gz
+ +- checksums.yaml.gz.sig[X.509 Sig]
+ +- &lt;b&gt;checksums.yaml.gz.asc&lt;/b&gt; [OpenPGP Sig]
+&lt;/pre&gt;
+
+
+
+</content>
+ </entry>
  
  <entry>
    <title>Change to Authentication Policy</title>
@@ -136,6 +235,7 @@ know!&lt;/a&gt;&lt;/p&gt;
 &lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/eurovat&quot;&gt;eurovat&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/gpg_status_parser&quot;&gt;gpg_status_parser&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/henry-container&quot;&gt;henry-container&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/migrant&quot;&gt;migrant&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/mizuho&quot;&gt;mizuho&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/openpgp_signed_hola&quot;&gt;openpgp_signed_hola&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/rack-jsonp-middleware&quot;&gt;rack-jsonp-middleware&lt;/a&gt;&lt;/li&gt;
