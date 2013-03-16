@@ -3,6 +3,7 @@ layout: post
 published: true
 title: Gems Signed with rubygems-openpgp
 category: cms
+# 14 total users - 5 actual signers - 13 signed gems
 ---
 
 Gems Signed with rubygems-openpgp
@@ -23,4 +24,5 @@ know!](mailto:kgo@grant-olson.net)
 * [mizuho](https://rubygems.org/gems/mizuho)
 * [openpgp_signed_hola](https://rubygems.org/gems/openpgp_signed_hola)
 * [rack-jsonp-middleware](https://rubygems.org/gems/rack-jsonp-middleware)
+* [resque-kalashnikov](https://rubygems.org/gems/resque-kalashnikov)
 * [rubygems-openpgp](https://rubygems.org/gems/rubygems-openpgp)
