@@ -10,9 +10,11 @@
 
   - @pending_users.each do |user|
     %tr
-      %td= user.email
-      %td= user.rubygems_profile_page
-      %td= user.openpgp_key
+      %td= link_to user.email, "mailto:#{user.email}"
+      %td= link_to user.rubygems_profile_page, user.rubygems_profile_page, :target => "_blank"
+      %td= link_to(user.openpgp_key,
+                    "http://pool.sks-keyservers.net:11371/pks/lookup?search=#{user.openpgp_key}&op=vindex",
+                    :target => "_blank")
       %td= user.status_note
       %td
         = link_to "edit", admin_edit_status_path(user.id)

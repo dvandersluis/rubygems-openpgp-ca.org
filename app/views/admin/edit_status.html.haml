@@ -1,14 +1,18 @@
-%h1 Edit Status for #{@user.email}
+%h1 
+  Edit Status for
+  = link_to(@user.email, "mailto:#{@user.email}")
 
 %h3 User Info
 
 %p
   %b Project Page:
-  = @user.rubygems_profile_page
+  = link_to @user.rubygems_profile_page,@user.rubygems_profile_page, :target => "_blank"
 
 %p
   %b OpenPGP Key:
-  = @user.openpgp_key
+  = link_to(@user.openpgp_key,
+            "http://pool.sks-keyservers.net:11371/pks/lookup?search=#{@user.openpgp_key}&op=vindex",
+            :target => "_blank")
 
 %h3 Local Key info
 
