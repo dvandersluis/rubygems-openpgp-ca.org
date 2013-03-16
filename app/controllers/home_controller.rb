@@ -14,5 +14,9 @@ class HomeController < ApplicationController
   def contact
     redirect_to "/blog/contact.html"
   end
+
+  def pending_applications
+    render :text => (User.pending.length.to_s + "\n")
+  end
   
 end

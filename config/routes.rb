@@ -7,7 +7,8 @@ OpenpgpCa::Application.routes.draw do
   get "/authentication", :to => "home#authentication"
   get "/contact", :to => "home#contact"
   get "user/status", :to => "user#status"
-
+  get "/pending_applications", :to => "home#pending_applications"
+  
   get "admin/pending_applications", :to => "admin#pending_applications"
   get "admin/edit_status/:user", :to => "admin#edit_status", :as => :admin_edit_status
 
