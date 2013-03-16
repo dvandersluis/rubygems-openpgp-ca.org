@@ -3,9 +3,9 @@ layout: post
 published: true
 title: Gems Signed with rubygems-openpgp
 category: cms
-# 14 total registered users 
-# 5 actual gem signers
-# 13 signed gems
+# 15 total registered users 
+# 6 actual gem signers
+# 14 signed gems
 ---
 
 Gems Signed with rubygems-openpgp
@@ -23,6 +23,7 @@ know!](mailto:kgo@grant-olson.net)
 * [eurovat](https://rubygems.org/gems/eurovat)
 * [gpg_status_parser](https://rubygems.org/gems/gpg_status_parser)
 * [henry-container](https://rubygems.org/gems/henry-container)
+* [migrant](https://rubygems.org/gems/migrant)
 * [mizuho](https://rubygems.org/gems/mizuho)
 * [openpgp_signed_hola](https://rubygems.org/gems/openpgp_signed_hola)
 * [rack-jsonp-middleware](https://rubygems.org/gems/rack-jsonp-middleware)
