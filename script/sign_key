@@ -1,0 +1,4 @@
+#!/bin/bash
+
+gpg2 --default-key 0x6094090A --default-cert-level 2 --sign-key $1
+

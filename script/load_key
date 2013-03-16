@@ -1,0 +1,4 @@
+#!/bin/bash
+
+gpg2 --recv-key $1
+gpg2 --list-sigs $1

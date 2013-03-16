@@ -1,0 +1,4 @@
+#!/bin/bash
+
+gpg2 --list-sigs $1
+gpg2 --send-key $1
