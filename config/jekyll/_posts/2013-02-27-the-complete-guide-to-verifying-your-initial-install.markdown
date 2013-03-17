@@ -15,7 +15,8 @@ to verify new releases:
 <span style='color:green;'>Signature for data.tar.gz from user Grant T. Olson (Personal email) 
         &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_ULTIMATE
 Signature for metadata.gz from user Grant T. Olson (Personal email) 
-        &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_ULTIMATE</span>
+        &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_ULTIMATE
+Owner check indicates kgo@grant-olson.net is owner per rubygems.org...</span>
 Successfully installed rubygems-openpgp-0.6.0
 1 gem installed
 Installing ri documentation for rubygems-openpgp-0.6.0...

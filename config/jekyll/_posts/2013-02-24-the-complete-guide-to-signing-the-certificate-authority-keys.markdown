@@ -220,7 +220,8 @@ on the Certificate Authority signature on the key:
 <pre><code><span style='color:green;'>Signature for data.tar.gz from user Grant T. Olson (Personal email)
     <kgo@grant-olson.net> key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_FULLY
 Signature for metadata.gz from user Grant T. Olson (Personal email)
-    <kgo@grant-olson.net> key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_FULLY</span>
+    <kgo@grant-olson.net> key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_FULLY
+Owner check indicates kgo@grant-olson.net is owner per rubygems.org...</span>
 Successfully installed openpgp_signed_hola-0.0.0
 1 gem installed</code></pre>
 

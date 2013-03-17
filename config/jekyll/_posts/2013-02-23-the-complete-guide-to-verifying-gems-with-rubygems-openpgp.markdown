@@ -63,7 +63,8 @@ Now we will retrieve the key and the signature can be verified.
 <pre><code><span style='color:GoldenRod;'>Signature for data.tar.gz from user Grant T. Olson (Personal email)
     &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_UNDEFINED
 Signature for metadata.gz from user Grant T. Olson (Personal email)
-    &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_UNDEFINED</span>
+    &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_UNDEFINED
+Owner check indicates kgo@grant-olson.net is owner per rubygems.org...</span>
 Successfully installed openpgp_signed_hola-0.0.0
 1 gem installed
 Installing ri documentation for openpgp_signed_hola-0.0.0...
@@ -139,7 +140,8 @@ Now you'll see that the signature is verified **and** trusted.
 <pre><code><span style='color:green;'>Signature for data.tar.gz from user Grant T. Olson (Personal email)
     &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_FULLY
 Signature for metadata.gz from user Grant T. Olson (Personal email)
-    &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_FULLY</span>
+    &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_FULLY
+Owner check indicates kgo@grant-olson.net is owner per rubygems.org...</span>
 Successfully installed openpgp_signed_hola-0.0.0
 1 gem installed
 Installing ri documentation for openpgp_signed_hola-0.0.0...
