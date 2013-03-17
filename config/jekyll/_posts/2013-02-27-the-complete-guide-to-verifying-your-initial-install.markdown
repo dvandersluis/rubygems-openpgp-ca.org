@@ -75,7 +75,8 @@ And accept the defaults.
 Save the Detached Signature
 ---------------------------
 
-The signature for the 0.6.0 release is:
+Copy the signature and save it into a file `saved_sig.asc`.  The
+signature for the 0.6.0 release is:
 
     -----BEGIN PGP SIGNATURE-----
     Version: GnuPG v2.0.17 (GNU/Linux)
@@ -89,21 +90,6 @@ The signature for the 0.6.0 release is:
     =aA4r
     -----END PGP SIGNATURE-----
 
-The signature for the 0.5.1 release is:
-
-    -----BEGIN PGP SIGNATURE-----
-    Version: GnuPG v1.4.11 (GNU/Linux)
-    
-    iQEcBAABAgAGBQJRPMTkAAoJEP5F5V2hilTWuBMH/30hvYMpCP6dawq6LwufKTgB
-    w+hsiII3nRshCo6yicYs8kBsT/7oSc7XZg1q3oHXQgJdal/eLBdVEOXdZ8a7zKPh
-    SjvuHRSBpei3wA1DjPAvJxqjdGOX883rzDLRtP+pvyzazeO6Fj/8d/c8Y6YArEf5
-    gwWdaA2s0XXdecH21yWMZPKD3x2YQEARCJJWhyngt+FW5ZHlaAwXPkhpAptzchEe
-    MC8ThY4WZIPRc3+O9II93wGcNJu3T0sOg5NUzgT6vNLzCOtNLNe/hpD/QWUt/5za
-    RbwqxGcP0QyNDEZQTVpLTBiiq++qyGRUb7cySTDVBqgwasal19VmVsflhTCbBt0=
-    =mU3L
-    -----END PGP SIGNATURE-----
-
-Copy this and save it into a file `saved_sig.asc`
 
 Fetch, verify, and install rubygems-openpgp
 -------------------------------------------
@@ -112,12 +98,12 @@ Instead of just installing the gem, fetch it first to get a local
 copy:
 
     johnmudhead:~ grant$ gem fetch rubygems-openpgp
-    Fetching: rubygems-openpgp-0.5.0.gem (100%)
-    Downloaded rubygems-openpgp-0.5.0
+    Fetching: rubygems-openpgp-0.6.0.gem (100%)
+    Downloaded rubygems-openpgp-0.6.0
 
 Verify the detached signature:
 
-    johnmudhead:~ grant$ gpg --verify saved_sig.asc rubygems-openpgp-0.5.0.gem 
+    johnmudhead:~ grant$ gpg --verify saved_sig.asc rubygems-openpgp-0.6.0.gem 
     gpg: Signature made Sat Feb 23 09:36:02 2013 EST using RSA key ID A18A54D6
     gpg: Good signature from "Grant T. Olson (Personal email) <kgo@grant-olson.net>"
     gpg:                 aka "Grant T. Olson (pikimal) <grant@pikimal.com>"
@@ -125,11 +111,11 @@ Verify the detached signature:
 
 Install the verified gem:
 
-    johnmudhead:~ grant$ gem install rubygems-openpgp-0.5.0.gem 
-    Successfully installed rubygems-openpgp-0.5.0
+    johnmudhead:~ grant$ gem install rubygems-openpgp-0.6.0.gem 
+    Successfully installed rubygems-openpgp-0.6.0
     1 gem installed
-    Installing ri documentation for rubygems-openpgp-0.5.0...
-    Installing RDoc documentation for rubygems-openpgp-0.5.0...
+    Installing ri documentation for rubygems-openpgp-0.6.0...
+    Installing RDoc documentation for rubygems-openpgp-0.6.0...
 
 That's it!
 ----------
@@ -140,6 +126,20 @@ rubygems-openpgp itself.
 
 Detached Signatures For All Public Releases
 -------------------------------------------
+
+### 0.6.0
+
+    -----BEGIN PGP SIGNATURE-----
+    Version: GnuPG v2.0.17 (GNU/Linux)
+    
+    iQEcBAABAgAGBQJRRf0qAAoJEP5F5V2hilTWnhwIAIeCxmyiUT4C7/VPLvpwPypX
+    IGrhaA3hZZzknAh2MxKx+OPiWDt7ynvSlfdbdYbkSbiKv4ho4husLrhfGV7COKws
+    HImXCE4SF+Zhb2WifI7haSCRfrZ4M0z/4adalcB4GpkDRmRYuw1RI92PDLOADLSD
+    u80FPfEF2ekRJqFAUU1Ayzpl8MCfl8e6uzj2CZ8CKtceApb6HZbdWA/jhvuIjXXM
+    tJDAE22rugFw8ba6e9iinFHYpo9XYMG551YzR70lAqWXtxjgAM3jVDGlAXpkQGxM
+    9WTas7RRYmLH1h+JvB/DFR61oZaC3gzBP1IS42KOnXywwcq/rK6/CltPf6MZtco=
+    =aA4r
+    -----END PGP SIGNATURE-----
 
 ### 0.5.1
 
