@@ -4,7 +4,7 @@
  <title>rubygems-openpgp Certificate Authority</title>
  <link href="https://www.rubygems-openpgp-ca.org/blog/atom.xml" rel="self"/>
  <link href="https://www.rubygems-openpgp-ca.org/"/>
- <updated>2013-03-17T13:44:40-04:00</updated>
+ <updated>2013-03-17T15:24:10-04:00</updated>
  <id>https://www.rubygems-openpgp-ca.org/blog</id>
  <author>
    <name>rubygems-openpgp Certificate Authority</name>
@@ -919,11 +919,12 @@ about.&lt;/p&gt;
 &lt;p&gt;Assuming you have already installed rubygems-openpgp, you can use it
 to verify new releases:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;johnmudhead:~ grant$ gem install rubygems-openpgp --verify --trust
+&lt;pre&gt;&lt;code&gt;johnmudhead:~ grant$ gem install rubygems-openpgp --trust
 &lt;span style='color:green;'&gt;Signature for data.tar.gz from user Grant T. Olson (Personal email) 
         &amp;lt;kgo@grant-olson.net&amp;gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_ULTIMATE
 Signature for metadata.gz from user Grant T. Olson (Personal email) 
-        &amp;lt;kgo@grant-olson.net&amp;gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_ULTIMATE&lt;/span&gt;
+        &amp;lt;kgo@grant-olson.net&amp;gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_ULTIMATE
+Owner check indicates kgo@grant-olson.net is owner per rubygems.org...&lt;/span&gt;
 Successfully installed rubygems-openpgp-0.6.0
 1 gem installed
 Installing ri documentation for rubygems-openpgp-0.6.0...
@@ -1725,9 +1726,9 @@ key, delete the key.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;gpg --delete-key 0xE3B5806F
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Run the install with &lt;code&gt;--verify&lt;/code&gt;, &lt;code&gt;--trust&lt;/code&gt;, and &lt;code&gt;--get-key&lt;/code&gt; args.&lt;/p&gt;
+&lt;p&gt;Run the install with &lt;code&gt;--trust&lt;/code&gt; and &lt;code&gt;--get-key&lt;/code&gt; args.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;gem install openpgp_signed_hola --verify --trust --get-key
+&lt;pre&gt;&lt;code&gt;gem install openpgp_signed_hola --trust --get-key
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;If everything is setup correctly, you should trust the package based
@@ -1736,7 +1737,8 @@ on the Certificate Authority signature on the key:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&lt;span style='color:green;'&gt;Signature for data.tar.gz from user Grant T. Olson (Personal email)
     &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_FULLY
 Signature for metadata.gz from user Grant T. Olson (Personal email)
-    &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_FULLY&lt;/span&gt;
+    &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_FULLY
+Owner check indicates kgo@grant-olson.net is owner per rubygems.org...&lt;/span&gt;
 Successfully installed openpgp_signed_hola-0.0.0
 1 gem installed&lt;/code&gt;&lt;/pre&gt;
 
@@ -1816,7 +1818,8 @@ retrieve the public key automatically.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&lt;span style='color:GoldenRod;'&gt;Signature for data.tar.gz from user Grant T. Olson (Personal email)
     &amp;lt;kgo@grant-olson.net&amp;gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_UNDEFINED
 Signature for metadata.gz from user Grant T. Olson (Personal email)
-    &amp;lt;kgo@grant-olson.net&amp;gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_UNDEFINED&lt;/span&gt;
+    &amp;lt;kgo@grant-olson.net&amp;gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_UNDEFINED
+Owner check indicates kgo@grant-olson.net is owner per rubygems.org...&lt;/span&gt;
 Successfully installed openpgp_signed_hola-0.0.0
 1 gem installed
 Installing ri documentation for openpgp_signed_hola-0.0.0...
@@ -1839,7 +1842,7 @@ are
 &lt;p&gt;rubygems-openpgp has a &lt;code&gt;--trust&lt;/code&gt; flag that will make sure you only
 install trusted gems.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;gem install openpgp_signed_hola --verify --trust
+&lt;pre&gt;&lt;code&gt;gem install openpgp_signed_hola --trust
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Will fail because the key isn't trusted.&lt;/p&gt;
@@ -1891,7 +1894,7 @@ keep moving and generate a key quickly using the defaults.&lt;/p&gt;
 
 &lt;h3&gt;Verifying against the authenticated key&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code&gt;gem install openpgp_signed_hola --verify --trust
+&lt;pre&gt;&lt;code&gt;gem install openpgp_signed_hola --trust
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Now you'll see that the signature is verified &lt;strong&gt;and&lt;/strong&gt; trusted.&lt;/p&gt;
@@ -1899,7 +1902,8 @@ keep moving and generate a key quickly using the defaults.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&lt;span style='color:green;'&gt;Signature for data.tar.gz from user Grant T. Olson (Personal email)
     &amp;lt;kgo@grant-olson.net&amp;gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_FULLY
 Signature for metadata.gz from user Grant T. Olson (Personal email)
-    &amp;lt;kgo@grant-olson.net&amp;gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_FULLY&lt;/span&gt;
+    &amp;lt;kgo@grant-olson.net&amp;gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_FULLY
+Owner check indicates kgo@grant-olson.net is owner per rubygems.org...&lt;/span&gt;
 Successfully installed openpgp_signed_hola-0.0.0
 1 gem installed
 Installing ri documentation for openpgp_signed_hola-0.0.0...
