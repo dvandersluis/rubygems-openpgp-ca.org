@@ -16,10 +16,10 @@ to verify new releases:
         &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_ULTIMATE
 Signature for metadata.gz from user Grant T. Olson (Personal email) 
         &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_ULTIMATE</span>
-Successfully installed rubygems-openpgp-0.5.1
+Successfully installed rubygems-openpgp-0.6.0
 1 gem installed
-Installing ri documentation for rubygems-openpgp-0.5.1...
-Installing RDoc documentation for rubygems-openpgp-0.5.1...
+Installing ri documentation for rubygems-openpgp-0.6.0...
+Installing RDoc documentation for rubygems-openpgp-0.6.0...
 </code></pre>
 
 But how can you verify your initial install?  If you initially install
@@ -74,6 +74,20 @@ And accept the defaults.
 
 Save the Detached Signature
 ---------------------------
+
+The signature for the 0.6.0 release is:
+
+    -----BEGIN PGP SIGNATURE-----
+    Version: GnuPG v2.0.17 (GNU/Linux)
+    
+    iQEcBAABAgAGBQJRRf0qAAoJEP5F5V2hilTWnhwIAIeCxmyiUT4C7/VPLvpwPypX
+    IGrhaA3hZZzknAh2MxKx+OPiWDt7ynvSlfdbdYbkSbiKv4ho4husLrhfGV7COKws
+    HImXCE4SF+Zhb2WifI7haSCRfrZ4M0z/4adalcB4GpkDRmRYuw1RI92PDLOADLSD
+    u80FPfEF2ekRJqFAUU1Ayzpl8MCfl8e6uzj2CZ8CKtceApb6HZbdWA/jhvuIjXXM
+    tJDAE22rugFw8ba6e9iinFHYpo9XYMG551YzR70lAqWXtxjgAM3jVDGlAXpkQGxM
+    9WTas7RRYmLH1h+JvB/DFR61oZaC3gzBP1IS42KOnXywwcq/rK6/CltPf6MZtco=
+    =aA4r
+    -----END PGP SIGNATURE-----
 
 The signature for the 0.5.1 release is:
 
