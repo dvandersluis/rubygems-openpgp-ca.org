@@ -110,14 +110,14 @@
     </div>
 
   <div id="post">
-<h1>rubygems-openpgp 0.5.0 Released</h1>
+<h1>rubygems-openpgp 0.6.0 Released</h1>
 
 <p>rubygems-openpgp is a rubygems plugin that allows you to sign and
 verify your gems with OpenPGP.</p>
 
 <p>Verifying is as simple as:</p>
 
-<pre><code>gem install openpgp_signed_hola --verify --trust
+<pre><code>gem install openpgp_signed_hola --trust
 </code></pre>
 
 <p>Signing is as simple as:</p>
@@ -125,37 +125,56 @@ verify your gems with OpenPGP.</p>
 <pre><code>gem build foo.gemspec --sign
 </code></pre>
 
-<h2>Now with ssh-style Key Continuity Checks!</h2>
+<h2>Now With rubygems.org Owner Verification Checks</h2>
 
-<p>rubygems-openpgp now tracks the keys used to sign your gems and will
-error out if the signing key for a given gem has changed.  This works
-the same way ssh does when you connect to a host where the key has
-changed.</p>
+<p>When verifying a gem we now query rubygems.org for a list of valid gem
+owners and ensure that the gem's signature comes from:</p>
 
-<p>You can then investigate, and assuming the key change is valid, you
-can remove the appropriate entry in ~/.rubygems-openpgp/known_gems to
-allow installation to complete.</p>
+<ul>
+<li><p>One of the listed owners at rubygems.org.</p></li>
+<li><p>Via a UID that has been authenticated by the user.</p></li>
+</ul>
+
+
+<p>This prevents a few potential exploits:</p>
+
+<ul>
+<li><p>Previously a user could get you to authenticate their key for a
+legitimate gem, somehow deliver an illegitimate gem, and you would
+have trusted the signature.</p>
+
+<p>The owner verification check will now fail because this particular
+user doesn't have rights on this particular gem.</p></li>
+<li><p>A user could get you to authenticate their key for a legitimate
+gem via an innocuous email address such as foo123@gmail.com and
+then later add a UID for a known user like dhh@37signals in an
+attempt to obfuscate the signing key's origin.</p>
+
+<p>The owner verification check will now ignore the new forged email
+address because it hasn't been authenticated by the user.</p></li>
+</ul>
+
+
+<p>Verification can be shut off with the flag <code>--ignore-owner-check</code> if
+(for example) you're installing a gem without a network connection.</p>
 
 <h2>Other Minor Improvements</h2>
 
 <ul>
-<li><p>Gem name is shown before verification status.  Previously it was
-confusing to see multiple verification messages when gem
-dependencies were verified.</p></li>
-<li><p>Generic gpg code was extracted into the gpg_status_parser gem for
-easier re-use.</p></li>
-<li><p>Signing/verifying now skips X.509 signatures if they exist.  We only
-sign/verify the real payload.</p></li>
-<li><p>Minor improvements for Windows users.  We don't output invalid
-unix-style color codes on windows, or print stuff like '~/path' that
-doesn't make sense on windows.</p></li>
+<li><p>--trust now automatically assumes that you want to verify.  You
+don't need both flags.</p></li>
+<li><p>We provide installer links if we can't detect a working copy of
+gpg.</p></li>
+<li><p>Added --trust option to the <code>gem verify</code> command.</p></li>
+<li><p>We properly display OpenPGP short ids as 8 characters of hex, not
+nine.</p></li>
 </ul>
 
 
 <h2>Learn More at the rubygems-openpgp Certificate Authority</h2>
 
 <p>Several guides, walkthroughs, and documents explaining my motivations
-are available at the <a href="http://www.rubygems-openpgp-ca.org">rubygems-openpgp Certificate
+are available at the <a href="https://www.rubygems-openpgp-ca.org">rubygems-openpgp Certificate
 Authority</a>.</p>
 
 <p>Note that use of the Certificate Authority itself is entirely
@@ -174,19 +193,19 @@ rubygems-openpgp itself:</p>
 detached signature.  Instructions on how to do so can be found at the
 <a href="/blog/the-complete-guide-to-verifying-your-initial-install.html">Guide to Verifying Your Initial Install</a>.</p>
 
-<h3>Detached signature for the 0.5.0 release</h3>
+<h3>Detached signature for the 0.6.0 release</h3>
 
 <pre>
 -----BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.11 (GNU/Linux)
+Version: GnuPG v2.0.17 (GNU/Linux)
 
-iQEcBAABAgAGBQJRPJY3AAoJEP5F5V2hilTWVj8H/2R3Ue+4lJxbpZwu/cOodlWb
-ApflZwrhOnGHjxswL7cV7Rf15sPP9WHUvNf/n8Cuc4hHKArW7/wwdw1LP4wmrRz4
-8RxKx8kR7An9JFvs9HhrDt1BvS/j9moaKn//lZfZV7LPIEEuHEUTCNCtHkuV/oBG
-LH9tNSMs1CO1D1kkPyxc2aXZm0mRpygWrS1YskJPy7xdR2aNQk4LHJNF168m+XJH
-2l8U29QgoCpD0W4iL+6ooyY2lyVFWYhQbBd7ojVRG16Q8CxUf4+ZNey+3tgchVEP
-qBFa4M/+m2LoVdCGPOL8meFMytDR75J4VGWtGmRxjfhBeOeNVhneIQT5C6fHCfw=
-=Qxhv
+iQEcBAABAgAGBQJRRf0qAAoJEP5F5V2hilTWnhwIAIeCxmyiUT4C7/VPLvpwPypX
+IGrhaA3hZZzknAh2MxKx+OPiWDt7ynvSlfdbdYbkSbiKv4ho4husLrhfGV7COKws
+HImXCE4SF+Zhb2WifI7haSCRfrZ4M0z/4adalcB4GpkDRmRYuw1RI92PDLOADLSD
+u80FPfEF2ekRJqFAUU1Ayzpl8MCfl8e6uzj2CZ8CKtceApb6HZbdWA/jhvuIjXXM
+tJDAE22rugFw8ba6e9iinFHYpo9XYMG551YzR70lAqWXtxjgAM3jVDGlAXpkQGxM
+9WTas7RRYmLH1h+JvB/DFR61oZaC3gzBP1IS42KOnXywwcq/rK6/CltPf6MZtco=
+=aA4r
 -----END PGP SIGNATURE-----
 </pre>
 
@@ -204,7 +223,7 @@ qBFa4M/+m2LoVdCGPOL8meFMytDR75J4VGWtGmRxjfhBeOeNVhneIQT5C6fHCfw=
   <h2>Related Posts</h2>
   <ul class="posts">
     
-      <li><span>18 Mar 2013</span> &raquo; <a href="/blog/rubygems-openpgp-0.6.0-released.html">rubygems-openpgp 0.6.0 Released</a></li>
+      <li><span>11 Mar 2013</span> &raquo; <a href="/blog/rubygems-openpgp-0.5.0-released.html">rubygems-openpgp 0.5.0 Released</a></li>
     
       <li><span>23 Feb 2013</span> &raquo; <a href="/blog/the-complete-guide-to-verifying-gems-with-rubygems-openpgp.html">The Complete Guide to Verifying Gems with rubygems-openpgp</a></li>
     
