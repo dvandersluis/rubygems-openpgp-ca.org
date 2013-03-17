@@ -83,7 +83,7 @@ are
 rubygems-openpgp has a `--trust` flag that will make sure you only
 install trusted gems.
 
-    gem install openpgp_signed_hola --verify --trust
+    gem install openpgp_signed_hola --trust
 
 Will fail because the key isn't trusted.
 
@@ -132,7 +132,7 @@ keep moving and generate a key quickly using the defaults.
 
 ### Verifying against the authenticated key
 
-    gem install openpgp_signed_hola --verify --trust
+    gem install openpgp_signed_hola --trust
 
 Now you'll see that the signature is verified **and** trusted.
 

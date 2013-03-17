@@ -210,9 +210,9 @@ key, delete the key.
 
     gpg --delete-key 0xE3B5806F
 
-Run the install with `--verify`, `--trust`, and `--get-key` args.
+Run the install with `--trust` and `--get-key` args.
 
-    gem install openpgp_signed_hola --verify --trust --get-key
+    gem install openpgp_signed_hola --trust --get-key
 
 If everything is setup correctly, you should trust the package based
 on the Certificate Authority signature on the key:

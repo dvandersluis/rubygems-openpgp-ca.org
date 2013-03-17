@@ -11,7 +11,7 @@ The Complete Guide to Verifying Your Initial Install
 Assuming you have already installed rubygems-openpgp, you can use it
 to verify new releases:
 
-<pre><code>johnmudhead:~ grant$ gem install rubygems-openpgp --verify --trust
+<pre><code>johnmudhead:~ grant$ gem install rubygems-openpgp --trust
 <span style='color:green;'>Signature for data.tar.gz from user Grant T. Olson (Personal email) 
         &lt;kgo@grant-olson.net&gt; key 0x0E3B5806F is GOODSIG, VALIDSIG and TRUST_ULTIMATE
 Signature for metadata.gz from user Grant T. Olson (Personal email) 
