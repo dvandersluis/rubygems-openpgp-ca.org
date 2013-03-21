@@ -82,6 +82,11 @@
               </a>
             </li>
             <li>
+              <a href='/blog/releases.html'>
+                Release Announcements
+              </a>
+            </li>
+            <li>
               <a href='/blog/gems-signed-with-rubygems-openpgp.html'>
                 Signed Gems
               </a>
@@ -89,11 +94,6 @@
             <li>
               <a href='/blog/signing-specification.html'>
                 Signing Specification
-              </a>
-            </li>
-            <li>
-              <a href='/blog/gem-signing-x509-and-openpgp.html'>
-                Why OpenPGP?
               </a>
             </li>
           </ul>
@@ -114,11 +114,13 @@
   <ul class="posts">
     
       
-      <h3><span>18 Mar 2013</span> &raquo; <a href="/blog/rubygems-openpgp-0.6.0-released.html">rubygems-openpgp 0.6.0 Released</a>
+      <h3><span>21 Mar 2013</span> &raquo; <a href="/blog/should-users-be-encouraged-to-run-gem-cert-add.html">Should Users Be Encouraged to Run `gem cert --add`?</a>
       </h3>
-      <p class='blog_preview'>rubygems-openpgp is a rubygems plugin that allows you to sign and verify your gems with OpenPGP. Verifying is as simple as: Signing is as simple as: Now With rubygems.org Owner Verification Checks When verifying a gem we now query rubygems.org for a list of valid gem owners and ensure that the gem's signature comes from: One of the listed owners at rubygems.org. Via a UID that has been authenticated by the user. This prevents a...
-<a href="/blog/rubygems-openpgp-0.6.0-released.html">[Read More]</a>
+      <p class='blog_preview'>People who are signing gems today via the built-in signing are using self-signed certificates. In general this is a bad idea. That's why your web browser will give you a nasty warning if you go to an https site that uses a self-signed certificate. A self-signed certificate is the digital equivalent of saying, "Dude! Of course I'm 21! Why would I make that up?" But there's an even bigger problem with this approach than simply...
+<a href="/blog/should-users-be-encouraged-to-run-gem-cert-add.html">[Read More]</a>
 </p>
+       
+    
        
     
        
@@ -141,46 +143,8 @@
     
        
     
-      
-      <h3><span>11 Mar 2013</span> &raquo; <a href="/blog/rubygems-openpgp-0.5.1-released.html">rubygems-openpgp 0.5.1 Released</a>
-      </h3>
-      <p class='blog_preview'>
-
-This release corrects a minor issue where a Windows machine couldn't
-sign an existing gem built on linux.
-
-Verifying Your Initial Install
-
-Existing users of rubygems-openpgp can verify the install with
-rubygems-openpgp itself:
-
-
-
-It is recommended that new users fetch the gem and verify it against a
-detached signature.  Instructions on how to do so can be found at the
-Guide to Verifying Your Initial Install.
-
-Detached signature for the 0.5.1 release
-
-
-
-Enjoy
-
-
-Grant
-
-
-
-<a href="/blog/rubygems-openpgp-0.5.1-released.html">[Read More]</a>
-</p>
        
     
-      
-      <h3><span>11 Mar 2013</span> &raquo; <a href="/blog/rubygems-openpgp-0.5.0-released.html">rubygems-openpgp 0.5.0 Released</a>
-      </h3>
-      <p class='blog_preview'>rubygems-openpgp is a rubygems plugin that allows you to sign and verify your gems with OpenPGP. Verifying is as simple as: Signing is as simple as: Now with ssh-style Key Continuity Checks! rubygems-openpgp now tracks the keys used to sign your gems and will error out if the signing key for a given gem has changed. This works the same way ssh does when you connect to a host where the key has changed. You...
-<a href="/blog/rubygems-openpgp-0.5.0-released.html">[Read More]</a>
-</p>
        
     
       
@@ -231,12 +195,6 @@ Grant
     
        
     
-      
-      <h3><span>23 Feb 2013</span> &raquo; <a href="/blog/rubygems-openpgp-0.4-released.html">rubygems-openpgp 0.4 Released</a>
-      </h3>
-      <p class='blog_preview'>Now with Trust! Previous versions could only verify signatures. They didn't take your gnupg trust settings into account. You can now provide the --trust flag and gems will only be installed if you trust the signing key. And the install fail if the key isn't trusted. Learn more at The Complete Guide to Verifying Gems with rubygems-openpgp Release Signature Previous users of rubygems-openpgp should be able to verify this release with rubygems-openpgp. New users may...
-<a href="/blog/rubygems-openpgp-0.4-released.html">[Read More]</a>
-</p>
        
     
       
