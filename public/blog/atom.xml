@@ -4,7 +4,7 @@
  <title>rubygems-openpgp Certificate Authority</title>
  <link href="https://www.rubygems-openpgp-ca.org/blog/atom.xml" rel="self"/>
  <link href="https://www.rubygems-openpgp-ca.org/"/>
- <updated>2013-03-20T20:10:33-04:00</updated>
+ <updated>2013-03-21T17:55:52-04:00</updated>
  <id>https://www.rubygems-openpgp-ca.org/blog</id>
  <author>
    <name>rubygems-openpgp Certificate Authority</name>
@@ -18,12 +18,12 @@
    <id>https://www.rubygems-openpgp-ca.org/blog/should-users-be-encouraged-to-run-gem-cert-add</id>
    <content type="html">&lt;h1&gt;Should Users Be Encouraged to Run &lt;code&gt;gem cert --add&lt;/code&gt;?&lt;/h1&gt;
 
-&lt;p&gt;People who are signing gems today via the built-in signing are using
-self-signed certificates.  In general this is a bad idea.  That's why
-your web browser will give you a nasty warning if you go to an https
-site that uses a self-signed certificate.  A self-signed certificate
-is the digital equivalent of saying, &quot;Dude! Of course I'm 21! Why
-would I make that up?&quot;&lt;/p&gt;
+&lt;p&gt;People who are signing gems today via the built-in signing mechanism
+are using self-signed certificates.  In general this is a bad idea.
+That's why your web browser will give you a nasty warning if you go to
+an https site that uses a self-signed certificate.  A self-signed
+certificate is the digital equivalent of saying, &quot;Dude! Of course I'm
+21! Why would I make that up?&quot;&lt;/p&gt;
 
 &lt;p&gt;But there's an even bigger problem with this approach than simply side
 stepping the whole issue of authentication.  Some people are starting
@@ -57,8 +57,8 @@ trusted certificate to their system.&lt;/p&gt;
 And that json parser might be a fine piece of software.  But now the
 holder of that certificate can sign anything and you'll accept it as
 trusted.  They can make their own version or rake, rails, rspec, etc,
-and get you to install it in the impressive-sounding HighSecurity mode
-without even providing a warning.&lt;/p&gt;
+and get you to install it in the impressive-sounding &lt;strong&gt;HighSecurity&lt;/strong&gt;
+mode without even providing a warning.&lt;/p&gt;
 
 &lt;p&gt;Now of course for this to work an attacker would need to somehow get
 you to download the forged version of the software.  This is easier
@@ -78,12 +78,12 @@ github page and have no idea who I really am.&lt;/p&gt;
 you trust a particular certificate globally for all things, what you
 really want to be able to say is:&lt;/p&gt;
 
-&lt;blockquote&gt;&lt;p&gt;I trust that this certificate belongs to the author of this
+&lt;blockquote&gt;&lt;p&gt;&quot;I trust that this certificate belongs to the author of this
 particular gem I'm using.  If the gem is signed by this certificate
 I'll consider it to be authentic.  If it is unsigned or signed by
-another certificate I will not.&lt;/p&gt;&lt;/blockquote&gt;
+another certificate I will not.&quot;&lt;/p&gt;&lt;/blockquote&gt;
 
-&lt;h2&gt;Of Course This Was All Really a Sales Pitch for rubygems-openpgp&lt;/h2&gt;
+&lt;h2&gt;And This Is All Really a Sales Pitch for rubygems-openpgp&lt;/h2&gt;
 
 &lt;p&gt;As of &lt;a href=&quot;/blog/rubygems-openpgp-0.6.0-released.html&quot;&gt;release 0.6.0&lt;/a&gt;
 rubygems-openpgp will query rubygems.org to determine a list of owners

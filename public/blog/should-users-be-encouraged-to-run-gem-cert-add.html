@@ -112,12 +112,12 @@
   <div id="post">
 <h1>Should Users Be Encouraged to Run <code>gem cert --add</code>?</h1>
 
-<p>People who are signing gems today via the built-in signing are using
-self-signed certificates.  In general this is a bad idea.  That's why
-your web browser will give you a nasty warning if you go to an https
-site that uses a self-signed certificate.  A self-signed certificate
-is the digital equivalent of saying, "Dude! Of course I'm 21! Why
-would I make that up?"</p>
+<p>People who are signing gems today via the built-in signing mechanism
+are using self-signed certificates.  In general this is a bad idea.
+That's why your web browser will give you a nasty warning if you go to
+an https site that uses a self-signed certificate.  A self-signed
+certificate is the digital equivalent of saying, "Dude! Of course I'm
+21! Why would I make that up?"</p>
 
 <p>But there's an even bigger problem with this approach than simply side
 stepping the whole issue of authentication.  Some people are starting
@@ -151,8 +151,8 @@ trusted certificate to their system.</p>
 And that json parser might be a fine piece of software.  But now the
 holder of that certificate can sign anything and you'll accept it as
 trusted.  They can make their own version or rake, rails, rspec, etc,
-and get you to install it in the impressive-sounding HighSecurity mode
-without even providing a warning.</p>
+and get you to install it in the impressive-sounding <strong>HighSecurity</strong>
+mode without even providing a warning.</p>
 
 <p>Now of course for this to work an attacker would need to somehow get
 you to download the forged version of the software.  This is easier
@@ -172,12 +172,12 @@ github page and have no idea who I really am.</p>
 you trust a particular certificate globally for all things, what you
 really want to be able to say is:</p>
 
-<blockquote><p>I trust that this certificate belongs to the author of this
+<blockquote><p>"I trust that this certificate belongs to the author of this
 particular gem I'm using.  If the gem is signed by this certificate
 I'll consider it to be authentic.  If it is unsigned or signed by
-another certificate I will not.</p></blockquote>
+another certificate I will not."</p></blockquote>
 
-<h2>Of Course This Was All Really a Sales Pitch for rubygems-openpgp</h2>
+<h2>And This Is All Really a Sales Pitch for rubygems-openpgp</h2>
 
 <p>As of <a href="/blog/rubygems-openpgp-0.6.0-released.html">release 0.6.0</a>
 rubygems-openpgp will query rubygems.org to determine a list of owners
