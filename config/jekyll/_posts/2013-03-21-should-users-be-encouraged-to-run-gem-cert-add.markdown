@@ -7,12 +7,12 @@ title: Should Users Be Encouraged to Run `gem cert --add`?
 Should Users Be Encouraged to Run `gem cert --add`?
 ===================================================
  
-People who are signing gems today via the built-in signing are using
-self-signed certificates.  In general this is a bad idea.  That's why
-your web browser will give you a nasty warning if you go to an https
-site that uses a self-signed certificate.  A self-signed certificate
-is the digital equivalent of saying, "Dude! Of course I'm 21! Why
-would I make that up?"
+People who are signing gems today via the built-in signing mechanism
+are using self-signed certificates.  In general this is a bad idea.
+That's why your web browser will give you a nasty warning if you go to
+an https site that uses a self-signed certificate.  A self-signed
+certificate is the digital equivalent of saying, "Dude! Of course I'm
+21! Why would I make that up?"
 
 But there's an even bigger problem with this approach than simply side
 stepping the whole issue of authentication.  Some people are starting
@@ -20,7 +20,7 @@ to put their certificates on github or their personal web page.  Then
 a user is instructed to install it with something like:
 
     curl http://github.com/blah/blah/user.crt > user.crt
-	gem cert --add user.crt
+    gem cert --add user.crt
 	
 The notion is that if you get the certificate from github, and the gem
 from rubygems.org, there isn't much likelihood of both delivery
@@ -44,8 +44,8 @@ You might have imported that certificate for a json parser you like.
 And that json parser might be a fine piece of software.  But now the
 holder of that certificate can sign anything and you'll accept it as
 trusted.  They can make their own version or rake, rails, rspec, etc,
-and get you to install it in the impressive-sounding HighSecurity mode
-without even providing a warning.
+and get you to install it in the impressive-sounding **HighSecurity**
+mode without even providing a warning.
 
 Now of course for this to work an attacker would need to somehow get
 you to download the forged version of the software.  This is easier
@@ -65,12 +65,12 @@ A better solution is per-resource trust.  Instead of declaring that
 you trust a particular certificate globally for all things, what you
 really want to be able to say is:
 
-> I trust that this certificate belongs to the author of this
+> "I trust that this certificate belongs to the author of this
 > particular gem I'm using.  If the gem is signed by this certificate
 > I'll consider it to be authentic.  If it is unsigned or signed by
-> another certificate I will not.
+> another certificate I will not."
 
-## Of Course This Was All Really a Sales Pitch for rubygems-openpgp
+## And This Is All Really a Sales Pitch for rubygems-openpgp
 
 As of [release 0.6.0](/blog/rubygems-openpgp-0.6.0-released.html)
 rubygems-openpgp will query rubygems.org to determine a list of owners
