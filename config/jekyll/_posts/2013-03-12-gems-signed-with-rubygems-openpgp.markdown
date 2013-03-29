@@ -5,7 +5,7 @@ title: Gems Signed with rubygems-openpgp
 category: cms
 # 15 total registered users 
 # 6 actual gem signers
-# 14 signed gems
+# 15 signed gems
 ---
 
 Gems Signed with rubygems-openpgp
@@ -16,6 +16,7 @@ signed gem that's not on the list?  [Let us
 know!](mailto:kgo@grant-olson.net)
 
 * [acts_as_textcaptcha](https://rubygems.org/gems/acts_as_textcaptcha)
+* [chore](https://rubygems.org/gems/chore)
 * [crash-watch](https://rubygems.org/gems/crash-watch)
 * [daemon_controller](https://rubygems.org/gems/daemon_controller)
 * [default_value_for](https://rubygems.org/gems/default_value_for)
