@@ -4,7 +4,7 @@
  <title>rubygems-openpgp Certificate Authority</title>
  <link href="https://www.rubygems-openpgp-ca.org/blog/atom.xml" rel="self"/>
  <link href="https://www.rubygems-openpgp-ca.org/"/>
- <updated>2013-03-24T12:11:55-04:00</updated>
+ <updated>2013-04-02T09:29:52-04:00</updated>
  <id>https://www.rubygems-openpgp-ca.org/blog</id>
  <author>
    <name>rubygems-openpgp Certificate Authority</name>
@@ -824,6 +824,7 @@ know!&lt;/a&gt;&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/acts_as_textcaptcha&quot;&gt;acts_as_textcaptcha&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/chore&quot;&gt;chore&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/crash-watch&quot;&gt;crash-watch&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/daemon_controller&quot;&gt;daemon_controller&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/default_value_for&quot;&gt;default_value_for&lt;/a&gt;&lt;/li&gt;
@@ -831,12 +832,14 @@ know!&lt;/a&gt;&lt;/p&gt;
 &lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/eurovat&quot;&gt;eurovat&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/gpg_status_parser&quot;&gt;gpg_status_parser&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/henry-container&quot;&gt;henry-container&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/highcharts-rails&quot;&gt;highcharts-rails&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/migrant&quot;&gt;migrant&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/mizuho&quot;&gt;mizuho&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/openpgp_signed_hola&quot;&gt;openpgp_signed_hola&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/rack-jsonp-middleware&quot;&gt;rack-jsonp-middleware&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/resque-kalashnikov&quot;&gt;resque-kalashnikov&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/rubygems-openpgp&quot;&gt;rubygems-openpgp&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://rubygems.org/gems/tinymce-rails-imageupload&quot;&gt;tinymce-rails-imageupload&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 </content>
