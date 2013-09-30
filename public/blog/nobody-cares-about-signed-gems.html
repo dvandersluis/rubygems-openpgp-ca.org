@@ -1,0 +1,292 @@
+<html>
+  <head>
+    <title>
+      
+    </title>
+    <link href="/blog/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/assets/application.css?body=1" media="all" rel="stylesheet" type="text/css" />
+    <script src="/assets/application.js?body=1" type="text/javascript"></script>
+    <meta content="authenticity_token" name="csrf-param" />
+    <meta content="USxg1KdEuBsICAhWZXAKxWE7jzckUM6mcN12xGbNe5k=" name="csrf-token" />
+  </head>
+  <body>
+  <script type="text/javascript">
+  
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-38732430-1']);
+    _gaq.push(['_setDomainName', 'rubygems-openpgp-ca.org']);
+    _gaq.push(['_setAllowLinker', true]);
+    _gaq.push(['_trackPageview']);
+  
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  
+  </script>
+<div class='header'>
+      <div class='project_title'>rubygems-openpgp Certificate Authority</div>
+<ul class='menu'>
+        <li>
+          <a href='/'>
+            Home
+          </a>
+        </li>
+        <li>
+          Guides
+          <ul>
+            <li>
+              <a href='/blog/the-complete-guide-to-verifying-gems-with-rubygems-openpgp.html'>
+                The Complete Guide to Verifying Gems
+              </a>
+            </li>
+            <li>
+              <a href='/blog/the-complete-guide-to-signing-the-certificate-authority-keys.html'>
+                The Complete Guide to Signing the Certificate Authority Keys
+              </a>
+            </li>
+            <li>
+              <a href='/blog/the-complete-guide-to-signing-your-gems.html'>
+                The Complete Guide to Signing Your Gems
+              </a>
+            </li>
+            <li>
+              <a href='/blog/the-complete-guide-to-verifying-your-initial-install.html'>
+                The Complete Guide to Verifying Your Initial Install
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Policies
+          <ul>
+            <li>
+              <a href='/blog/authentication.html'>
+                Gem Developer Authentication
+              </a>
+            </li>
+            <li>
+              <a href='/blog/signing-key-security.html'>
+                Signing Key Security
+              </a>
+            </li>
+            <li>
+              <a href='/blog/signing-keys.html'>
+                Signing Keys
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Info
+          <ul>
+            <li>
+              <a href='/blog'>
+                Blog
+              </a>
+            </li>
+            <li>
+              <a href='/blog/releases.html'>
+                Release Announcements
+              </a>
+            </li>
+            <li>
+              <a href='/blog/gems-signed-with-rubygems-openpgp.html'>
+                Signed Gems
+              </a>
+            </li>
+            <li>
+              <a href='/blog/signing-specification.html'>
+                Signing Specification
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href='/blog/contact.html'>
+            Contact
+          </a>
+        </li>
+        <li>
+          <a href='/users/sign_up'>Apply Now!</a>
+        </li>
+      </ul>
+    </div>
+
+  <div class='breadcrumb'><span><a href='/'>Home</a></span> &gt;&gt;
+  <span><a href='/blog'>Blog</a>
+ &gt;&gt;
+  Nobody Cares About Signed Gems
+</div>
+
+<div id="post">
+<h1>Nobody Cares About Signed Gems</h1>
+
+<p>The signing key for the CA expired on August 17, 2013.  As an
+experiment, I decided to leave the key in an expired state and see if
+and when anyone would notice or complain.  Today (Sept 29, 2013)
+someone finally asked about it on the mailing list.  Just over 45
+days.</p>
+
+<h2>Why would I let the key expire?</h2>
+
+<p>I originally wrote rubygems-openpgp a few years ago because I wasn't
+happy with the existing signing solution and was looking for a side
+project to work on.  No one paid attention.  It was clear that I was
+the sole user.  So the project sat there in maintenance mode.</p>
+
+<p>Then... A few years later... rubygems.org got hacked! There was no way
+to tell if the gems on the site had been compromised.  Suddenly there
+was interest in signing gems.  A few people found my project and
+submitted pull requests.  Now that there were a few users, I dived
+back in and decided to take the gem from the proof-of-concept stage to
+a stable piece of software.  I spent the next month doing so.</p>
+
+<p>Along the way one too many people said that OpenPGP wasn't useful
+because most users couldn't get into the strong set in the
+Web-of-Trust.  So I created this site as a proof-of-concept CA.  The
+implementation was.  I didn't even really need a rails website.  The
+content is exclusively jekyll.  Basically a user would sign up.  I
+would manually verify that they had control of their email, signing
+key, and had published gems on rubygems.org.  I would then manually
+sign off on their key with a smart-card set aside for that purpose.  I
+got a MVP up and running, and started circulating the link.</p>
+
+<p>This brought tens of thousands of users to the site.  Plenty of
+upvotes on reddit.  Success, right?</p>
+
+<h2>Wrong!</h2>
+
+<p>One metric to measure success would be the number of people who
+requested certification.  That number was less than a dozen.</p>
+
+<p>But we need to keep in mind these are just gem authors, right?  Those
+should be orders of magnitude rarer than the actual users, right?</p>
+
+<h2>Wrong!</h2>
+
+<p>I provide a test gem called openpgp-signed-hola.  It is the standard
+"Hello World" gem with the addition of a digital signature.  All the
+documentation referred users to use this gem to see how things work.
+Rubygems.org has nice charts that show how many times a version of gem
+has been downloaded.  Of course this number includes bots and other
+automated retrievals in addition to actual human users testing out
+rubygems-openpgp.  But it does provide an upper bound of the maximum
+amount of people who tried to verify the test gem.</p>
+
+<p>No more than two dozen people tried to manually verify the test gem.
+To be honest, I think this number is probably high.  I think the
+number was much lower.</p>
+
+<p>Honestly, I found this disappointing.  It takes less than 5 minutes to
+test gem verification.  You would think that number would be at least
+equal to the number of upvotes on reddit.  That people would actually
+read the site and try things out, instead of hitting the upvote button
+and going away.  You would think the people writing blog posts about
+how important signing was would take 5 minutes to try out the
+software.  But alas, they didn't.</p>
+
+<h2>But it takes time for software adoption, right?</h2>
+
+<p>I had a few interested users.  There were finally signed gems on
+rubygems.org signed by people other than me.  I expected that would be
+enough that I'd get a trickle of signups over the course of the next
+year.  But after the initial burst of interest activity came to a
+halt.  After several months without receiving a single sign-up on the
+site, inquiries on the mailing lists, or issues in github, I found
+myself wondering why I was paying $20 a month to heroku to for https
+hosting.  I went ahead and canceled that.  And that's when I decided
+to let the signing key expire.</p>
+
+<h2>Why would I let the key expire again?</h2>
+
+<p>The key was setup to expire every 30 days.  This was basically a way
+to enforce a revocation policy.  If the key itself was compromised
+(unlikely, it's on a smart card), or if I was forced to issue
+revocations on the CA's behalf, a periodic expiration would force
+users to retrieve updated certificates and hence any revocations.</p>
+
+<p>If there was a small community of people who were using the CA keys, I
+would quickly get an email they started noticing that all their
+software was expired.  It would at least provide some indication that
+I should continue to maintain the CA.</p>
+
+<p>45 days later someone finally noticed.</p>
+
+<h2>That doesn't prove nobody cares about signed gems, it just proves nobody cares about rubygems-openpgp</h2>
+
+<p>True.</p>
+
+<p>But I haven't seen any activity on the X.509 front either.  After the
+rubygems compromise, things were supposed to change.  That was finally
+the kick-in-the-pants the community needed to fix things and take gem authentication seriously.</p>
+
+<ul>
+<li><p>The rubygems-trust project was started to setup replacement rubygems
+with CA capabilities.  Activity fizzled out after a month with no
+visible results.</p></li>
+<li><p>A few people tried to start signing their gems with X509, but most
+gave up because it was impractical.</p></li>
+<li><p>The X509 code in rubygems itself has essentially the same TODO list
+as it did when the code was initially merged in 2007.</p></li>
+</ul>
+
+
+<p>The above points, as the rest of this essay, is NOT an attempt to call
+anyone out, it's simply what I've observed.  Getting X509 signing and
+verification of gems to actually be used isn't any farther along than
+it was before the rubygems.org hack either.</p>
+
+<h2>In Conclusion</h2>
+
+<p>I'm primarily documenting my experiences with the project so they're
+available if/when there is push to start signing gems in the future.</p>
+
+<p>This post is negative, but I hope it doesn't come across as bitter.  I
+don't regret any of the time I spent on rubygems-openpgp or the CA.
+It was fun! And I'll continue to maintain rubygems-openpgp if it's
+needed.  (The CA, on the other hand, will probably go away when the
+domain expires and/or I want to use my free heroku hours for another
+project.)</p>
+
+<p>I do wish people were more interested in signing their gems one way or
+another, but then again I wish more people (especially techies) would
+encrypt their damn emails!  Instead they'll write blog posts and tweet
+about the importance of doing so, but won't actually change their
+habits.</p>
+
+<p>-Grant</p>
+
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>26 Feb 2013</span> &raquo; <a href="/blog/gem-signing-x509-and-openpgp.html">Gem Signing - X.509 vs OpenPGP</a></li>
+    
+      <li><span>24 Feb 2013</span> &raquo; <a href="/blog/the-complete-guide-to-signing-the-certificate-authority-keys.html">The Complete Guide to Signing the Certificate Authority Keys</a></li>
+    
+      <li><span>22 Feb 2013</span> &raquo; <a href="/blog/how-many-people-need-to-verify-software-to-make-signing-useful.html">How Many People Need to Verify Software to Make Signing Useful?</a></li>
+    
+  </ul>
+</div>
+
+ <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'rubygems-openpgp-ca'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+  </body>
+</html>
